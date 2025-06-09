@@ -1,0 +1,42 @@
+Here are the contents for the file `/TestOnline-TOEFL/TestOnline-TOEFL/src/assets/data/questions.json`:
+
+{
+  "questions": [
+    {
+      "id": 1,
+      "category": "Listening",
+      "question": "What is the main idea of the conversation?",
+      "options": [
+        "A) To discuss a recent event",
+        "B) To plan a future meeting",
+        "C) To share personal experiences",
+        "D) To provide feedback"
+      ],
+      "answer": "A"
+    },
+    {
+      "id": 2,
+      "category": "Structure",
+      "question": "Choose the correct form of the verb: She ___ to the store every Saturday.",
+      "options": [
+        "A) go",
+        "B) goes",
+        "C) gone",
+        "D) going"
+      ],
+      "answer": "B"
+    },
+    {
+      "id": 3,
+      "category": "Reading",
+      "question": "What can be inferred about the author's opinion?",
+      "options": [
+        "A) The author disagrees with the main argument.",
+        "B) The author supports the main argument.",
+        "C) The author is neutral on the topic.",
+        "D) The author is confused about the topic."
+      ],
+      "answer": "B"
+    }
+  ]
+}
