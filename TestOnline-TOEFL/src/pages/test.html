@@ -7,7 +7,91 @@
     <link rel="stylesheet" href="../css/test.css">
 </head>
 <body>
-    
+    <header class="test-header">
+        <h1>TOEFL Test</h1>
+        <div class="timer">45:00</div>
+    </header>
+
+    <div class="test-container">
+        <div class="mode-toggle">
+            <button class="mode-btn active">Practice Mode</button>
+            <button class="mode-btn">Exam Mode</button>
+        </div>
+
+        <nav class="section-nav">
+            <button class="section-btn active">Listening</button>
+            <button class="section-btn">Structure</button>
+            <button class="section-btn">Reading</button>
+        </nav>
+
+        <div class="question-container">
+            <p class="question-text">Sample question text will be displayed here...</p>
+            <ul class="options-list">
+                <li class="option-item">Option A</li>
+                <li class="option-item selected">Option B</li>
+                <li class="option-item">Option C</li>
+                <li class="option-item">Option D</li>
+            </ul>
+
+            <div class="navigation-controls">
+                <button class="nav-btn prev-btn">Previous</button>
+                <button class="nav-btn next-btn">Next</button>
+            </div>
+        </div>
+
+        <div class="results-container" style="display: none;">
+            <h2>Test Results</h2>
+            <div class="score-display">550</div>
+            
+            <div class="section-scores">
+                <div class="section-score">
+                    <h3>Listening</h3>
+                    <div class="score">52</div>
+                </div>
+                <div class="section-score">
+                    <h3>Structure</h3>
+                    <div class="score">48</div>
+                </div>
+                <div class="section-score">
+                    <h3>Reading</h3>
+                    <div class="score">50</div>
+                </div>
+            </div>
+
+            <button class="nav-btn">View Answers</button>
+        </div>
+
+        <div class="leaderboard">
+            <h2>Leaderboard</h2>
+            <table class="leaderboard-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Name</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="rank">1</td>
+                        <td>John Doe</td>
+                        <td>580</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">2</td>
+                        <td>Jane Smith</td>
+                        <td>570</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">3</td>
+                        <td>Bob Johnson</td>
+                        <td>560</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
     <script src="../js/test.js"></script>
 </body>
 </html>
