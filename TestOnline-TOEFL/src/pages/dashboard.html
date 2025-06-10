@@ -1,11 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard TOEFL</title>
+  <link rel="stylesheet" href="" />
 </head>
 <body>
-    
+  <div class="container">
+    <header>
+      <h1>Dashboard TOEFL</h1>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="#">Beranda</a></li>
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Test</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <section class="user-info">
+        <h2>Data Pengguna</h2>
+        <p><strong>Nama:</strong> <span id="userName">Nama User</span></p>
+        <p><strong>Email:</strong> <span id="userEmail">user@email.com</span></p>
+        <button onclick="editProfile()">Edit Profil</button>
+      </section>
+
+      <section class="riwayat">
+        <h2>Riwayat Tes</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Tanggal</th>
+              <th>Skor Listening</th>
+              <th>Skor Structure</th>
+              <th>Skor Reading</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody id="riwayatTable">
+            <!-- Data diisi lewat JavaScript -->
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Simulasi TOEFL</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

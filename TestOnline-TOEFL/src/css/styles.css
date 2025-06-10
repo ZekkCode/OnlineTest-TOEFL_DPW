@@ -1,0 +1,125 @@
+/* styles.css */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #257cff;
+    color: #222;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3vw;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(50,50,50,0.07);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.brand {
+    font-weight: 700;
+    font-size: 1.4rem;
+    letter-spacing: .03em;
+}
+
+.highlight {
+    color: #257cff;
+    font-weight: bold;
+}
+
+nav {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    padding: .55em 1.4em;
+    border-radius: 1.5em;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background .15s;
+    font-weight: 500;
+}
+
+.btn.login {
+    background: transparent;
+    color: #257cff;
+    border: 1.5px solid #257cff;
+}
+
+.btn.register,
+.btn.cta {
+    background: #257cff;
+    color: #fff;
+    border: 1.5px solid #257cff;
+    margin-left: .3em;
+}
+
+.btn.login:hover, .btn.register:hover, .btn.cta:hover {
+    background: #184c99;
+    color: #fff;
+    border-color: #184c99;
+}
+
+.hero {
+    max-width: 650px;
+    margin: 4rem auto 2rem auto;
+    padding: 2.4rem 2rem;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 2px 32px rgba(60,60,60,.09);
+    text-align: center;
+}
+
+.hero > h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 2.2rem;
+}
+
+.hero p {
+    font-size: 1.15rem;
+    margin-bottom: 2em;
+    color: #444;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 0.5em 0 .5em 0;
+    background: #fff;
+    color: #272727;
+    font-weight: 500;
+    font-size: .98em;
+    margin-top: 3rem;
+    box-shadow: 0 -1px 8px rgba(70,70,70,0.03);
+    border-radius: 12px 12px 0 0;
+}
+
+footer > p {
+    padding: 0;
+    margin: 0;
+}
+
+@media (max-width: 600px) {
+    .hero {
+        margin: 2.5rem .5rem;
+        padding: 1.3rem .8rem;
+    }
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: .6em;
+    }
+    .brand {
+        font-size: 1.1rem;
+    }
+}
