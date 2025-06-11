@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - TOEL.id</title>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/pages/auth/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="brand">TOEL.id | <span class="highlight">Test Online TOEFL</span></div>
+        <nav><a href="/" class="btn">Back</a></nav>
+    </header>
+
+    <div class="container">
+        <h1>Log in</h1>
+        <div class="log">
+            <form onsubmit="return handleLogin(event)">
+                <label for="user">Username</label>
+                <input type="text" name="user" id="user" autocomplete="username" required>
+
+                <label for="pw">Password</label>
+                <input type="password" name="pw" id="pw" autocomplete="current-password" required>
+
+                <button type="submit">Continue</button>
+            </form>
+            <p>No account? <a href="/auth/register">Sign Up</a></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 TOEL.id | Test Online TOEFL. All rights reserved.</p>
+        <p>Developed by:</p>
+        <p>240411100144 | 240411100181 | 240411100166</p>
+    </footer>
+
+    <script src="/js/utils/auth.js"></script>
+</body>
+</html>

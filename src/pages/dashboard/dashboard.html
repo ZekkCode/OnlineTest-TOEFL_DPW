@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - TOEL.id</title>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/components/sidebar.css">
+    <link rel="stylesheet" href="/css/pages/dashboard/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fb;
+            color: #333;
+        }
+
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 240px;
+            background-color: #3f51b5;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sidebar .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .sidebar .menu {
+            list-style: none;
+        }
+
+        .sidebar .menu li {
+            margin: 15px 0;
+        }
+
+        .sidebar .menu li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: 0.3s;
+        }
+
+        .sidebar .menu li a:hover {
+            text-decoration: underline;
+        }
+
+        .sidebar .logout-btn {
+            background-color: #ff5252;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .sidebar .logout-btn:hover {
+            background-color: #e64a19;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 20px 40px;
+        }
+
+        /* Topbar */
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .topbar .search-bar input {
+            padding: 10px 16px;
+            width: 250px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+        }
+
+        .topbar .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .topbar .user-profile img {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #3f51b5;
+        }
+
+        /* Welcome Section */
+        .welcome-section {
+            margin-bottom: 25px;
+        }
+
+        .welcome-section h2 {
+            font-size: 1.8em;
+            color: #3f51b5;
+        }
+
+        .welcome-section p {
+            color: #555;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            min-width: 250px;
+            transition: box-shadow 0.3s, transform 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 20px rgba(63, 81, 181, 0.18);
+            transform: translateY(-6px) scale(1.03);
+        }
+
+        /* Hover & active effect for all sidebar menu items */
+        .sidebar .menu li a {
+            position: relative;
+            transition: background 0.3s, color 0.3s;
+            border-radius: 6px;
+            padding: 8px 12px;
+        }
+
+        .sidebar .menu li a:hover {
+            background: #5c6bc0;
+            color: #fff;
+        }
+
+        .sidebar .menu li a:active {
+            animation: menuClick 0.18s;
+            background: #283593;
+            color: #fff;
+        }
+
+        /* Modal Edit Profil */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: auto;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-content {
+            background: #fff;
+            margin: 60px auto;
+            padding: 30px 24px 20px 24px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 370px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.13);
+            position: relative;
+        }
+
+        .modal-content h3 {
+            margin-bottom: 18px;
+            color: #3f51b5;
+        }
+
+        .modal-content label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .modal-content input[type="text"],
+        .modal-content input[type="email"] {
+            width: 100%;
+            padding: 8px 10px;
+            margin-bottom: 14px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .modal-content input[type="file"] {
+            margin-bottom: 14px;
+        }
+
+        .modal-content .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .modal-content button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .modal-content .save-btn {
+            background: #3f51b5;
+            color: #fff;
+        }
+
+        .modal-content .cancel-btn {
+            background: #eee;
+            color: #333;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 1.3em;
+            color: #888;
+            cursor: pointer;
+        }
+
+        @keyframes menuClick {
+            0% {
+                transform: scale(1);
+            }
+
+            60% {
+                transform: scale(0.93);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            color: #3f51b5;
+        }
+
+        .card p {
+            margin: 6px 0;
+        }
+
+        /* Hover & active effect for Dashboard, Lessons, Schedule */
+        .sidebar .menu li:nth-child(-n+3) a {
+            position: relative;
+            transition: background 0.3s, color 0.3s;
+            border-radius: 6px;
+            padding: 8px 12px;
+        }
+
+        .sidebar .menu li:nth-child(-n+3) a:hover {
+            background: #5c6bc0;
+            color: #fff;
+        }
+
+        .sidebar .menu li:nth-child(-n+3) a:active {
+            animation: menuClick 0.18s;
+            background: #283593;
+            color: #fff;
+        }
+
+        @keyframes menuClick {
+            0% {
+                transform: scale(1);
+            }
+
+            60% {
+                transform: scale(0.93);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Modal Edit Profil */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: auto;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-content {
+            background: #fff;
+            margin: 60px auto;
+            padding: 30px 24px 20px 24px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 370px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.13);
+            position: relative;
+        }
+
+        .modal-content h3 {
+            margin-bottom: 18px;
+            color: #3f51b5;
+        }
+
+        .modal-content label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .modal-content input[type="text"],
+        .modal-content input[type="email"] {
+            width: 100%;
+            padding: 8px 10px;
+            margin-bottom: 14px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .modal-content input[type="file"] {
+            margin-bottom: 14px;
+        }
+
+        .modal-content .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .modal-content button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .modal-content .save-btn {
+            background: #3f51b5;
+            color: #fff;
+        }
+
+        .modal-content .cancel-btn {
+            background: #eee;
+            color: #333;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 1.3em;
+            color: #888;
+            cursor: pointer;
+        }
+
+        .upload-profile input[type="file"] {
+            margin-bottom: 10px;
+        }
+
+        .upload-profile button {
+            background-color: #3f51b5;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .upload-profile button:hover {
+            background-color: #303f9f;
+        }
+
+        /* Riwayat Tes Section */
+        .riwayat-section {
+            margin-bottom: 30px;
+        }
+
+        .riwayat-section h3 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            color: #3f51b5;
+        }
+
+        .riwayat-section table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        /* Tambahan untuk modal overlay */
+        .modal.show {
+            display: block;
+        }
+
+        .riwayat-section th,
+        .riwayat-section td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        .riwayat-section th {
+            background-color: #e3eafc;
+            color: #3f51b5;
+        }
+
+        /* Cetak Sertifikat */
+        .cetak-section {
+            margin-bottom: 40px;
+        }
+
+        .cetak-section h3 {
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .cetak-section button {
+            background-color: #43a047;
+            color: white;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .cetak-section button:hover {
+            background-color: #388e3c;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            color: #777;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="/assets/images/logo.png" alt="TOEL.id Logo">
+                <span>TOEL.id</span>
+            </div>
+            <!-- Update the sidebar navigation -->
+            <nav class="menu">
+                <a href="/dashboard" class="active">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="/dashboard/riwayat-tes">
+                    <i class="fas fa-history"></i>
+                    <span>Riwayat Tes</span>
+                </a>
+                <a href="/dashboard/profile-edit">
+                    <i class="fas fa-user"></i>
+                    <span>Edit Profil</span>
+                </a>
+                <a href="/test/mulai">
+                    <i class="fas fa-edit"></i>
+                    <span>Mulai Tes</span>
+                </a>
+            </nav>
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Keluar</span>
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Profile Header -->
+            <div class="profile-header">
+                <div class="profile-photo">
+                    <img id="userPhoto" src="/assets/images/guest-profile.png" alt="Profile" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                    <div class="default-photo" style="display: none;">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                <h1>Halo, <span id="userName">User</span>!</h1>
+                <p>Selamat datang di TOEL.id</p>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h3>Skor Terakhir</h3>
+                    <div class="score">
+                        <span id="lastScore">0</span>
+                        <small>poin</small>
+                    </div>
+                    <!-- Update Stats container links -->
+                    <a href="riwayat-tes.html" class="view-more">
+                        Lihat Riwayat <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Peringkat</h3>
+                    <div class="rank">
+                        <span id="userRank">-</span>
+                        <small>dari <span id="totalUsers">0</span> peserta</small>
+                    </div>
+                    <a href="/dashboard/leaderboard" class="view-more">
+                        Lihat Leaderboard <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <h2>Aksi Cepat</h2>
+                <div class="action-buttons">
+                    <!-- Update Quick Actions section hrefs -->
+                    <a href="/test/mulai" class="action-btn primary">
+                        <i class="fas fa-edit"></i>
+                        Mulai Tes TOEFL
+                    </a>
+                    <a href="/dashboard/profile-edit" class="action-btn secondary">
+                        <i class="fas fa-user-edit"></i>
+                        Edit Profil
+                    </a>
+                    <a href="/dashboard/riwayat-tes" class="action-btn secondary">
+                        <i class="fas fa-certificate"></i>
+                        Cetak Sertifikat
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/js/utils/auth.js"></script>
+    <script src="/js/pages/dashboard/dashboard.js"></script>
+</body>
+
+</html>

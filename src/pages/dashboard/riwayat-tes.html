@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Tes - TOEL.id</title>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/components/sidebar.css">
+    <link rel="stylesheet" href="/css/pages/dashboard/riwayat-tes.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- ... existing sidebar code ... -->
+        </aside>
+
+        <main class="main-content">
+            <div class="page-header">
+                <h1>Riwayat Tes TOEFL</h1>
+                <div class="header-actions">
+                    <button class="btn-filter">
+                        <i class="fas fa-filter"></i> Filter
+                    </button>
+                    <button class="btn-print">
+                        <i class="fas fa-print"></i> Cetak Semua
+                    </button>
+                </div>
+            </div>
+
+            <div class="test-history">
+                <div class="history-stats">
+                    <div class="stat-card">
+                        <h3>Total Tes</h3>
+                        <div class="stat-value" id="totalTests">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Skor Tertinggi</h3>
+                        <div class="stat-value" id="highestScore">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Rata-rata Skor</h3>
+                        <div class="stat-value" id="averageScore">0</div>
+                    </div>
+                </div>
+
+                <div class="history-table-container">
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>Listening</th>
+                                <th>Structure</th>
+                                <th>Reading</th>
+                                <th>Total Skor</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyTableBody">
+                            <!-- Data will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Certificate Modal -->
+    <div id="certificateModal" class="modal">
+        <!-- ... existing modal code ... -->
+    </div>
+
+    <script src="/js/utils/auth.js"></script>
+    <script src="/js/pages/dashboard/riwayat-tes.js"></script>
+</body>
+</html>

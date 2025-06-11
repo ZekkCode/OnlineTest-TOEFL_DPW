@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profil - TOEL.id</title>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/components/sidebar.css">
+    <link rel="stylesheet" href="/css/pages/dashboard/profile-edit.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar (same as dashboard.html) -->
+        <aside class="sidebar">
+            <!-- ...existing sidebar code... -->
+        </aside>
+
+        <main class="main-content">
+            <div class="profile-edit-container">
+                <h1>Edit Profil</h1>
+                <form id="profileForm" class="profile-form">
+                    <div class="photo-section">
+                        <img id="profilePreview" src="/assets/images/default-profile.png" alt="Profile">
+                        <div class="photo-upload">
+                            <input type="file" id="photoInput" accept="image/*">
+                            <button type="button" class="btn-upload">
+                                <i class="fas fa-camera"></i> Ubah Foto
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Nama Lengkap</label>
+                        <input type="text" id="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-save">
+                            <i class="fas fa-save"></i> Simpan
+                        </button>
+                        <a href="/dashboard" class="btn-cancel">
+                            <i class="fas fa-times"></i> Batal
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script src="/js/utils/auth.js"></script>
+    <script src="/js/pages/dashboard/profile-edit.js"></script>
+</body>
+</html>

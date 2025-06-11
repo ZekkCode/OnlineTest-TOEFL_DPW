@@ -1,0 +1,213 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #257cff;
+    color: #222;
+}
+
+/* HEADER STYLING */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3vw;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(50,50,50,0.07);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.brand {
+    font-weight: 700;
+    font-size: 1.4rem;
+    letter-spacing: .03em;
+}
+
+.highlight {
+    color: #257cff;
+    font-weight: bold;
+}
+
+.header nav a {
+    padding: .55em 1.4em;
+    border-radius: 1.5em;
+    border: 1.5px solid #257cff;
+    background: transparent;
+    color: #257cff;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background .15s, color .15s, border-color .15s;
+    display: inline-block;
+}
+
+.header nav a:hover {
+    background: #184c99;
+    color: #fff;
+    border-color: #184c99;
+}
+
+/* LOGIN CONTAINER */
+.container {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 2px 32px rgba(60,60,60,0.09);
+    max-width: 480px; /* Increased from 350px */
+    width: 90%; /* Added to ensure responsiveness */
+    margin: 60px auto 0 auto;
+    padding: 3em 3em; /* Increased padding */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    margin-bottom: 1.8em; /* Increased spacing */
+    color: #257cff;
+    letter-spacing: .03em;
+    font-size: 1.8em; /* Increased font size */
+    font-weight: 700;
+}
+
+.log {
+    width: 100%;
+    max-width: 420px; /* Added max-width for form content */
+    margin: 0 auto;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em; /* Increased gap */
+}
+
+label {
+    font-weight: 600;
+    margin-bottom: 0.4em; /* Increased spacing */
+    color: #222;
+    font-size: 1.1em; /* Added font size */
+}
+
+input[type="text"], 
+input[type="password"] {
+    padding: 0.9em 1.2em; /* Increased padding */
+    border-radius: 10px; /* Increased border radius */
+    border: 1.5px solid #257cff;
+    outline: none;
+    margin-bottom: 0.5em;
+    font-size: 1.1em; /* Increased font size */
+    background: #f5f8ff;
+    width: 100%;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+input[type="text"]:focus, 
+input[type="password"]:focus {
+    border-color: #184c99;
+    background: #eaf1ff;
+}
+
+button[type="submit"] {
+    margin-top: 1em; /* Increased margin */
+    background: #257cff;
+    color: #fff;
+    border: 1.5px solid #257cff;
+    border-radius: 12px; /* Changed to regular border radius */
+    padding: 1em 0; /* Increased padding */
+    font-size: 1.2em; /* Increased font size */
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    box-shadow: 0 2px 8px rgba(57, 87, 181, 0.08);
+    width: 100%;
+}
+
+button[type="submit"]:hover {
+    background: #184c99;
+    color: #fff;
+    border-color: #184c99;
+}
+
+.log p {
+    margin-top: 1.2em;
+    text-align: center;
+    font-size: .98em;
+    color: #444;
+}
+
+.log a {
+    color: #257cff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.15s;
+}
+
+.log a:hover {
+    color: #184c99;
+    text-decoration: underline;
+}
+
+footer {
+    position: relative; /* Change from fixed to relative */
+    width: 100%;
+    text-align: center;
+    padding: 1.5em 0;
+    background: #fff;
+    color: #272727;
+    font-weight: 500;
+    font-size: .98em;
+    margin-top: 2rem;
+    box-shadow: 0 -1px 8px rgba(70,70,70,0.03);
+    border-radius: 12px 12px 0 0;
+}
+
+footer > p {
+    padding: 0;
+    margin: 0;
+
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 2em 1.5em;
+        max-width: 95vw;
+        margin-top: 40px;
+    }
+    
+    h1 {
+        font-size: 1.5em;
+    }
+    
+    input[type="text"], 
+    input[type="password"] {
+        font-size: 1em;
+        padding: 0.8em 1em;
+    }
+    
+    button[type="submit"] {
+        font-size: 1.1em;
+    }
+}
+
+/* Add animation for container */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container {
+    animation: fadeIn 0.5s ease-out;
+}
