@@ -1,13 +1,80 @@
+/* Dashboard Container */
 .dashboard-container {
     display: flex;
     min-height: 100vh;
-    background: #f8f9fa;
 }
 
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background: var(--primary-color);
+    color: white;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    text-align: left;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    flex: 1;
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.menu a:hover,
+.menu a.active {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.menu a i {
+    width: 24px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.logout-btn {
+    margin-top: auto;
+    background: #ff4757;
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: #ff6b81;
+}
+
+/* Main Content */
 .main-content {
     flex: 1;
     padding: 2rem;
-    margin-left: 280px;
+    margin-left: 250px;  /* Changed from 280px to match new sidebar width */
 }
 
 /* Profile Header */
@@ -23,30 +90,41 @@
 .profile-photo {
     width: 150px;
     height: 150px;
-    margin: 0 auto 1.5rem;
-    position: relative;
     border-radius: 50%;
     overflow: hidden;
     border: 3px solid var(--primary-color);
-    background: #f0f0f0;
+    margin: 0 auto 1rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: #f8f9fa;
 }
 
-.profile-photo img {
+.profile-photo img.user-photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
+    border-radius: 50%;
+    display: block;
+    position: relative;
+    z-index: 2;
+    background: #f8f9fa;
 }
 
 .profile-photo .default-photo {
+    position: absolute;
+    left: 0; top: 0;
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 4rem;
+    font-size: 3.5rem;
     color: var(--primary-color);
     background: #f8f9fa;
+    z-index: 1;
 }
 
 .profile-header h1 {
@@ -142,4 +220,15 @@
 .action-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+/* User Photo */
+.user-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    border: 3px solid var(--primary-color);
+    background: #f0f0f0;
 }

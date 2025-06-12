@@ -5,9 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test TOEFL</title>
     <link rel="stylesheet" href="../../css/global.css">
-    <link rel="stylesheet" href="../../css/components/sidebar.css">
-    <link rel="stylesheet" href="../../css/components/cards.css">
-    <link rel="stylesheet" href="../../css/pages/dashboard/dashboard.css">
     <link rel="stylesheet" href="../../css/pages/test/soal.css">
 </head>
-<!-- ... rest of the file ... -->
+<body>
+    <div class="test-container">
+        <aside class="question-navigator">
+            <div class="navigator-grid"></div>
+            <button class="submit-btn">Submit Test</button>
+        </aside>
+        <section class="question-section">
+            <div class="question-header">
+                <span class="question-number"></span>
+                <span class="timer">40:00</span>
+            </div>
+            <h2 class="question-title"></h2>
+            <div class="options"></div>
+            <div class="navigation-buttons">
+                <button class="prev-btn">Previous</button>
+                <button class="next-btn">Next</button>
+            </div>
+        </section>
+    </div>
+    <script src="soal.js"></script>
+</body>
+</html>

@@ -35,8 +35,14 @@ app.get('/dashboard/riwayat-tes', (req, res) => {
 });
 
 // Test routes
-app.get('/test/mulai', (req, res) => {
+app.get('/test', (req, res) => {
+    res.sendFile(path.join(__dirname, 'src/pages/test/index.html'));
+});
+app.get('/test/soal', (req, res) => {
     res.sendFile(path.join(__dirname, 'src/pages/test/soal.html'));
+});
+app.get('/test/hasil', (req, res) => {
+    res.sendFile(path.join(__dirname, 'src/pages/test/hasil.html'));
 });
 
 // API endpoints

@@ -1,22 +1,22 @@
+.main-content {
+    flex: 1;
+    padding: 2rem;
+    margin-left: 250px; /* Match sidebar width */
+}
+
 .profile-edit-container {
     background: white;
-    border-radius: 20px;
     padding: 2rem;
+    border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
     max-width: 800px;
-    margin: 2rem auto;
+    margin: 0 auto;
 }
 
 .profile-edit-container h1 {
     color: var(--primary-color);
+    font-size: 2rem;
     margin-bottom: 2rem;
-    font-size: 1.8rem;
-}
-
-.profile-form {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
 }
 
 .photo-section {
@@ -24,41 +24,74 @@
     margin-bottom: 2rem;
 }
 
-.photo-section img {
+/* Profile Photo Styling */
+.profile-photo {
+    position: relative;
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    object-fit: cover;
+    overflow: hidden;
     border: 3px solid var(--primary-color);
-    margin-bottom: 1rem;
-}
-
-.photo-upload {
-    position: relative;
-    display: inline-block;
-}
-
-.photo-upload input[type="file"] {
-    display: none;
-}
-
-.btn-upload {
-    background: var(--primary-color);
-    color: white;
-    padding: 0.8rem 1.5rem;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
+    margin: 0 auto 1.5rem auto;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 1rem;
-    transition: all 0.3s ease;
+    justify-content: center;
+    background: #f8f9fa;
+}
+
+.profile-photo img.user-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    background: #f8f9fa;
+    z-index: 1;
+}
+
+.profile-photo .default-photo {
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    background: #f8f9fa;
+    z-index: 2;
+}
+
+/* Ubah Foto Button Styling */
+.btn-upload {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    cursor: pointer;
+    z-index: 3;
+    box-shadow: 0 2px 8px rgba(74,85,162,0.08);
+    transition: background 0.2s, color 0.2s, border 0.2s;
+    padding: 0;
 }
 
 .btn-upload:hover {
-    background: var(--secondary-color);
-    transform: translateY(-2px);
+    background: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+
+.btn-upload i {
+    margin: 0;
 }
 
 .form-group {
@@ -121,6 +154,72 @@
 .btn-cancel:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Sidebar Styles - Samakan dengan dashboard.css */
+.sidebar {
+    width: 250px;
+    background: var(--primary-color);
+    color: white;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    text-align: left;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    flex: 1;
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.menu a:hover,
+.menu a.active {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.menu a i {
+    width: 24px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.logout-btn {
+    margin-top: auto;
+    background: #ff4757;
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: #ff6b81;
 }
 
 @media (max-width: 768px) {

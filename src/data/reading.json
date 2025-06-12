@@ -1,0 +1,607 @@
+{
+  "title": "Reading Comprehension",
+  "timeLimit": 3300,
+  "instructions": "Read the passages and answer the questions that follow. You have 55 minutes to complete this section.",
+  "questions": [
+    {
+      "id": 1,
+      "passage": "Climate change represents one of the most pressing challenges of our time. Rising global temperatures, caused primarily by increased greenhouse gas emissions from human activities, are leading to widespread environmental changes. These include melting ice caps, rising sea levels, and more frequent extreme weather events. The scientific consensus is clear: immediate action is needed to reduce carbon emissions and transition to renewable energy sources to mitigate the worst effects of climate change.",
+      "question": "According to the passage, what is the primary cause of rising global temperatures?",
+      "options": [
+        "Natural climate cycles",
+        "Solar radiation changes", 
+        "Increased greenhouse gas emissions from human activities",
+        "Volcanic activity"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 2,
+      "passage": "The invention of the printing press in the 15th century by Johannes Gutenberg revolutionized the spread of knowledge. Before this innovation, books were hand-copied by scribes, making them expensive and rare. The printing press allowed for mass production of books, dramatically reducing costs and increasing accessibility to information. This technological advancement played a crucial role in the Renaissance, the Reformation, and the Scientific Revolution, as ideas could now be disseminated quickly and widely across Europe.",
+      "question": "What was the main advantage of the printing press over hand-copying?",
+      "options": [
+        "Better quality illustrations",
+        "More durable materials",
+        "Mass production reducing costs and increasing accessibility",
+        "Faster individual copying speed"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 3,
+      "passage": "Artificial intelligence (AI) is increasingly being integrated into various aspects of modern life, from smartphones and search engines to autonomous vehicles and medical diagnosis systems. Machine learning, a subset of AI, enables computers to learn and improve from experience without being explicitly programmed for every task. While AI offers tremendous potential benefits, including increased efficiency and new capabilities, it also raises important questions about job displacement, privacy, and the need for ethical guidelines in AI development.",
+      "question": "What is machine learning according to the passage?",
+      "options": [
+        "A type of computer hardware",
+        "A subset of AI that enables computers to learn from experience",
+        "A programming language for AI",
+        "A method of data storage"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 4,
+      "passage": "The Mediterranean diet, rich in fruits, vegetables, whole grains, legumes, nuts, and olive oil, has been associated with numerous health benefits. Studies have shown that people following this dietary pattern have lower rates of heart disease, certain cancers, and cognitive decline. The diet emphasizes fresh, minimally processed foods and includes moderate consumption of fish and poultry, while limiting red meat and processed foods. The social aspect of sharing meals is also considered an important component of the Mediterranean lifestyle.",
+      "question": "Which of the following is NOT mentioned as a component of the Mediterranean diet?",
+      "options": [
+        "Olive oil and nuts",
+        "Fresh fruits and vegetables",
+        "High consumption of red meat",
+        "Whole grains and legumes"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 5,
+      "passage": "Space exploration has entered a new era with the involvement of private companies alongside government agencies. Companies like SpaceX and Blue Origin have developed reusable rocket technology, significantly reducing the cost of launching satellites and cargo into space. This commercialization of space has opened up new possibilities, including space tourism, asteroid mining, and the potential for establishing permanent human settlements on other planets. However, it also raises concerns about space debris, planetary protection, and equitable access to space resources.",
+      "question": "What has been the main contribution of private companies to space exploration?",
+      "options": [
+        "Discovery of new planets",
+        "Development of reusable rocket technology",
+        "Creation of new satellites",
+        "Training of astronauts"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 6,
+      "passage": "Biodiversity, the variety of life on Earth, is essential for ecosystem stability and human survival. It encompasses the diversity of species, genetic variation within species, and the variety of ecosystems. Unfortunately, human activities such as deforestation, pollution, and climate change are causing biodiversity loss at an unprecedented rate. Scientists estimate that species are currently becoming extinct at a rate 100 to 1,000 times faster than the natural background rate. Conservation efforts, including protected areas, sustainable practices, and restoration projects, are crucial for preserving biodiversity for future generations.",
+      "question": "According to the passage, how much faster is the current extinction rate compared to the natural rate?",
+      "options": [
+        "10 to 50 times faster",
+        "50 to 100 times faster", 
+        "100 to 1,000 times faster",
+        "1,000 to 10,000 times faster"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 7,
+      "passage": "The rise of remote work, accelerated by the COVID-19 pandemic, has fundamentally changed how many people approach their careers. While remote work offers benefits such as increased flexibility, reduced commuting time, and better work-life balance for some, it also presents challenges. These include potential isolation, difficulty in separating work and personal life, and reduced opportunities for spontaneous collaboration. Companies are now exploring hybrid models that combine remote and in-office work to maximize the benefits while addressing the drawbacks.",
+      "question": "What is mentioned as a challenge of remote work?",
+      "options": [
+        "Increased commuting costs",
+        "Difficulty in separating work and personal life",
+        "Higher office expenses",
+        "Reduced salary potential"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 8,
+      "passage": "Renewable energy sources such as solar, wind, and hydroelectric power are becoming increasingly cost-competitive with fossil fuels. Technological advances have improved the efficiency of solar panels and wind turbines while reducing their production costs. Additionally, battery storage technology has advanced significantly, addressing the intermittency issues associated with renewable energy. Governments worldwide are implementing policies to support the transition to renewable energy, including subsidies, tax incentives, and carbon pricing mechanisms.",
+      "question": "What technological advance has helped address intermittency issues with renewable energy?",
+      "options": [
+        "More efficient solar panels",
+        "Improved wind turbines",
+        "Advanced battery storage technology",
+        "Better transmission lines"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 9,
+      "passage": "Urban planning plays a crucial role in creating sustainable and livable cities. Well-designed urban spaces can reduce traffic congestion, improve air quality, and enhance quality of life for residents. Key principles of sustainable urban planning include mixed-use development, efficient public transportation systems, green spaces, and compact city design that reduces sprawl. Smart city technologies, such as intelligent traffic management systems and energy-efficient buildings, are also being integrated into modern urban planning to create more efficient and environmentally friendly cities.",
+      "question": "Which of the following is NOT mentioned as a principle of sustainable urban planning?",
+      "options": [
+        "Mixed-use development",
+        "Efficient public transportation",
+        "Large parking facilities",
+        "Green spaces and compact design"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 10,
+      "passage": "The human brain's capacity for neuroplasticity—its ability to reorganize and form new neural connections throughout life—has revolutionized our understanding of learning and recovery. This discovery has shown that the brain can adapt to injury, learn new skills, and even compensate for lost functions well into old age. Neuroplasticity is enhanced through activities that challenge the brain, such as learning new languages, playing musical instruments, or engaging in complex problem-solving tasks. This understanding has led to new therapeutic approaches for stroke recovery, learning disabilities, and age-related cognitive decline.",
+      "question": "What does neuroplasticity refer to?",
+      "options": [
+        "The brain's ability to increase in size",
+        "The brain's ability to reorganize and form new neural connections",
+        "The brain's capacity to store memories",
+        "The brain's resistance to injury"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 11,
+      "passage": "The concept of emotional intelligence, popularized by psychologist Daniel Goleman, refers to the ability to recognize, understand, and manage our own emotions while effectively responding to others' emotions. Research has shown that emotional intelligence can be more predictive of success in life and work than traditional measures of intelligence (IQ). The five key components of emotional intelligence are self-awareness, self-regulation, motivation, empathy, and social skills. These skills can be developed through practice and training, making emotional intelligence a learnable competency rather than a fixed trait.",
+      "question": "How many key components of emotional intelligence are mentioned in the passage?",
+      "options": [
+        "Three",
+        "Four",
+        "Five",
+        "Six"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 12,
+      "passage": "Microplastics, tiny plastic particles less than 5 millimeters in size, have become a pervasive environmental pollutant. They originate from the breakdown of larger plastic items, synthetic textiles, car tires, and cosmetic products. These particles have been found in oceans, soil, air, and even in human blood and organs. The long-term health effects of microplastic exposure are still being studied, but early research suggests potential concerns for immune system function and cellular health. Reducing plastic waste and developing biodegradable alternatives are essential steps in addressing this growing environmental challenge.",
+      "question": "What size defines microplastics according to the passage?",
+      "options": [
+        "Less than 1 millimeter",
+        "Less than 3 millimeters",
+        "Less than 5 millimeters",
+        "Less than 10 millimeters"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 13,
+      "passage": "The gig economy, characterized by short-term contracts and freelance work rather than permanent employment, has grown significantly in recent years. Platforms like Uber, Airbnb, and TaskRabbit have enabled millions of people to earn income through flexible work arrangements. While the gig economy offers freedom and flexibility, it also lacks many traditional employment benefits such as health insurance, paid leave, and retirement plans. This has sparked debates about worker classification, labor rights, and the need for new social safety nets adapted to modern work patterns.",
+      "question": "What characterizes the gig economy?",
+      "options": [
+        "Long-term permanent employment",
+        "Short-term contracts and freelance work",
+        "Government-sponsored jobs",
+        "Corporate executive positions"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 14,
+      "passage": "Gene therapy, a promising medical technique that involves introducing genetic material into a patient's cells to treat or prevent disease, has shown remarkable progress in recent years. This approach can potentially correct defective genes responsible for genetic disorders, enhance the body's ability to fight cancer, or provide cells with new functions. While early gene therapy trials faced significant challenges and safety concerns, recent advances in delivery methods and gene editing technologies like CRISPR have improved both the safety and efficacy of these treatments. Several gene therapies have now received regulatory approval for treating rare genetic diseases.",
+      "question": "What is the main purpose of gene therapy?",
+      "options": [
+        "To diagnose genetic diseases",
+        "To introduce genetic material to treat or prevent disease",
+        "To study genetic mutations",
+        "To clone human cells"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 15,
+      "passage": "The sharing economy has transformed traditional business models across various industries. By leveraging digital platforms to connect people who have resources with those who need them, companies like Airbnb and Uber have created new markets and opportunities. This model promotes resource efficiency by maximizing the utilization of underused assets such as spare rooms or idle vehicles. However, the sharing economy also raises questions about regulation, taxation, and fair competition with traditional businesses. Additionally, concerns about worker protections and the quality of services provided through these platforms continue to be debated.",
+      "question": "How does the sharing economy promote resource efficiency?",
+      "options": [
+        "By creating new products",
+        "By maximizing the utilization of underused assets",
+        "By reducing production costs",
+        "By eliminating competition"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 16,
+      "passage": "Quantum computing represents a revolutionary approach to information processing that could solve certain problems exponentially faster than classical computers. Unlike traditional computers that use bits (0s and 1s), quantum computers use quantum bits or 'qubits' that can exist in multiple states simultaneously through a quantum mechanical property called superposition. This allows quantum computers to process vast amounts of information in parallel. While still in early development stages, quantum computing shows promise for applications in cryptography, drug discovery, financial modeling, and artificial intelligence.",
+      "question": "What allows quantum computers to process information differently than classical computers?",
+      "options": [
+        "Faster processors",
+        "Quantum bits that can exist in multiple states simultaneously",
+        "Larger memory capacity",
+        "Better programming languages"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 17,
+      "passage": "Vertical farming, the practice of growing crops in vertically stacked layers using controlled-environment agriculture, is emerging as a potential solution to food security challenges. This method uses significantly less water and land than traditional farming while eliminating the need for pesticides. LED lighting systems provide the necessary light for plant growth, and nutrients are delivered through hydroponic or aeroponic systems. Although vertical farming currently faces challenges related to high energy costs and limited crop variety, technological advances are gradually making it more economically viable and environmentally sustainable.",
+      "question": "What is a current challenge facing vertical farming?",
+      "options": [
+        "Lack of suitable crops",
+        "High energy costs",
+        "Insufficient lighting technology",
+        "Poor crop quality"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 18,
+      "passage": "The circular economy is an economic model that aims to eliminate waste and promote the continual use of resources. Unlike the traditional linear 'take-make-dispose' model, the circular economy is based on three principles: designing out waste and pollution, keeping products and materials in use, and regenerating natural systems. This approach involves strategies such as recycling, reusing, refurbishing, and sharing to create a closed-loop system. Companies adopting circular economy principles can reduce costs, create new revenue streams, and minimize their environmental impact while contributing to sustainable development goals.",
+      "question": "How many principles form the basis of the circular economy according to the passage?",
+      "options": [
+        "Two",
+        "Three",
+        "Four",
+        "Five"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 19,
+      "passage": "Digital detox, the practice of temporarily abstaining from digital devices and online activities, has gained popularity as people seek to reduce screen time and improve mental well-being. Excessive use of smartphones, social media, and other digital technologies has been linked to increased anxiety, depression, and sleep disorders. Digital detox programs encourage participants to engage in offline activities such as reading, exercising, socializing face-to-face, and spending time in nature. Research suggests that even short periods of digital disconnection can lead to improved focus, better sleep quality, and enhanced real-world relationships.",
+      "question": "What does digital detox involve?",
+      "options": [
+        "Upgrading to newer digital devices",
+        "Temporarily abstaining from digital devices and online activities",
+        "Learning new digital skills",
+        "Increasing social media usage"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 20,
+      "passage": "Sustainable fashion addresses the environmental and social impact of clothing production and consumption. The fashion industry is one of the world's most polluting industries, contributing to water pollution, textile waste, and greenhouse gas emissions. Sustainable fashion promotes practices such as using eco-friendly materials, ensuring fair labor conditions, designing durable clothing, and encouraging consumers to buy less but choose quality items that last longer. Brands are also exploring innovative approaches like clothing rental services, take-back programs, and recycling initiatives to reduce the industry's environmental footprint.",
+      "question": "What does sustainable fashion promote?",
+      "options": [
+        "Faster production cycles",
+        "Lower prices for all clothing",
+        "Using eco-friendly materials and ensuring fair labor conditions",
+        "Increasing consumption of trendy items"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 21,
+      "passage": "Telemedicine, the delivery of healthcare services through digital communication technologies, has experienced unprecedented growth, particularly during the COVID-19 pandemic. This approach allows patients to consult with healthcare providers remotely through video calls, phone calls, or messaging platforms. Telemedicine offers numerous benefits, including increased access to healthcare for rural and underserved populations, reduced travel time and costs, and decreased risk of infection transmission. However, challenges remain, including the need for reliable internet connectivity, concerns about data privacy and security, and limitations in conducting physical examinations remotely.",
+      "question": "What is identified as a challenge for telemedicine?",
+      "options": [
+        "Too many healthcare providers",
+        "Excessive patient demand",
+        "Need for reliable internet connectivity",
+        "Lower quality medical equipment"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 22,
+      "passage": "Mindfulness meditation, rooted in Buddhist traditions but now widely practiced in secular contexts, involves paying attention to the present moment without judgment. Scientific research has demonstrated numerous benefits of regular mindfulness practice, including reduced stress and anxiety, improved emotional regulation, enhanced focus and concentration, and better sleep quality. Mindfulness-based interventions are now commonly used in healthcare settings to treat conditions such as depression, chronic pain, and post-traumatic stress disorder. The practice can be as simple as focusing on breathing for a few minutes each day.",
+      "question": "What are mindfulness-based interventions commonly used to treat?",
+      "options": [
+        "Only physical injuries",
+        "Depression, chronic pain, and post-traumatic stress disorder",
+        "Only mental health conditions",
+        "Infectious diseases"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 23,
+      "passage": "The Internet of Things (IoT) refers to the network of physical devices embedded with sensors, software, and connectivity that enables them to collect and exchange data. IoT applications range from smart home devices like thermostats and security cameras to industrial sensors that monitor equipment performance. This technology promises to improve efficiency, enhance safety, and enable new services across various sectors including healthcare, transportation, and agriculture. However, the proliferation of IoT devices also raises significant concerns about cybersecurity, data privacy, and the potential for system vulnerabilities that could be exploited by malicious actors.",
+      "question": "What does IoT stand for according to the passage?",
+      "options": [
+        "Internet of Technology",
+        "Intelligence of Things",
+        "Internet of Things",
+        "Integration of Technology"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 24,
+      "passage": "Social entrepreneurship combines entrepreneurial principles with a mission to address social, cultural, or environmental challenges. Social entrepreneurs identify problems in society and develop innovative, sustainable solutions that create positive social impact while maintaining financial viability. Unlike traditional for-profit businesses that primarily focus on maximizing shareholder value, social enterprises prioritize their social mission alongside financial sustainability. Examples include organizations that provide clean water solutions in developing countries, create employment opportunities for marginalized communities, or develop affordable healthcare technologies.",
+      "question": "How do social enterprises differ from traditional for-profit businesses?",
+      "options": [
+        "They only focus on making profits",
+        "They prioritize their social mission alongside financial sustainability",
+        "They don't need to be financially viable",
+        "They only operate in developed countries"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 25,
+      "passage": "Personalized medicine, also known as precision medicine, tailors medical treatment to individual characteristics such as genetic makeup, lifestyle, and environment. This approach recognizes that individuals may respond differently to the same treatment based on their unique biological and social factors. Advances in genomics, big data analytics, and artificial intelligence are making personalized medicine increasingly feasible. Applications include selecting the most effective medications based on genetic profiles, customizing cancer treatments, and developing targeted therapies for rare diseases. While promising, personalized medicine also raises questions about healthcare equity and access to these advanced treatments.",
+      "question": "What factors does personalized medicine consider when tailoring treatment?",
+      "options": [
+        "Only genetic makeup",
+        "Only lifestyle factors",
+        "Genetic makeup, lifestyle, and environment",
+        "Only environmental factors"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 26,
+      "passage": "Food waste is a significant global problem, with approximately one-third of all food produced for human consumption being lost or wasted annually. This waste occurs at various stages of the food supply chain, from agricultural production and processing to retail and household consumption. Food waste not only represents a massive economic loss but also contributes to environmental problems including greenhouse gas emissions from decomposing organic matter in landfills. Solutions to reduce food waste include improving supply chain efficiency, educating consumers about proper food storage, implementing 'ugly fruit' campaigns, and developing technologies to extend food shelf life.",
+      "question": "According to the passage, what fraction of food produced for human consumption is wasted annually?",
+      "options": [
+        "One-quarter",
+        "One-third",
+        "One-half",
+        "Two-thirds"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 27,
+      "passage": "Autonomous vehicles, or self-driving cars, use a combination of sensors, cameras, radar, and artificial intelligence to navigate without human intervention. These vehicles have the potential to significantly reduce traffic accidents caused by human error, which accounts for approximately 94% of serious traffic crashes. Additionally, autonomous vehicles could improve mobility for elderly and disabled individuals, reduce traffic congestion through optimized routing, and decrease emissions through more efficient driving patterns. However, challenges remain, including technological limitations in complex driving scenarios, regulatory frameworks, and public acceptance of the technology.",
+      "question": "What percentage of serious traffic crashes is attributed to human error according to the passage?",
+      "options": [
+        "84%",
+        "90%",
+        "94%",
+        "98%"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 28,
+      "passage": "Mental health awareness has increased significantly in recent years, leading to reduced stigma and more open conversations about psychological well-being. This shift has been driven by various factors, including celebrity advocacy, social media campaigns, and scientific research highlighting the prevalence of mental health conditions. Workplace mental health programs, school-based interventions, and community support initiatives have become more common. However, despite increased awareness, access to mental health services remains limited in many areas, particularly in rural communities and among low-income populations, highlighting the need for continued investment in mental health infrastructure and services.",
+      "question": "What has contributed to increased mental health awareness?",
+      "options": [
+        "Only scientific research",
+        "Celebrity advocacy, social media campaigns, and scientific research",
+        "Only social media campaigns",
+        "Government regulations alone"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 29,
+      "passage": "3D printing, also known as additive manufacturing, creates three-dimensional objects by depositing material layer by layer based on digital designs. This technology has applications across numerous industries, from aerospace and automotive manufacturing to healthcare and education. In medicine, 3D printing is used to create custom prosthetics, surgical implants, and even bioprinted tissues. The technology offers advantages such as rapid prototyping, customization, reduced waste, and the ability to create complex geometries that would be difficult or impossible to achieve with traditional manufacturing methods. As materials and printing technologies continue to improve, 3D printing is expected to revolutionize manufacturing and design processes.",
+      "question": "What is another name for 3D printing mentioned in the passage?",
+      "options": [
+        "Digital manufacturing",
+        "Layer manufacturing",
+        "Additive manufacturing",
+        "Custom manufacturing"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 30,
+      "passage": "Cryptocurrency, digital currency secured by cryptography, has emerged as an alternative to traditional fiat currencies. Bitcoin, the first and most well-known cryptocurrency, was created in 2009 and operates on a decentralized network called blockchain. Cryptocurrencies offer potential benefits such as lower transaction fees, faster international transfers, and financial inclusion for unbanked populations. However, they also face challenges including price volatility, regulatory uncertainty, environmental concerns related to energy-intensive mining processes, and security risks from hacking and fraud. Despite these challenges, cryptocurrency adoption continues to grow among both individual investors and institutional players.",
+      "question": "When was Bitcoin created according to the passage?",
+      "options": [
+        "2007",
+        "2008",
+        "2009",
+        "2010"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 31,
+      "passage": "Ocean acidification, often called the 'other CO2 problem,' occurs when seawater absorbs carbon dioxide from the atmosphere, causing the ocean's pH to decrease. This process is happening at an unprecedented rate due to increased atmospheric CO2 levels from human activities. Ocean acidification poses significant threats to marine ecosystems, particularly organisms that build shells or skeletons from calcium carbonate, such as corals, mollusks, and some plankton species. These changes can disrupt marine food chains and affect fisheries that millions of people depend on for food and livelihood. Addressing ocean acidification requires global efforts to reduce carbon emissions.",
+      "question": "Why is ocean acidification called the 'other CO2 problem'?",
+      "options": [
+        "It occurs in addition to climate change as another consequence of increased atmospheric CO2",
+        "It produces more CO2 than climate change",
+        "It only affects CO2-producing organisms",
+        "It is less important than climate change"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 32,
+      "passage": "Biophilic design is an approach to architecture and interior design that seeks to connect building occupants with nature. This design philosophy incorporates natural elements such as plants, water features, natural light, and organic shapes into built environments. Research has shown that biophilic design can improve well-being, productivity, and creativity while reducing stress and fatigue. Applications range from living walls in office buildings to skylights that mimic natural light patterns and the use of natural materials like wood and stone. As urbanization increases, biophilic design offers a way to maintain our connection to nature in increasingly urban environments.",
+      "question": "What does biophilic design seek to do?",
+      "options": [
+        "Reduce construction costs",
+        "Connect building occupants with nature",
+        "Increase building size",
+        "Improve building security"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 33,
+      "passage": "The concept of universal basic income (UBI) involves providing all citizens with regular, unconditional cash payments from the government, regardless of their employment status or other circumstances. Proponents argue that UBI could reduce poverty, provide economic security in an era of job automation, and simplify welfare systems. Several pilot programs around the world have tested UBI, with mixed results. Some studies show improvements in health, education, and entrepreneurship, while others raise concerns about work incentives and fiscal sustainability. The debate over UBI continues as societies grapple with changing labor markets and growing income inequality.",
+      "question": "What characterizes universal basic income payments?",
+      "options": [
+        "They are conditional on employment",
+        "They are only for unemployed people",
+        "They are regular and unconditional for all citizens",
+        "They are only for low-income families"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 34,
+      "passage": "Epigenetics is the study of changes in gene expression that do not involve alterations to the underlying DNA sequence. These changes can be influenced by environmental factors such as diet, stress, and exposure to toxins, and some can be passed on to future generations. Epigenetic modifications play crucial roles in development, aging, and disease. Understanding epigenetics has important implications for medicine, as it suggests that some diseases may be preventable or treatable through lifestyle changes rather than genetic modification. This field is also revealing how experiences of parents and grandparents can influence the health and behavior of their descendants.",
+      "question": "What does epigenetics study?",
+      "options": [
+        "Changes in DNA sequence",
+        "Changes in gene expression without altering DNA sequence",
+        "Genetic mutations",
+        "Chromosome structure"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 35,
+      "passage": "Smart cities integrate information and communication technologies to improve the efficiency of urban services and enhance quality of life for residents. These cities use sensors, data analytics, and connected devices to optimize traffic flow, manage energy consumption, monitor air quality, and improve public safety. Examples of smart city technologies include intelligent transportation systems, smart grids for electricity distribution, and IoT sensors for waste management. While smart cities offer numerous benefits, they also raise concerns about data privacy, cybersecurity, and the digital divide that may exclude some residents from accessing these technological advantages.",
+      "question": "What do smart cities use to optimize urban services?",
+      "options": [
+        "Only traditional infrastructure",
+        "Sensors, data analytics, and connected devices", 
+        "Manual monitoring systems",
+        "Increased human resources"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 36,
+      "passage": "Regenerative agriculture is a farming approach that focuses on rebuilding soil health and increasing biodiversity while maintaining productive agricultural systems. This method emphasizes practices such as cover cropping, crop rotation, reduced tillage, and integrated livestock grazing to restore soil organic matter and sequester carbon. Regenerative agriculture not only improves soil fertility and water retention but also helps combat climate change by capturing atmospheric carbon dioxide in soil. Farmers adopting these practices often see improved yields over time, reduced input costs, and greater resilience to weather extremes.",
+      "question": "What is the primary focus of regenerative agriculture?",
+      "options": [
+        "Maximizing short-term profits",
+        "Rebuilding soil health and increasing biodiversity",
+        "Using more chemical fertilizers",
+        "Reducing crop variety"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 37,
+      "passage": "Virtual reality (VR) technology creates immersive digital environments that users can interact with through specialized headsets and controllers. Beyond gaming and entertainment, VR has found applications in education, healthcare, training, and therapy. Medical students can practice procedures in risk-free virtual environments, patients can undergo VR-based therapy for phobias and PTSD, and employees can receive training for dangerous or complex tasks without real-world risks. As VR technology becomes more affordable and accessible, its potential for transforming various sectors continues to expand, though challenges remain regarding motion sickness, user comfort, and content development costs.",
+      "question": "How can VR benefit medical education according to the passage?",
+      "options": [
+        "By replacing all traditional teaching methods",
+        "By allowing students to practice procedures in risk-free virtual environments",
+        "By reducing the need for medical textbooks",
+        "By eliminating the need for clinical experience"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 38,
+      "passage": "The blue economy encompasses economic activities that depend on healthy oceans, seas, and coastal areas while promoting sustainable use of marine resources. This approach recognizes that ocean health and economic prosperity are interconnected. Blue economy sectors include sustainable fisheries, marine biotechnology, coastal tourism, renewable ocean energy, and shipping. The concept emphasizes balancing economic growth with environmental protection and social equity. As climate change and pollution threaten marine ecosystems, the blue economy framework provides a pathway for countries to develop their maritime sectors while ensuring long-term sustainability of ocean resources.",
+      "question": "What does the blue economy encompass?",
+      "options": [
+        "Only fishing industries",
+        "Economic activities that depend on healthy oceans while promoting sustainable use",
+        "All coastal construction projects",
+        "Marine pollution cleanup only"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 39,
+      "passage": "Precision agriculture uses technology to optimize farming practices and increase crop yields while minimizing environmental impact. This approach employs GPS guidance, drones, sensors, and data analytics to monitor crop health, soil conditions, and weather patterns. Farmers can apply fertilizers, pesticides, and water more precisely, reducing waste and costs while improving productivity. Variable rate technology allows different treatment of different areas within the same field based on specific needs. As global food demand increases and environmental concerns grow, precision agriculture offers a way to produce more food with fewer resources.",
+      "question": "What technology does precision agriculture employ?",
+      "options": [
+        "Only traditional farming tools",
+        "GPS guidance, drones, sensors, and data analytics",
+        "Only weather monitoring equipment",
+        "Manual field inspection methods"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 40,
+      "passage": "Biomimicry is the practice of learning from and mimicking the forms, processes, and ecosystems of nature to solve human problems. This approach has led to numerous innovations, from Velcro inspired by burr seeds to more efficient wind turbine blades modeled after whale fins. Nature has evolved solutions to complex challenges over millions of years, making it an excellent source of inspiration for sustainable design and engineering. Biomimicry promotes innovation that is sustainable because it is based on nature's time-tested patterns and strategies. This field continues to drive breakthroughs in materials science, robotics, and environmental technology.",
+      "question": "What is biomimicry?",
+      "options": [
+        "The study of animal behavior",
+        "Learning from and mimicking nature to solve human problems",
+        "The preservation of natural habitats",
+        "The genetic modification of organisms"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 41,
+      "passage": "Digital twins are virtual replicas of physical objects, processes, or systems that are updated in real-time with data from their physical counterparts. This technology enables monitoring, analysis, and optimization of performance without direct interaction with the physical system. Digital twins are used in manufacturing to predict equipment failures, in healthcare to model patient conditions, and in urban planning to simulate city operations. By providing insights into how systems behave under different conditions, digital twins help reduce costs, improve efficiency, and enable predictive maintenance. As IoT devices become more prevalent, the applications for digital twin technology continue to expand.",
+      "question": "What are digital twins?",
+      "options": [
+        "Identical physical copies of objects",
+        "Virtual replicas updated in real-time with data from physical counterparts",
+        "Computer backup systems",
+        "Digital photographs of objects"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 42,
+      "passage": "The concept of work-life integration has emerged as an alternative to the traditional work-life balance approach. Rather than trying to maintain strict boundaries between work and personal life, work-life integration focuses on blending both aspects in a way that aligns with individual priorities and values. This approach recognizes that the rigid separation of work and life may not be realistic or desirable for everyone, especially in today's connected world. Successful work-life integration requires clear communication with employers, setting boundaries where necessary, and being intentional about how time and energy are allocated across different life domains.",
+      "question": "How does work-life integration differ from work-life balance?",
+      "options": [
+        "It requires working longer hours",
+        "It focuses on blending work and personal life rather than maintaining strict boundaries",
+        "It eliminates personal time entirely",
+        "It only applies to remote workers"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 43,
+      "passage": "Synthetic biology is an emerging field that applies engineering principles to biological systems, enabling the design and construction of new biological parts, devices, and systems. This discipline combines biology, chemistry, computer science, and engineering to create organisms with novel functions, such as bacteria that can produce pharmaceuticals or algae that generate biofuels. Synthetic biology has potential applications in medicine, agriculture, environmental remediation, and manufacturing. However, this powerful technology also raises ethical, safety, and security concerns that require careful consideration and regulation as the field continues to advance.",
+      "question": "What does synthetic biology combine?",
+      "options": [
+        "Only biology and chemistry",
+        "Biology, chemistry, computer science, and engineering",
+        "Only computer science and engineering",
+        "Traditional farming and modern technology"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 44,
+      "passage": "Microlearning is an educational approach that delivers content in small, focused segments that can be consumed quickly and easily. This method aligns with how people naturally learn and retain information, taking advantage of the spacing effect and reducing cognitive overload. Microlearning is particularly effective for busy professionals who need to acquire new skills or knowledge while managing demanding schedules. The approach is well-suited to mobile devices and can include various formats such as short videos, infographics, quizzes, and interactive modules. As attention spans decrease and the need for continuous learning increases, microlearning has become increasingly popular in both corporate training and educational settings.",
+      "question": "What characterizes microlearning?",
+      "options": [
+        "Long, comprehensive courses",
+        "Content delivered in small, focused segments",
+        "Traditional classroom lectures",
+        "Complex theoretical frameworks"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 45,
+      "passage": "Urban farming brings food production into cities through various methods including rooftop gardens, vertical farms, and community gardens. This practice offers numerous benefits: reduced food miles and associated carbon emissions, increased food security, improved access to fresh produce in food deserts, and opportunities for community engagement and education. Urban farming can also help manage stormwater runoff and improve air quality. While challenges exist, such as soil contamination, limited space, and zoning regulations, innovative techniques and supportive policies are making urban agriculture increasingly viable as cities seek to become more sustainable and resilient.",
+      "question": "What are the benefits of urban farming mentioned in the passage?",
+      "options": [
+        "Only reduced transportation costs",
+        "Reduced food miles, increased food security, and improved community engagement",
+        "Only better air quality",
+        "Elimination of all traditional farming"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 46,
+      "passage": "Behavioral economics combines insights from psychology and economics to understand how people make decisions in real-world situations. Traditional economic theory assumes people are rational actors who always make optimal choices, but behavioral economics reveals that human decision-making is often influenced by cognitive biases, emotions, and social factors. Key concepts include loss aversion (people feel losses more strongly than equivalent gains), anchoring bias (over-relying on the first piece of information encountered), and present bias (overvaluing immediate rewards). Understanding these behavioral patterns has practical applications in public policy, marketing, and personal finance, helping design systems that account for human psychology.",
+      "question": "What does traditional economic theory assume about people?",
+      "options": [
+        "People are influenced by emotions",
+        "People are rational actors who always make optimal choices",
+        "People make random decisions",
+        "People are primarily motivated by social factors"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 47,
+      "passage": "Edge computing is a distributed computing paradigm that brings computation and data storage closer to the sources of data, rather than relying on centralized cloud servers. This approach reduces latency, conserves bandwidth, and improves response times for applications that require real-time processing. Edge computing is particularly important for Internet of Things (IoT) devices, autonomous vehicles, and augmented reality applications where milliseconds can make a critical difference. By processing data locally, edge computing also enhances privacy and security by reducing the amount of sensitive data transmitted over networks. As 5G networks expand, edge computing capabilities are expected to grow significantly.",
+      "question": "What is the main advantage of edge computing over centralized cloud servers?",
+      "options": [
+        "Lower equipment costs",
+        "Reduces latency and improves response times",
+        "Requires less technical expertise",
+        "Uses less electricity"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 48,
+      "passage": "Social impact bonds (SIBs) are innovative financing mechanisms that bring together public and private sectors to fund programs addressing social issues. In a SIB arrangement, private investors provide upfront capital to fund social programs, and they receive returns based on the achievement of predetermined social outcomes. This pay-for-success model shifts the financial risk from government to private investors while incentivizing effective program delivery. SIBs have been used to fund programs in areas such as criminal justice reform, workforce development, and early childhood education. While promising, SIBs also face challenges related to outcome measurement, contract complexity, and ensuring that social goals are not compromised by profit motives.",
+      "question": "How do investors receive returns in social impact bonds?",
+      "options": [
+        "Through guaranteed government payments",
+        "Based on the achievement of predetermined social outcomes",
+        "Through traditional market investments",
+        "Only if programs fail to meet goals"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 49,
+      "passage": "Neuromorphic computing is a computing approach that mimics the structure and function of the human brain. Unlike traditional computers that process information sequentially, neuromorphic systems process information in parallel, similar to how neurons in the brain work together. This architecture is particularly well-suited for tasks involving pattern recognition, sensory processing, and machine learning. Neuromorphic chips consume significantly less power than conventional processors while handling certain types of computations more efficiently. As artificial intelligence applications become more sophisticated and energy efficiency becomes increasingly important, neuromorphic computing represents a promising alternative to traditional computing architectures.",
+      "question": "How does neuromorphic computing differ from traditional computing?",
+      "options": [
+        "It uses more electricity",
+        "It processes information in parallel, mimicking the human brain",
+        "It only works with simple calculations",
+        "It requires larger computer systems"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 50,
+      "passage": "The concept of planetary boundaries defines the safe operating space for humanity by identifying nine Earth system processes and their thresholds that should not be crossed to maintain a stable planet. These boundaries include climate change, biodiversity loss, nitrogen and phosphorus cycles, ocean acidification, land use change, freshwater use, ozone depletion, atmospheric aerosols, and chemical pollution. Scientists estimate that humanity has already transgressed at least four of these boundaries, putting the Earth system at risk of irreversible changes. The planetary boundaries framework provides a science-based approach for sustainable development and highlights the interconnectedness of Earth's systems and the need for global cooperation in environmental governance.",
+      "question": "How many planetary boundaries have been identified?",
+      "options": [
+        "Seven",
+        "Eight", 
+        "Nine",
+        "Ten"
+      ],
+      "correct": 2
+    }
+  ]
+}

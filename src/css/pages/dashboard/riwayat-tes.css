@@ -1,10 +1,13 @@
-.main-content {
-    padding: 2rem;
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    background: #f8f9fa;
 }
 
-.main-content h1 {
-    color: var(--primary-color);
-    margin-bottom: 2rem;
+.main-content {
+    flex: 1;
+    padding: 2rem;
+    margin-left: 250px; /* Match sidebar width */
 }
 
 .page-header {
@@ -12,6 +15,11 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
+}
+
+.page-header h1 {
+    color: var(--primary-color);
+    font-size: 2rem;
 }
 
 .header-actions {
@@ -52,34 +60,34 @@
 .history-stats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
+    gap: 2rem;
     margin-bottom: 2rem;
 }
 
 .stat-card {
     background: white;
-    padding: 1.5rem;
-    border-radius: 12px;
-    text-align: center;
+    padding: 2rem;
+    border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    text-align: center;
 }
 
 .stat-card h3 {
     color: var(--text-color);
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
 }
 
 .stat-value {
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: 700;
     color: var(--primary-color);
 }
 
 .history-table-container {
     background: white;
-    border-radius: 12px;
-    padding: 1.5rem;
+    padding: 2rem;
+    border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
     overflow-x: auto;
 }
@@ -92,14 +100,14 @@
 .history-table th,
 .history-table td {
     padding: 1rem;
-    text-align: center;
+    text-align: left;
     border-bottom: 1px solid var(--border-color);
 }
 
 .history-table th {
-    background: var(--light-gray);
     font-weight: 600;
     color: var(--primary-color);
+    background: var(--light-gray);
 }
 
 .history-table tr:hover {
@@ -143,49 +151,292 @@
     padding: 2rem;
     border-radius: 15px;
     position: relative;
+    max-width: 100vw;
+    max-height: 95vh;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.close {
-    position: absolute;
-    right: 1.5rem;
-    top: 1rem;
-    font-size: 1.5rem;
-    cursor: pointer;
+/* Wrapper Modal */
+.certificate-preview-wrapper {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+    background: #f8f9fa;
 }
 
+/* Sertifikat A4 */
 .certificate-preview {
-    margin: 2rem 0;
-    border: 1px solid var(--border-color);
-    padding: 1rem;
+    width: 794px;
+    height: 1123px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #fdfcf7 70%, #e9e9f3 100%);
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(44,62,80,0.13), 0 0 0 8px #e0e0e0;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Poppins', Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* transform dihandle oleh JS */
+}
+
+/* Frame & Ornamen */
+.certificate-frame {
+    position: absolute;
+    inset: 0;
+    border: 18px double #b5b5b5;
+    border-radius: 16px;
+    pointer-events: none;
+    z-index: 1;
+    background: repeating-linear-gradient(
+        135deg,
+        #e0e0e0 0px, #e0e0e0 2px,
+        transparent 2px, transparent 14px
+    );
+    opacity: 0.10;
+}
+
+.certificate-corner {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    z-index: 3;
+    opacity: 0.18;
+    pointer-events: none;
+}
+.certificate-corner.top-left { left: 0; top: 0; }
+.certificate-corner.top-right { right: 0; top: 0; }
+.certificate-corner.bottom-left { left: 0; bottom: 0; }
+.certificate-corner.bottom-right { right: 0; bottom: 0; }
+.certificate-corner circle { fill: none; stroke-width: 3; }
+
+/* Isi Sertifikat */
+.certificate-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    padding: 80px 60px 60px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background: transparent;
+}
+
+.certificate-logo {
+    width: 150px;
+    margin-bottom: 18px;
+}
+
+.certificate-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #2d2d6a;
+    margin-bottom: 18px;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 8px #e0e0e0;
     text-align: center;
 }
 
-.modal-actions {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
+.certificate-desc {
+    font-size: 1.15rem;
+    color: #444;
+    margin-bottom: 24px;
+    text-align: center;
 }
 
-.btn-download,
-.btn-print {
-    padding: 0.8rem 1.5rem;
+.certificate-name {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #4a55a2;
+    margin-bottom: 8px;
+    text-align: center;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px #e0e0e0;
+}
+
+.certificate-email {
+    font-size: 1.05rem;
+    color: #666;
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+.certificate-photo {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #4a55a2;
+    margin: 18px auto 18px auto;
+    background: #f8f9fa;
+    box-shadow: 0 2px 12px rgba(44,62,80,0.10);
+}
+
+.certificate-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.certificate-table {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto 32px auto;
+    border-collapse: collapse;
+    font-size: 1.1rem;
+    background: #fff;
     border-radius: 8px;
-    border: none;
-    cursor: pointer;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(44,62,80,0.07);
+}
+
+.certificate-table th,
+.certificate-table td {
+    padding: 12px 18px;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: left;
+}
+
+.certificate-table th {
+    background: #f4f4f4;
+    font-weight: 600;
+    color: #4a55a2;
+}
+
+.certificate-table td {
+    color: #222;
+}
+
+.certificate-total {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #2d2d6a;
+    text-align: right;
+    margin-top: 10px;
+}
+
+.certificate-sign {
+    position: absolute;
+    right: 60px;
+    bottom: 60px;
+    text-align: right;
+}
+
+.certificate-sign .sign-label {
+    font-size: 1rem;
+    color: #888;
+}
+
+.certificate-sign .sign-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #222;
+    margin-top: 40px;
+    letter-spacing: 1px;
+}
+
+.certificate-date {
+    margin-top: 32px;
+    color: #888;
+    font-size: 1rem;
+    text-align: left;
+    width: 100%;
+}
+
+@media print {
+    body * {
+        visibility: hidden !important;
+    }
+    .certificate-preview, .certificate-preview * {
+        visibility: visible !important;
+    }
+    .certificate-preview {
+        box-shadow: none !important;
+        border: none !important;
+        margin: 0 !important;
+        position: absolute !important;
+        left: 0; top: 0;
+        width: 210mm !important;
+        height: 297mm !important;
+        min-height: unset !important;
+        max-height: unset !important;
+    }
+}
+
+/* Sidebar Styles - Samakan dengan dashboard.css */
+.sidebar {
+    width: 250px;
+    background: var(--primary-color);
+    color: white;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    text-align: left;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    flex: 1;
+}
+
+.menu a {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
+    padding: 1rem;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
     transition: all 0.3s ease;
 }
 
-.btn-download {
-    background: var(--primary-color);
-    color: white;
+.menu a:hover,
+.menu a.active {
+    background: rgba(255, 255, 255, 0.1);
 }
 
-.btn-print {
-    background: var(--light-gray);
-    color: var(--text-color);
+.menu a i {
+    width: 24px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.logout-btn {
+    margin-top: auto;
+    background: #ff4757;
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: #ff6b81;
 }
 
 @media (max-width: 768px) {
@@ -203,5 +454,17 @@
     .btn-print {
         flex: 1;
         justify-content: center;
+    }
+}
+
+@media (max-width: 900px), (max-height: 1200px) {
+    .certificate-preview {
+        width: 95vw;
+        height: auto;
+        max-height: 85vh;
+        aspect-ratio: 210/297;
+    }
+    .certificate-content {
+        padding: 4vw 2vw 2vw 2vw;
     }
 }

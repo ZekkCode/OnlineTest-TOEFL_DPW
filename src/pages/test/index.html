@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Pilih Mode Tes TOEFL</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/pages/test/index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+  <div class="test-header">
+    <h1>Simulasi Tes TOEFL</h1>
+    <div class="desc">Latihan dan Ujian TOEFL - Pengalaman Lengkap</div>
+    <div class="meta">
+      <span><i class="fas fa-list-ol"></i> 140 Soal Total</span>
+      <span><i class="fas fa-clock"></i> 120 Menit Total</span>
+    </div>
+  </div>
+
+  <div class="test-mode-container">
+    <div class="instructions-card">
+      <div>
+        <h3>Sebelum Memulai:</h3>
+        <ul>
+          <li>Pastikan koneksi internet stabil</li>
+          <li>Cari tempat yang tenang untuk mengerjakan</li>
+          <li>Siapkan kertas dan alat tulis</li>
+          <li>Selesaikan setiap bagian dalam batas waktu</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Format Tes:</h3>
+        <ul>
+          <li>Soal pilihan ganda</li>
+          <li>Timer berjalan otomatis saat dimulai</li>
+          <li>Bisa pindah soal bebas</li>
+          <li>Submit saat selesai atau waktu habis</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Pilihan Mode -->
+    <div class="sections-row" style="justify-content:center;">
+      <div class="section-card listening" onclick="startTest('ujian')">
+        <span class="icon"><i class="fas fa-graduation-cap"></i></span>
+        <h2>Mode Ujian</h2>
+        <p>Kerjakan tes TOEFL seperti ujian sungguhan. Tidak ada pembahasan sebelum selesai.</p>
+        <button class="start-btn">Pilih Mode Ujian</button>
+      </div>
+      <div class="section-card reading" onclick="startTest('latihan')">
+        <span class="icon"><i class="fas fa-lightbulb"></i></span>
+        <h2>Mode Latihan</h2>
+        <p>Latihan soal TOEFL dengan pembahasan langsung setelah menjawab.</p>
+        <button class="start-btn">Pilih Mode Latihan</button>
+      </div>
+    </div>
+
+    <!-- Pilihan Section, tampil setelah mode dipilih -->
+    <div class="sections-row" id="sectionChoice" style="display:none; margin-top:24px;">
+      <div class="section-card listening" onclick="chooseSection('listening')">
+        <span class="icon"><i class="fas fa-headphones"></i></span>
+        <h2>Listening Comprehension</h2>
+        <p>Uji kemampuan memahami percakapan dan ceramah berbahasa Inggris.</p>
+        <div class="meta">50 Soal &nbsp;|&nbsp; 40 Menit</div>
+        <button class="start-btn">Mulai Listening</button>
+      </div>
+      <div class="section-card structure" onclick="chooseSection('structure')">
+        <span class="icon"><i class="fas fa-file-alt"></i></span>
+        <h2>Structure & Written Expression</h2>
+        <p>Uji pemahaman tata bahasa dan struktur kalimat bahasa Inggris.</p>
+        <div class="meta">40 Soal &nbsp;|&nbsp; 25 Menit</div>
+        <button class="start-btn">Mulai Structure</button>
+      </div>
+      <div class="section-card reading" onclick="chooseSection('reading')">
+        <span class="icon"><i class="fas fa-book-open"></i></span>
+        <h2>Reading Comprehension</h2>
+        <p>Uji pemahaman bacaan bahasa Inggris melalui berbagai teks.</p>
+        <div class="meta">50 Soal &nbsp;|&nbsp; 55 Menit</div>
+        <button class="start-btn">Mulai Reading</button>
+      </div>
+      <div class="section-card" style="border-top-color:#232946;" onclick="chooseSection('full')">
+        <span class="icon"><i class="fas fa-layer-group"></i></span>
+        <h2>TOEFL Lengkap</h2>
+        <p>Kerjakan semua bagian secara berurutan untuk simulasi penuh TOEFL.</p>
+        <div class="meta">140 Soal &nbsp;|&nbsp; 120 Menit</div>
+        <button class="start-btn">Mulai Tes Lengkap</button>
+      </div>
+    </div>
+  </div>
+  <script src="js/index.js"></script>
+  <script>
+    // Tampilkan pilihan section setelah pilih mode
+    function startTest(mode) {
+      localStorage.setItem('testMode', mode);
+      document.getElementById('sectionChoice').style.display = 'flex';
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+    function chooseSection(section) {
+      localStorage.setItem('testSection', section);
+      window.location.href = 'soal.html';
+    }
+  </script>
+</body>
+</html>

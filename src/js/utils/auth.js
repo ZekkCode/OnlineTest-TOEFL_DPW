@@ -9,6 +9,7 @@ function handleLogin(event) {
         // Store user data in localStorage
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('username', username);
+        localStorage.setItem('userEmail', ''); // Initialize empty email
         
         // Redirect to dashboard
         window.location.href = '/dashboard';
@@ -34,6 +35,7 @@ function handleRegister(event) {
         // Store user data in localStorage
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('username', username);
+        localStorage.setItem('userEmail', ''); // Initialize empty email
         
         // Redirect to dashboard
         window.location.href = '/dashboard';
@@ -45,6 +47,8 @@ function handleRegister(event) {
 function logout() {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('username');
+    localStorage.removeItem('userEmail');
+    localStorage.removeItem('userPhoto');
     window.location.href = '/auth/login';
 }
 

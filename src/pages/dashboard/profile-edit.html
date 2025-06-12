@@ -12,48 +12,62 @@
 </head>
 <body>
     <div class="dashboard-container">
-        <!-- Sidebar (same as dashboard.html) -->
+        <!-- Sidebar -->
         <aside class="sidebar">
-            <!-- ...existing sidebar code... -->
+            <div class="logo">
+                <span>TOEL.id</span>
+            </div>
+            <nav class="menu">
+                <a href="/dashboard">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="/dashboard/riwayat-tes">
+                    <i class="fas fa-history"></i>
+                    <span>Riwayat Tes</span>
+                </a>
+                <a href="/dashboard/profile-edit" class="active">
+                    <i class="fas fa-user"></i>
+                    <span>Edit Profil</span>
+                </a>
+                <a href="/test">
+                    <i class="fas fa-edit"></i>
+                    <span>Mulai Tes</span>
+                </a>
+            </nav>
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Keluar</span>
+            </button>
         </aside>
 
+        <!-- Main Content -->
         <main class="main-content">
             <div class="profile-edit-container">
                 <h1>Edit Profil</h1>
                 <form id="profileForm" class="profile-form">
-                    <div class="photo-section">
-                        <img id="profilePreview" src="/assets/images/default-profile.png" alt="Profile">
-                        <div class="photo-upload">
-                            <input type="file" id="photoInput" accept="image/*">
-                            <button type="button" class="btn-upload">
-                                <i class="fas fa-camera"></i> Ubah Foto
-                            </button>
-                        </div>
+                    <div class="profile-photo">
+                        <img class="user-photo" id="profilePreview" src="/assets/images/guest-profile.png" alt="Profile">
+                        <button type="button" class="btn-upload" id="btnUploadPhoto" title="Ubah Foto">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                        <input type="file" id="photoInput" accept="image/*" hidden>
                     </div>
-
                     <div class="form-group">
                         <label for="name">Nama Lengkap</label>
-                        <input type="text" id="name" required>
+                        <input type="text" id="name" name="name" required>
                     </div>
-
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" required>
+                        <input type="email" id="email" name="email" required>
                     </div>
-
-                    <div class="form-actions">
-                        <button type="submit" class="btn-save">
-                            <i class="fas fa-save"></i> Simpan
-                        </button>
-                        <a href="/dashboard" class="btn-cancel">
-                            <i class="fas fa-times"></i> Batal
-                        </a>
-                    </div>
+                    <button type="submit" class="btn-save">
+                        <i class="fas fa-save"></i> Simpan
+                    </button>
                 </form>
             </div>
         </main>
     </div>
-
     <script src="/js/utils/auth.js"></script>
     <script src="/js/pages/dashboard/profile-edit.js"></script>
 </body>

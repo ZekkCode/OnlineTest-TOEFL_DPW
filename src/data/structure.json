@@ -1,0 +1,447 @@
+{
+  "title": "Structure and Written Expression",
+  "timeLimit": 1500,
+  "instructions": "This section tests your knowledge of English grammar and structure. Choose the best answer to complete each sentence. You have 25 minutes to complete this section.",
+  "questions": [
+    {
+      "id": 1,
+      "question": "The committee _____ its decision after lengthy deliberation.",
+      "options": [
+        "have made",
+        "has made",
+        "had made",
+        "making"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 2,
+      "question": "Neither the teacher nor the students _____ satisfied with the test results.",
+      "options": [
+        "was",
+        "were",
+        "is",
+        "are"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 3,
+      "question": "By the time she arrives, we _____ our work.",
+      "options": [
+        "will finish",
+        "will have finished",
+        "finished",
+        "have finished"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 4,
+      "question": "The book _____ I bought yesterday is very interesting.",
+      "options": [
+        "who",
+        "whom",
+        "which",
+        "whose"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 5,
+      "question": "She would have passed the exam if she _____ harder.",
+      "options": [
+        "studied",
+        "had studied",
+        "studies",
+        "would study"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 6,
+      "question": "_____ the weather was bad, they decided to go hiking.",
+      "options": [
+        "Despite",
+        "Although",
+        "Because of",
+        "Due to"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 7,
+      "question": "The research _____ by Dr. Smith was groundbreaking.",
+      "options": [
+        "conducted",
+        "conducting",
+        "conducts",
+        "conduct"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 8,
+      "question": "I wish I _____ more time to finish the project.",
+      "options": [
+        "have",
+        "had",
+        "will have",
+        "would have"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 9,
+      "question": "The meeting has been postponed _____ next week.",
+      "options": [
+        "until",
+        "since",
+        "during",
+        "while"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 10,
+      "question": "Not only _____ late, but he also forgot his presentation.",
+      "options": [
+        "he was",
+        "was he",
+        "he is",
+        "is he"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 11,
+      "question": "The students were asked _____ their essays by Friday.",
+      "options": [
+        "submitting",
+        "to submit",
+        "submit",
+        "submitted"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 12,
+      "question": "_____ carefully, the instructions are easy to follow.",
+      "options": [
+        "Reading",
+        "Read",
+        "When read",
+        "Having read"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 13,
+      "question": "The company's profits have increased _____ 15% this year.",
+      "options": [
+        "by",
+        "with",
+        "for",
+        "at"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 14,
+      "question": "She is one of the few people _____ can speak five languages fluently.",
+      "options": [
+        "who",
+        "whom",
+        "which",
+        "that"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 15,
+      "question": "The problem _____ we discussed yesterday needs immediate attention.",
+      "options": [
+        "what",
+        "that",
+        "when",
+        "where"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 16,
+      "question": "_____ he studied hard, he failed the examination.",
+      "options": [
+        "Because",
+        "Since",
+        "Although",
+        "As"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 17,
+      "question": "The manager suggested _____ the meeting until next month.",
+      "options": [
+        "postponing",
+        "to postpone",
+        "postpone",
+        "postponed"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 18,
+      "question": "If I _____ you, I would accept the job offer.",
+      "options": [
+        "am",
+        "was",
+        "were",
+        "will be"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 19,
+      "question": "The letter _____ yesterday contained important information.",
+      "options": [
+        "received",
+        "receiving",
+        "receive",
+        "to receive"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 20,
+      "question": "_____ his age, he runs very fast.",
+      "options": [
+        "Despite",
+        "Although",
+        "Because",
+        "Since"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 21,
+      "question": "The conference will be held _____ May 15th _____ May 17th.",
+      "options": [
+        "from / to",
+        "between / and",
+        "since / until",
+        "during / and"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 22,
+      "question": "She has been working here _____ she graduated from college.",
+      "options": [
+        "for",
+        "since",
+        "during",
+        "while"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 23,
+      "question": "The movie _____ we watched last night was excellent.",
+      "options": [
+        "who",
+        "whom",
+        "that",
+        "whose"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 24,
+      "question": "I would rather _____ at home than go to the party.",
+      "options": [
+        "stay",
+        "staying",
+        "to stay",
+        "stayed"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 25,
+      "question": "The professor asked the students _____ quietly during the exam.",
+      "options": [
+        "work",
+        "working",
+        "to work",
+        "worked"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 26,
+      "question": "_____ the heavy rain, the match was cancelled.",
+      "options": [
+        "Because",
+        "Due to",
+        "Although",
+        "Despite"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 27,
+      "question": "The children were playing _____ the garden when it started to rain.",
+      "options": [
+        "in",
+        "at",
+        "on",
+        "under"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 28,
+      "question": "She speaks English _____ fluently _____ her native language.",
+      "options": [
+        "as / as",
+        "so / as",
+        "more / than",
+        "such / as"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 29,
+      "question": "The new employee is expected _____ his duties immediately.",
+      "options": [
+        "starting",
+        "to start",
+        "start",
+        "started"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 30,
+      "question": "_____ you finish your homework, you can watch television.",
+      "options": [
+        "Until",
+        "Before",
+        "After",
+        "While"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 31,
+      "question": "The government has announced _____ taxes next year.",
+      "options": [
+        "to increase",
+        "increasing",
+        "increase",
+        "increased"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 32,
+      "question": "She is _____ intelligent _____ her sister.",
+      "options": [
+        "as / as",
+        "so / than",
+        "more / as",
+        "such / than"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 33,
+      "question": "The project _____ completed by the end of the month.",
+      "options": [
+        "will be",
+        "will have been",
+        "would be",
+        "would have been"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 34,
+      "question": "_____ I agree with you in principle, I think your plan is impractical.",
+      "options": [
+        "Because",
+        "Since",
+        "While",
+        "As"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 35,
+      "question": "The museum _____ we visited yesterday has a wonderful collection.",
+      "options": [
+        "where",
+        "which",
+        "who",
+        "when"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 36,
+      "question": "I can't remember _____ I put my keys.",
+      "options": [
+        "where",
+        "what",
+        "when",
+        "why"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 37,
+      "question": "The train _____ at 3:30 PM every day.",
+      "options": [
+        "leaves",
+        "is leaving",
+        "will leave",
+        "has left"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 38,
+      "question": "_____ hard he tried, he couldn't solve the problem.",
+      "options": [
+        "However",
+        "Whatever",
+        "Whenever",
+        "Wherever"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 39,
+      "question": "The company is looking for someone _____ has experience in marketing.",
+      "options": [
+        "who",
+        "whom",
+        "which",
+        "whose"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 40,
+      "question": "By next year, they _____ in this city for ten years.",
+      "options": [
+        "will live",
+        "will be living",
+        "will have lived",
+        "will have been living"
+      ],
+      "correct": 3
+    }
+  ]
+}
