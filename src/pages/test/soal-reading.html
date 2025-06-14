@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Listening Comprehension</title>
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/pages/test/soal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <a href="/dashboard" class="btn btn-back" style="margin:1.5rem 2rem 0 2rem;">
+        <i class="fas fa-arrow-left"></i> Kembali ke Dashboard
+    </a>
+    <div class="test-container">
+        <aside class="question-navigator">
+            <div class="navigator-grid"></div>
+            <button class="submit-btn">Submit Test</button>
+        </aside>
+        <section class="question-section">
+            <div class="question-header">
+                <span class="question-number"></span>
+                <span class="timer">40:00</span>
+            </div>
+            <h2 class="question-title"></h2>
+            <div class="options"></div>
+            <div class="navigation-buttons">
+                <button class="prev-btn">Previous</button>
+                <button class="next-btn">Next</button>
+            </div>
+        </section>
+    </div>
+    <script>
+document.addEventListener('DOMContentLoaded', async function() {
+    // Ambil soal reading
+    const res = await fetch('../../data/reading.json');
+    const data = await res.json();
+    const questions = data.questions;
+    const timeLimit = data.timeLimit || 3300; // detik
+    const mode = localStorage.getItem('testMode') || 'ujian'; // 'ujian' atau 'latihan'
+
+    let current = 0;
+    let answers = JSON.parse(localStorage.getItem('readingAnswers') || '[]');
+    if (answers.length !== questions.length) answers = Array(questions.length).fill(null);
+
+    // Timer
+    let timer = timeLimit;
+    const timerSpan = document.querySelector('.timer');
+    function updateTimer() {
+        const m = String(Math.floor(timer / 60)).padStart(2, '0');
+        const s = String(timer % 60).padStart(2, '0');
+        timerSpan.textContent = `${m}:${s}`;
+        if (mode === 'ujian' && timer <= 0) {
+            submitTest();
+        } else if (mode === 'ujian') {
+            timer--;
+            setTimeout(updateTimer, 1000);
+        }
+    }
+    if (mode === 'ujian') updateTimer();
+    else timerSpan.textContent = '∞';
+
+    function renderQuestion(idx) {
+        const q = questions[idx];
+        document.querySelector('.question-title').textContent = q.question;
+        // Render opsi
+        const opts = document.querySelector('.options');
+        opts.innerHTML = '';
+        q.options.forEach((opt, i) => {
+            const div = document.createElement('div');
+            div.className = 'option' + (answers[idx] === i ? ' selected' : '');
+            div.textContent = opt;
+            div.onclick = () => {
+                answers[idx] = i;
+                localStorage.setItem('readingAnswers', JSON.stringify(answers));
+                renderQuestion(idx);
+                renderNavigator();
+                // Feedback langsung (mode latihan)
+                if (mode === 'latihan') {
+                    showFeedback(q, i);
+                }
+            };
+            opts.appendChild(div);
+        });
+        document.querySelector('.question-number').textContent = `Question ${idx + 1} of ${questions.length}`;
+        document.querySelector('.prev-btn').disabled = idx === 0;
+        document.querySelector('.next-btn').disabled = idx === questions.length - 1;
+        // Feedback area
+        let feedback = document.getElementById('feedback');
+        if (!feedback) {
+            feedback = document.createElement('div');
+            feedback.id = 'feedback';
+            feedback.style.marginTop = '1rem';
+            feedback.style.fontWeight = 'bold';
+            document.querySelector('.question-section').appendChild(feedback);
+        }
+        feedback.innerHTML = '';
+    }
+
+    function showFeedback(q, chosenIdx) {
+        const feedback = document.getElementById('feedback');
+        if (chosenIdx === q.correct) {
+            feedback.innerHTML = '<span style="color:green">Benar!</span>';
+        } else {
+            feedback.innerHTML = `<span style="color:red">Salah.</span> Kunci: <b>${q.options[q.correct]}</b>`;
+        }
+    }
+
+    function renderNavigator() {
+        const nav = document.querySelector('.navigator-grid');
+        nav.innerHTML = '';
+        questions.forEach((_, i) => {
+            const btn = document.createElement('button');
+            btn.textContent = i + 1;
+            btn.className = (i === current ? 'current ' : '') +
+                (answers[i] !== null ? 'answered' : 'unanswered');
+            btn.onclick = () => {
+                current = i;
+                renderQuestion(current);
+                renderNavigator();
+            };
+            nav.appendChild(btn);
+        });
+    }
+
+    document.querySelector('.prev-btn').onclick = () => {
+        if (current > 0) {
+            current--;
+            renderQuestion(current);
+            renderNavigator();
+        }
+    };
+    document.querySelector('.next-btn').onclick = () => {
+        if (current < questions.length - 1) {
+            current++;
+            renderQuestion(current);
+            renderNavigator();
+        }
+    };
+    document.querySelector('.submit-btn').onclick = submitTest;
+
+    function submitTest() {
+        // Hitung skor
+        let score = 0;
+        questions.forEach((q, i) => {
+            if (answers[i] === q.correct) score++;
+        });
+        localStorage.setItem('readingScore', score);
+        localStorage.setItem('readingTotal', questions.length);
+        localStorage.removeItem('readingAnswers');
+        window.location.href = 'hasil-reading.html';
+    }
+
+    // Tampilkan mode aktif di pojok kanan atas
+    const header = document.querySelector('.question-header');
+    if (header) {
+        const modeLabel = document.createElement('span');
+        modeLabel.textContent = mode === 'ujian' ? 'Mode Ujian' : 'Mode Latihan';
+        modeLabel.style.background = mode === 'ujian' ? '#4a55a2' : '#2ecc71';
+        modeLabel.style.color = '#fff';
+        modeLabel.style.padding = '0.3rem 1rem';
+        modeLabel.style.borderRadius = '20px';
+        modeLabel.style.marginLeft = '1rem';
+        header.appendChild(modeLabel);
+    }
+
+    // Render awal
+    renderQuestion(current);
+    renderNavigator();
+});
+</script>
+</body>
+</html>

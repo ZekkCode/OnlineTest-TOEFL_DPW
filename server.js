@@ -41,8 +41,20 @@ app.get('/test', (req, res) => {
 app.get('/test/soal', (req, res) => {
     res.sendFile(path.join(__dirname, 'src/pages/test/soal.html'));
 });
+app.get('/test/soal-listening', (req, res) => {
+    res.sendFile(path.join(__dirname, 'src/pages/test/soal-listening.html'));
+});
+app.get('/test/soal-structure', (req, res) => {
+    res.sendFile(path.join(__dirname, 'src/pages/test/soal-structure.html'));
+});
+app.get('/test/soal-reading', (req, res) => {
+    res.sendFile(path.join(__dirname, 'src/pages/test/soal-reading.html'));
+});
 app.get('/test/hasil', (req, res) => {
     res.sendFile(path.join(__dirname, 'src/pages/test/hasil.html'));
+});
+app.get('/test/hasil-listening', (req, res) => {
+    res.sendFile(path.join(__dirname, 'src/pages/test/hasil-listening.html'));
 });
 
 // API endpoints

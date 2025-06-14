@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Hasil Listening</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/pages/test/hasil.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <a href="/dashboard" class="btn btn-back" style="margin:1.5rem 2rem 0 2rem;">
+      <i class="fas fa-arrow-left"></i> Kembali ke Dashboard
+  </a>
+  <div class="result-container">
+    <h1>Hasil Listening</h1>
+    <div id="score-summary">
+      <!-- Nilai akan diisi oleh JS -->
+    </div>
+    <button onclick="window.location.href='soal-listening.html'" class="btn btn-primary" style="margin-top:2rem;">
+      Ulangi Listening
+    </button>
+  </div>
+  <script>
+    // Ambil skor dari localStorage
+    document.addEventListener('DOMContentLoaded', function() {
+      const score = localStorage.getItem('listeningScore') || 0;
+      const total = localStorage.getItem('listeningTotal') || 0;
+      document.getElementById('score-summary').innerHTML = `
+        <h2>Skor Anda: ${score} / ${total}</h2>
+        <p>Terima kasih telah mengerjakan Listening TOEFL di TOEL.id!</p>
+      `;
+    });
+
+    // Setelah submit listening
+    localStorage.setItem('listeningScore', score);
+    localStorage.setItem('listeningTotal', questions.length);
+    window.location.href = 'hasil-listening.html';
+  </script>
+</body>
+</html>

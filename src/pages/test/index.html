@@ -8,6 +8,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
+  <!-- Tambahkan di dalam <body> setelah <div class="test-container"> atau paling atas -->
+  <a href="/dashboard" class="btn btn-back">
+      <i class="fas fa-arrow-left"></i> Kembali ke Dashboard
+  </a>
+
   <div class="test-header">
     <h1>Simulasi Tes TOEFL</h1>
     <div class="desc">Latihan dan Ujian TOEFL - Pengalaman Lengkap</div>
@@ -78,7 +83,7 @@
         <div class="meta">50 Soal &nbsp;|&nbsp; 55 Menit</div>
         <button class="start-btn">Mulai Reading</button>
       </div>
-      <div class="section-card" style="border-top-color:#232946;" onclick="chooseSection('full')">
+      <div class="section-card" onclick="chooseSection('full')">
         <span class="icon"><i class="fas fa-layer-group"></i></span>
         <h2>TOEFL Lengkap</h2>
         <p>Kerjakan semua bagian secara berurutan untuk simulasi penuh TOEFL.</p>
@@ -89,15 +94,23 @@
   </div>
   <script src="js/index.js"></script>
   <script>
-    // Tampilkan pilihan section setelah pilih mode
+    // Simpan mode di localStorage
     function startTest(mode) {
-      localStorage.setItem('testMode', mode);
+      localStorage.setItem('testMode', mode); // 'exam' atau 'practice'
       document.getElementById('sectionChoice').style.display = 'flex';
       window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     }
     function chooseSection(section) {
       localStorage.setItem('testSection', section);
-      window.location.href = 'soal.html';
+      if (section === 'listening') {
+        window.location.href = '/test/soal-listening';
+      } else if (section === 'structure') {
+        window.location.href = '/test/soal-structure';
+      } else if (section === 'reading') {
+        window.location.href = '/test/soal-reading';
+      } else if (section === 'full') {
+        window.location.href = '/test/soal';
+      }
     }
   </script>
 </body>
