@@ -12,7 +12,8 @@
         "had made",
         "making"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'has made' karena 'committee' dianggap sebagai satu kesatuan (singular subject)."
     },
     {
       "id": 2,
@@ -23,7 +24,8 @@
         "is",
         "are"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'were' karena subjeknya adalah 'students' yang merupakan jamak."
     },
     {
       "id": 3,
@@ -34,7 +36,8 @@
         "finished",
         "have finished"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'will have finished' untuk menunjukkan bahwa pekerjaan sudah selesai sebelum dia tiba."
     },
     {
       "id": 4,
@@ -45,7 +48,8 @@
         "which",
         "whose"
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah 'which' karena merujuk pada benda (book)."
     },
     {
       "id": 5,
@@ -56,7 +60,8 @@
         "studies",
         "would study"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'had studied' untuk menunjukkan kondisi yang tidak nyata di masa lalu."
     },
     {
       "id": 6,
@@ -67,7 +72,8 @@
         "Because of",
         "Due to"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'Although' diikuti dengan klausa subjek + predikat."
     },
     {
       "id": 7,
@@ -78,7 +84,8 @@
         "conducts",
         "conduct"
       ],
-      "correct": 0
+      "correct": 0,
+      "explanation": "Jawaban yang benar adalah 'conducted' karena merupakan bentuk lampau dari kata kerja 'conduct'."
     },
     {
       "id": 8,
@@ -89,7 +96,8 @@
         "will have",
         "would have"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'had' untuk menunjukkan keinginan yang bertentangan dengan kenyataan."
     },
     {
       "id": 9,
@@ -100,7 +108,8 @@
         "during",
         "while"
       ],
-      "correct": 0
+      "correct": 0,
+      "explanation": "Jawaban yang benar adalah 'until' diikuti dengan waktu tertentu."
     },
     {
       "id": 10,
@@ -111,7 +120,8 @@
         "he is",
         "is he"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'was he' untuk membentuk kalimat tanya terbalik (inverted question)."
     },
     {
       "id": 11,
@@ -122,7 +132,8 @@
         "submit",
         "submitted"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'to submit' untuk menunjukkan tujuan atau maksud."
     },
     {
       "id": 12,
@@ -133,7 +144,8 @@
         "When read",
         "Having read"
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah 'When read' untuk menunjukkan waktu membaca."
     },
     {
       "id": 13,
@@ -144,7 +156,8 @@
         "for",
         "at"
       ],
-      "correct": 0
+      "correct": 0,
+      "explanation": "Jawaban yang benar adalah 'by' untuk menunjukkan besaran kenaikan."
     },
     {
       "id": 14,
@@ -155,7 +168,8 @@
         "which",
         "that"
       ],
-      "correct": 0
+      "correct": 0,
+      "explanation": "Jawaban yang benar adalah 'who' karena merujuk pada orang (people)."
     },
     {
       "id": 15,
@@ -166,7 +180,8 @@
         "when",
         "where"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'that' untuk merujuk pada masalah yang dibicarakan."
     },
     {
       "id": 16,
@@ -177,7 +192,8 @@
         "Although",
         "As"
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah 'Although' diikuti dengan klausa subjek + predikat."
     },
     {
       "id": 17,
@@ -188,7 +204,8 @@
         "postpone",
         "postponed"
       ],
-      "correct": 0
+      "correct": 0,
+      "explanation": "Jawaban yang benar adalah 'postponing' setelah kata kerja 'suggested'."
     },
     {
       "id": 18,
@@ -199,7 +216,8 @@
         "were",
         "will be"
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah 'were' untuk menunjukkan kondisi yang tidak nyata."
     },
     {
       "id": 19,
@@ -210,7 +228,8 @@
         "receive",
         "to receive"
       ],
-      "correct": 0
+      "correct": 0,
+      "explanation": "Jawaban yang benar adalah 'received' karena merupakan bentuk lampau dari kata kerja 'receive'."
     },
     {
       "id": 20,
@@ -221,7 +240,8 @@
         "Because",
         "Since"
       ],
-      "correct": 0
+      "correct": 0,
+      "explanation": "Jawaban yang benar adalah 'Despite' diikuti dengan kata benda (his age)."
     },
     {
       "id": 21,
@@ -232,7 +252,8 @@
         "since / until",
         "during / and"
       ],
-      "correct": 0
+      "correct": 0,
+      "explanation": "Jawaban yang benar adalah 'from / to' untuk menunjukkan rentang waktu."
     },
     {
       "id": 22,
@@ -243,7 +264,8 @@
         "during",
         "while"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'since' diikuti dengan waktu tertentu (she graduated from college)."
     },
     {
       "id": 23,
@@ -254,7 +276,8 @@
         "that",
         "whose"
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah 'that' karena merujuk pada benda (movie)."
     },
     {
       "id": 24,
@@ -265,7 +288,8 @@
         "to stay",
         "stayed"
       ],
-      "correct": 0
+      "correct": 0,
+      "explanation": "Jawaban yang benar adalah 'stay' setelah 'would rather'."
     },
     {
       "id": 25,
@@ -276,7 +300,8 @@
         "to work",
         "worked"
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah 'to work' untuk menunjukkan tujuan atau maksud."
     },
     {
       "id": 26,
@@ -287,7 +312,8 @@
         "Although",
         "Despite"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'Due to' diikuti dengan kata benda (the heavy rain)."
     },
     {
       "id": 27,
@@ -298,7 +324,8 @@
         "on",
         "under"
       ],
-      "correct": 0
+      "correct": 0,
+      "explanation": "Jawaban yang benar adalah 'in' untuk menunjukkan lokasi di dalam taman."
     },
     {
       "id": 28,
@@ -309,7 +336,8 @@
         "more / than",
         "such / as"
       ],
-      "correct": 0
+      "correct": 0,
+      "explanation": "Jawaban yang benar adalah 'as / as' untuk membandingkan tingkat kefasihan."
     },
     {
       "id": 29,
@@ -320,7 +348,8 @@
         "start",
         "started"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'to start' untuk menunjukkan maksud atau tujuan."
     },
     {
       "id": 30,
@@ -331,7 +360,8 @@
         "After",
         "While"
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah 'After' untuk menunjukkan urutan waktu."
     },
     {
       "id": 31,
@@ -342,7 +372,8 @@
         "increase",
         "increased"
       ],
-      "correct": 0
+      "correct": 0,
+      "explanation": "Jawaban yang benar adalah 'to increase' untuk menunjukkan rencana atau maksud."
     },
     {
       "id": 32,
@@ -353,7 +384,8 @@
         "more / as",
         "such / than"
       ],
-      "correct": 0
+      "correct": 0,
+      "explanation": "Jawaban yang benar adalah 'as / as' untuk membandingkan tingkat kecerdasan."
     },
     {
       "id": 33,
@@ -364,7 +396,8 @@
         "would be",
         "would have been"
       ],
-      "correct": 0
+      "correct": 0,
+      "explanation": "Jawaban yang benar adalah 'will be' untuk menunjukkan rencana di masa depan."
     },
     {
       "id": 34,
@@ -375,7 +408,8 @@
         "While",
         "As"
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah 'While' diikuti dengan klausa subjek + predikat."
     },
     {
       "id": 35,
@@ -386,7 +420,8 @@
         "who",
         "when"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'which' karena merujuk pada benda (museum)."
     },
     {
       "id": 36,
@@ -397,7 +432,8 @@
         "when",
         "why"
       ],
-      "correct": 0
+      "correct": 0,
+      "explanation": "Jawaban yang benar adalah 'where' untuk menanyakan lokasi."
     },
     {
       "id": 37,
@@ -408,7 +444,8 @@
         "will leave",
         "has left"
       ],
-      "correct": 0
+      "correct": 0,
+      "explanation": "Jawaban yang benar adalah 'leaves' untuk menunjukkan jadwal tetap."
     },
     {
       "id": 38,
@@ -419,7 +456,8 @@
         "Whenever",
         "Wherever"
       ],
-      "correct": 0
+      "correct": 0,
+      "explanation": "Jawaban yang benar adalah 'However' untuk menunjukkan kontras."
     },
     {
       "id": 39,
@@ -430,7 +468,8 @@
         "which",
         "whose"
       ],
-      "correct": 0
+      "correct": 0,
+      "explanation": "Jawaban yang benar adalah 'who' karena merujuk pada orang (someone)."
     },
     {
       "id": 40,
@@ -441,7 +480,8 @@
         "will have lived",
         "will have been living"
       ],
-      "correct": 3
+      "correct": 3,
+      "explanation": "Jawaban yang benar adalah 'will have been living' untuk menunjukkan durasi yang dimulai di masa lalu dan berlanjut hingga sekarang."
     }
   ]
 }

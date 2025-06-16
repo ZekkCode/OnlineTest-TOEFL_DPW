@@ -6,6 +6,47 @@
   <link rel="stylesheet" href="../../css/global.css">
   <link rel="stylesheet" href="../../css/pages/test/hasil.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="score-util.js"></script>
+  <style>
+    .score-box {
+      background: #fafdff;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px #e3eafc;
+      padding: 2.5rem 1.5rem 2rem 1.5rem;
+      text-align: center;
+      margin: 2rem auto 0 auto;
+      max-width: 400px;
+    }
+    .score-main {
+      font-size: 3.5rem;
+      font-weight: bold;
+      color: #2471f3;
+      margin: 1.2rem 0 0.7rem 0;
+    }
+    .score-detail {
+      font-size: 1.2rem;
+      margin-bottom: 0.7rem;
+    }
+    .score-range {
+      color: #888;
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+    }
+    .btn-cetak {
+      background: #219150;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 0.7em 2em;
+      font-size: 1.1em;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-cetak:hover {
+      background: #146c43;
+    }
+  </style>
 </head>
 <body>
   <a href="/dashboard" class="btn btn-back" style="margin:1.5rem 2rem 0 2rem;">
@@ -21,13 +62,26 @@
     </button>
   </div>
   <script>
-    // Ambil skor dari localStorage
     document.addEventListener('DOMContentLoaded', function() {
-      const score = localStorage.getItem('listeningScore') || 0;
-      const total = localStorage.getItem('listeningTotal') || 0;
+      const benar = Number(localStorage.getItem('listeningScore') || 0);
+      const total = Number(localStorage.getItem('listeningTotal') || 50);
+      const skor = hitungSkorTOEFL('listening', benar, total);
+
+      // Simpan riwayat
+      simpanRiwayatTOEFL({
+        type: 'Listening',
+        date: new Date().toISOString(),
+        benar, total, skor
+      });
+
       document.getElementById('score-summary').innerHTML = `
-        <h2>Skor Anda: ${score} / ${total}</h2>
-        <p>Terima kasih telah mengerjakan Listening TOEFL di TOEL.id!</p>
+        <div class="score-box">
+          <h2>Skor Listening Anda</h2>
+          <div class="score-main">${skor}</div>
+          <div class="score-detail">${benar} benar dari ${total} soal</div>
+          <div class="score-range">Rentang skor: 31–68</div>
+          <button class="btn-cetak" onclick="window.print()">Cetak Sertifikat</button>
+        </div>
       `;
     });
 

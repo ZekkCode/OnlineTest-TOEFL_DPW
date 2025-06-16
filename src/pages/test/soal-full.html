@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Listening Comprehension</title>
+    <title>TOEFL Lengkap</title>
     <link rel="stylesheet" href="../../css/global.css">
     <link rel="stylesheet" href="../../css/pages/test/soal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -19,7 +19,7 @@
         <section class="question-section">
             <div class="question-header">
                 <span class="question-number"></span>
-                <span class="timer">40:00</span>
+                <span class="timer"></span>
             </div>
             <div class="audio-player"></div>
             <h2 class="question-title"></h2>
@@ -28,41 +28,77 @@
                 <button class="prev-btn">Previous</button>
                 <button class="next-btn">Next</button>
             </div>
+            <div id="feedback"></div>
         </section>
     </div>
     <script>
     document.addEventListener('DOMContentLoaded', async function() {
-        // Ambil soal listening
-        const res = await fetch('../../data/listening.json');
-        const data = await res.json();
-        const questions = data.questions;
-        const timeLimit = data.timeLimit || 2400; // detik
-        const mode = localStorage.getItem('testMode') || 'ujian'; // 'ujian' atau 'latihan'
-
-        let current = 0;
-        let answers = JSON.parse(localStorage.getItem('listeningAnswers') || '[]');
-        if (answers.length !== questions.length) answers = Array(questions.length).fill(null);
-
-        // Timer
-        let timer = timeLimit;
-        const timerSpan = document.querySelector('.timer');
-        function updateTimer() {
-            const m = String(Math.floor(timer / 60)).padStart(2, '0');
-            const s = String(timer % 60).padStart(2, '0');
-            timerSpan.textContent = `${m}:${s}`;
-            if (timer <= 0) {
-                submitTest();
-            } else {
-                timer--;
-                setTimeout(updateTimer, 1000);
-            }
+        // Ambil semua soal
+        const [listening, structure, reading] = await Promise.all([
+            fetch('../../data/listening.json').then(r=>r.json()),
+            fetch('../../data/structure.json').then(r=>r.json()),
+            fetch('../../data/reading.json').then(r=>r.json())
+        ]);
+        // Gabungkan semua soal
+        const sections = [
+            { name: "Listening Comprehension", data: listening, type: "listening" },
+            { name: "Structure & Written Expression", data: structure, type: "structure" },
+            { name: "Reading Comprehension", data: reading, type: "reading" }
+        ];
+        // Hitung index awal setiap bab
+        let sectionStartIdx = [0];
+        for (let i = 1; i < sections.length; i++) {
+            sectionStartIdx[i] = sectionStartIdx[i-1] + sections[i-1].data.questions.length;
         }
-        updateTimer(); // Timer selalu aktif di semua mode
+        // Gabung semua soal
+        const allQuestions = [
+            ...listening.questions.map(q => ({...q, section: 0})),
+            ...structure.questions.map(q => ({...q, section: 1})),
+            ...reading.questions.map(q => ({...q, section: 2}))
+        ];
+        // Timer per bab (detik)
+        const sectionTimers = [
+            listening.timeLimit || 2400,
+            structure.timeLimit || 1500,
+            reading.timeLimit || 3300
+        ];
+        const sectionNames = sections.map(s => s.name);
 
+        // Mode
+        const mode = localStorage.getItem('testMode') || 'ujian'; // 'ujian' atau 'latihan'
+        let current = 0;
+        let answers = Array(allQuestions.length).fill(null);
+        let sectionIdx = 0;
+        let timer = sectionTimers[sectionIdx];
+        const timerSpan = document.querySelector('.timer');
+        let timerInterval = null;
+
+        // Timer function
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerSpan.textContent = formatTime(timer);
+            timerInterval = setInterval(() => {
+                timer--;
+                timerSpan.textContent = formatTime(timer);
+                if (timer <= 0) {
+                    clearInterval(timerInterval);
+                    nextSectionOrFinish();
+                }
+            }, 1000);
+        }
+        function formatTime(sec) {
+            const m = String(Math.floor(sec / 60)).padStart(2, '0');
+            const s = String(sec % 60).padStart(2, '0');
+            return `${m}:${s}`;
+        }
+
+        // Render soal
         function renderQuestion(idx) {
-            const q = questions[idx];
-            document.querySelector('.question-title').textContent = q.question;
-            // Render audio jika ada
+            const q = allQuestions[idx];
+            sectionIdx = q.section;
+            // Judul bab
+            document.querySelector('.question-header').setAttribute('data-section', sectionNames[sectionIdx]);
+            // Audio (listening)
             const audioDiv = document.querySelector('.audio-player');
             audioDiv.innerHTML = '';
             if (q.audioUrl) {
@@ -71,7 +107,9 @@
                 audio.src = '../../data/audio/' + q.audioUrl;
                 audioDiv.appendChild(audio);
             }
-            // Render opsi
+            // Soal
+            document.querySelector('.question-title').textContent = q.question;
+            // Opsi
             const opts = document.querySelector('.options');
             opts.innerHTML = '';
             q.options.forEach((opt, i) => {
@@ -80,29 +118,22 @@
                 div.textContent = opt;
                 div.onclick = () => {
                     answers[idx] = i;
-                    localStorage.setItem('listeningAnswers', JSON.stringify(answers));
                     renderQuestion(idx);
                     renderNavigator();
                     // Feedback langsung (mode latihan)
-                    if (mode === 'latihan') {
-                        showFeedback(q, i);
-                    }
+                    if (mode === 'latihan') showFeedback(q, i);
                 };
                 opts.appendChild(div);
             });
-            document.querySelector('.question-number').textContent = `Question ${idx + 1} of ${questions.length}`;
-            document.querySelector('.prev-btn').disabled = idx === 0;
-            document.querySelector('.next-btn').disabled = idx === questions.length - 1;
+            // Nomor soal
+            document.querySelector('.question-number').textContent =
+                `Section: ${sectionNames[sectionIdx]} | Question ${idx - sectionStartIdx[sectionIdx] + 1} of ${sections[sectionIdx].data.questions.length}`;
+            // Navigasi
+            document.querySelector('.prev-btn').disabled = idx === 0 || idx === sectionStartIdx[sectionIdx];
+            document.querySelector('.next-btn').disabled = idx === allQuestions.length - 1 ||
+                idx === sectionStartIdx[sectionIdx] + sections[sectionIdx].data.questions.length - 1;
             // Feedback area
-            let feedback = document.getElementById('feedback');
-            if (!feedback) {
-                feedback = document.createElement('div');
-                feedback.id = 'feedback';
-                feedback.style.marginTop = '1rem';
-                feedback.style.fontWeight = 'bold';
-                document.querySelector('.question-section').appendChild(feedback);
-            }
-            feedback.innerHTML = '';
+            document.getElementById('feedback').innerHTML = '';
         }
 
         function showFeedback(q, chosenIdx) {
@@ -114,12 +145,17 @@
             }
         }
 
+        // Navigator
         function renderNavigator() {
             const nav = document.querySelector('.navigator-grid');
             nav.innerHTML = '';
-            questions.forEach((_, i) => {
+            // Tampilkan hanya navigator untuk bab aktif
+            // Untuk navigasi per bab
+            const start = sectionStartIdx[sectionIdx];
+            const end = start + sections[sectionIdx].data.questions.length;
+            for (let i = start; i < end; i++) {
                 const btn = document.createElement('button');
-                btn.textContent = i + 1;
+                btn.textContent = i - start + 1;
                 btn.className = (i === current ? 'current ' : '') +
                     (answers[i] !== null ? 'answered' : 'unanswered');
                 btn.onclick = () => {
@@ -128,45 +164,50 @@
                     renderNavigator();
                 };
                 nav.appendChild(btn);
-            });
+            }
         }
 
+        // Navigasi tombol
         document.querySelector('.prev-btn').onclick = () => {
-            if (current > 0) {
+            if (current > sectionStartIdx[sectionIdx]) {
                 current--;
                 renderQuestion(current);
                 renderNavigator();
             }
         };
         document.querySelector('.next-btn').onclick = () => {
-            if (current < questions.length - 1) {
+            if (current < sectionStartIdx[sectionIdx] + sections[sectionIdx].data.questions.length - 1) {
                 current++;
                 renderQuestion(current);
                 renderNavigator();
             }
         };
-        document.querySelector('.submit-btn').onclick = submitTest;
 
-        function submitTest() {
+        // Submit per bab
+        document.querySelector('.submit-btn').onclick = nextSectionOrFinish;
+
+        function nextSectionOrFinish() {
+            // Jika mode latihan, tampilkan pembahasan setelah submit bab
             if (mode === 'latihan') {
-                showPembahasan();
+                showPembahasan(sectionIdx);
                 return;
             }
-            // Hitung skor
-            let score = 0;
-            questions.forEach((q, i) => {
-                if (answers[i] === q.correct) score++;
-            });
-            localStorage.setItem('listeningScore', score);
-            localStorage.setItem('listeningTotal', questions.length);
-            localStorage.removeItem('listeningAnswers');
-            window.location.href = 'hasil-listening.html';
+            // Jika masih ada bab berikutnya
+            if (sectionIdx < sections.length - 1) {
+                showSectionAlert(sectionIdx + 1);
+            } else {
+                finishTest();
+            }
         }
 
-        function showPembahasan() {
-            document.querySelector('.test-container').innerHTML = `
+        function showPembahasan(sectionIdxNow) {
+            const start = sectionStartIdx[sectionIdxNow];
+            const end = start + sections[sectionIdxNow].data.questions.length;
+            const sectionTitle = sectionNames[sectionIdxNow];
+
+            document.body.innerHTML = `
                 <div class="pembahasan-container">
-                    <h2 class="pembahasan-title">Pembahasan Listening</h2>
+                    <h2 class="pembahasan-title">Pembahasan ${sectionTitle}</h2>
                     <div class="table-responsive">
                         <table class="table-pembahasan">
                             <thead>
@@ -179,12 +220,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                ${questions.map((q, i) => {
-                                    const userAns = answers[i];
+                                ${allQuestions.slice(start, end).map((q, i) => {
+                                    const userAns = answers[start + i];
                                     const benar = userAns === q.correct;
                                     return `
                                         <tr>
-                                            <td>${i+1}</td>
+                                            <td>${i + 1}</td>
                                             <td style="text-align:left">${q.question}</td>
                                             <td style="text-align:left">
                                                 <span class="${userAns === null ? 'belum' : benar ? 'benar' : 'salah'}">
@@ -199,7 +240,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <a href="/dashboard" class="btn btn-dashboard">Kembali ke Dashboard</a>
+                    <button id="lanjut-bab" class="btn-dashboard">Lanjut ke Bab Berikutnya</button>
                 </div>
                 <style>
                 .pembahasan-container {
@@ -261,7 +302,7 @@
                     color: #888;
                     font-style: italic;
                 }
-                .btn-dashboard {
+                .btn-dashboard, #lanjut-bab {
                     margin-top: 2.2rem;
                     display: inline-block;
                     background: #2471f3;
@@ -274,8 +315,9 @@
                     box-shadow: 0 2px 8px #e3eafc;
                     transition: background 0.2s, box-shadow 0.2s;
                     text-decoration: none;
+                    cursor: pointer;
                 }
-                .btn-dashboard:hover {
+                .btn-dashboard:hover, #lanjut-bab:hover {
                     background: #1746a2;
                     box-shadow: 0 4px 16px #dbeafe;
                 }
@@ -290,8 +332,75 @@
                 }
                 </style>
             `;
-            // Reset jawaban setelah pembahasan
-            localStorage.removeItem('listeningAnswers');
+
+            document.getElementById('lanjut-bab').onclick = () => {
+                if (sectionIdxNow < sections.length - 1) {
+                    sectionIdx = sectionIdxNow + 1;
+                    current = sectionStartIdx[sectionIdx];
+                    timer = sectionTimers[sectionIdx];
+                    document.body.innerHTML = document.querySelector('.test-container').outerHTML;
+                    startTimer();
+                    renderQuestion(current);
+                    renderNavigator();
+                } else {
+                    finishTest();
+                }
+            };
+        }
+
+        function showSectionAlert(nextSection) {
+            // Modal sederhana
+            const modal = document.createElement('div');
+            modal.style.position = 'fixed';
+            modal.style.top = 0;
+            modal.style.left = 0;
+            modal.style.width = '100vw';
+            modal.style.height = '100vh';
+            modal.style.background = 'rgba(0,0,0,0.5)';
+            modal.style.display = 'flex';
+            modal.style.alignItems = 'center';
+            modal.style.justifyContent = 'center';
+            modal.style.zIndex = 9999;
+            modal.innerHTML = `
+                <div style="background:#fff;padding:2rem 2.5rem;border-radius:16px;text-align:center;max-width:350px">
+                    <h2>Bab Selesai!</h2>
+                    <p>Anda telah menyelesaikan <b>${sectionNames[sectionIdx]}</b>.<br>
+                    Klik tombol di bawah untuk melanjutkan ke <b>${sectionNames[nextSection]}</b>.</p>
+                    <button id="next-section-btn" style="margin-top:1.2rem;padding:.7em 2em;font-size:1.1em;background:#2471f3;color:#fff;border:none;border-radius:8px;cursor:pointer;">Lanjut</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            document.getElementById('next-section-btn').onclick = () => {
+                document.body.removeChild(modal);
+                // Pindah ke bab berikutnya
+                sectionIdx = nextSection;
+                current = sectionStartIdx[sectionIdx];
+                timer = sectionTimers[sectionIdx];
+                startTimer();
+                renderQuestion(current);
+                renderNavigator();
+            };
+        }
+
+        function finishTest() {
+            // Hitung skor per bab
+            let scores = [0,0,0];
+            let totals = [0,0,0];
+            allQuestions.forEach((q, i) => {
+                if (answers[i] === q.correct) scores[q.section]++;
+                totals[q.section]++;
+            });
+            // Simpan skor ke localStorage
+            localStorage.setItem('fullListeningScore', scores[0]);
+            localStorage.setItem('fullListeningTotal', totals[0]);
+            localStorage.setItem('fullStructureScore', scores[1]);
+            localStorage.setItem('fullStructureTotal', totals[1]);
+            localStorage.setItem('fullReadingScore', scores[2]);
+            localStorage.setItem('fullReadingTotal', totals[2]);
+            // Hapus jawaban sementara
+            localStorage.removeItem('fullAnswers');
+            // Redirect ke hasil
+            window.location.href = 'hasil-full.html';
         }
 
         // Tampilkan mode aktif di pojok kanan atas
@@ -308,6 +417,7 @@
         }
 
         // Render awal
+        startTimer();
         renderQuestion(current);
         renderNavigator();
     });

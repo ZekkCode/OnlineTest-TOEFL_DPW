@@ -3,8 +3,7 @@ const path = require('path');
 const app = express();
 const port = 5500;
 
-// Middleware
-app.use(express.json());
+// Serve static files from src
 app.use(express.static(path.join(__dirname, 'src')));
 
 // Main routes
@@ -66,12 +65,11 @@ app.post('/api/profile/upload-photo', (req, res) => {
     res.json({ success: true });
 });
 
-// Handle 404
+// 404 handler
 app.use((req, res) => {
     res.status(404).sendFile(path.join(__dirname, 'src/pages/404.html'));
 });
 
-// Start server
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });

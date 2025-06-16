@@ -1,0 +1,82 @@
+<script src="score-util.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Ambil skor per section
+  const benarL = Number(localStorage.getItem('fullListeningScore') || 0);
+  const totalL = Number(localStorage.getItem('fullListeningTotal') || 50);
+  const benarS = Number(localStorage.getItem('fullStructureScore') || 0);
+  const totalS = Number(localStorage.getItem('fullStructureTotal') || 40);
+  const benarR = Number(localStorage.getItem('fullReadingScore') || 0);
+  const totalR = Number(localStorage.getItem('fullReadingTotal') || 50);
+
+  const skorL = hitungSkorTOEFL('listening', benarL, totalL);
+  const skorS = hitungSkorTOEFL('structure', benarS, totalS);
+  const skorR = hitungSkorTOEFL('reading', benarR, totalR);
+  const skorTotal = skorL + skorS + skorR;
+  const skorITP = hitungSkorTOEFLFull(skorL, skorS, skorR);
+
+  // Simpan riwayat
+  simpanRiwayatTOEFL({
+    type: 'Full',
+    date: new Date().toISOString(),
+    benarL, totalL, skorL,
+    benarS, totalS, skorS,
+    benarR, totalR, skorR,
+    skorTotal, skorITP
+  });
+
+  document.getElementById('score-summary').innerHTML = `
+    <div class="score-box">
+      <h2>Hasil Simulasi TOEFL Lengkap</h2>
+      <div class="score-main">${skorITP}</div>
+      <div class="score-detail">
+        <b>Listening:</b> ${skorL} (${benarL}/${totalL})<br>
+        <b>Structure:</b> ${skorS} (${benarS}/${totalS})<br>
+        <b>Reading:</b> ${skorR} (${benarR}/${totalR})<br>
+        <b>Total Skor:</b> ${skorITP} <span class="score-range">(310–677)</span>
+      </div>
+      <button class="btn-cetak" onclick="window.print()">Cetak Sertifikat</button>
+    </div>
+  `;
+});
+</script>
+<style>
+.score-box {
+  background: #fafdff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px #e3eafc;
+  padding: 2.5rem 1.5rem 2rem 1.5rem;
+  text-align: center;
+  margin: 2rem auto 0 auto;
+  max-width: 500px;
+}
+.score-main {
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: #2471f3;
+  margin: 1.2rem 0 0.7rem 0;
+}
+.score-detail {
+  font-size: 1.2rem;
+  margin-bottom: 0.7rem;
+}
+.score-range {
+  color: #888;
+  font-size: 1rem;
+  margin-bottom: 1.2rem;
+}
+.btn-cetak {
+  background: #219150;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7em 2em;
+  font-size: 1.1em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-cetak:hover {
+  background: #146c43;
+}
+</style>

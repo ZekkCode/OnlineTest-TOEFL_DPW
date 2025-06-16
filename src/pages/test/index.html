@@ -62,33 +62,33 @@
 
     <!-- Pilihan Section, tampil setelah mode dipilih -->
     <div class="sections-row" id="sectionChoice" style="display:none; margin-top:24px;">
-      <div class="section-card listening" onclick="chooseSection('listening')">
+      <div class="section-card listening">
         <span class="icon"><i class="fas fa-headphones"></i></span>
         <h2>Listening Comprehension</h2>
         <p>Uji kemampuan memahami percakapan dan ceramah berbahasa Inggris.</p>
-        <div class="meta">50 Soal &nbsp;|&nbsp; 40 Menit</div>
-        <button class="start-btn">Mulai Listening</button>
+        <div class="meta" id="info-listening">50 Soal | 40 Menit</div>
+        <a class="start-btn" href="/pages/test/soal-listening.html">Mulai Listening</a>
       </div>
-      <div class="section-card structure" onclick="chooseSection('structure')">
+      <div class="section-card structure">
         <span class="icon"><i class="fas fa-file-alt"></i></span>
         <h2>Structure & Written Expression</h2>
         <p>Uji pemahaman tata bahasa dan struktur kalimat bahasa Inggris.</p>
-        <div class="meta">40 Soal &nbsp;|&nbsp; 25 Menit</div>
-        <button class="start-btn">Mulai Structure</button>
+        <div class="meta" id="info-structure">40 Soal | 25 Menit</div>
+        <a class="start-btn" href="/pages/test/soal-structure.html">Mulai Structure</a>
       </div>
-      <div class="section-card reading" onclick="chooseSection('reading')">
+      <div class="section-card reading">
         <span class="icon"><i class="fas fa-book-open"></i></span>
         <h2>Reading Comprehension</h2>
         <p>Uji pemahaman bacaan bahasa Inggris melalui berbagai teks.</p>
-        <div class="meta">50 Soal &nbsp;|&nbsp; 55 Menit</div>
-        <button class="start-btn">Mulai Reading</button>
+        <div class="meta" id="info-reading">50 Soal | 55 Menit</div>
+        <a class="start-btn" href="/pages/test/soal-reading.html">Mulai Reading</a>
       </div>
-      <div class="section-card" onclick="chooseSection('full')">
+      <div class="section-card fulltest">
         <span class="icon"><i class="fas fa-layer-group"></i></span>
         <h2>TOEFL Lengkap</h2>
         <p>Kerjakan semua bagian secara berurutan untuk simulasi penuh TOEFL.</p>
-        <div class="meta">140 Soal &nbsp;|&nbsp; 120 Menit</div>
-        <button class="start-btn">Mulai Tes Lengkap</button>
+        <div class="meta" id="info-full">140 Soal | 120 Menit</div>
+        <a class="start-btn" href="/pages/test/soal-full.html">Mulai Tes Lengkap</a>
       </div>
     </div>
   </div>
@@ -103,15 +103,40 @@
     function chooseSection(section) {
       localStorage.setItem('testSection', section);
       if (section === 'listening') {
-        window.location.href = '/test/soal-listening';
+        window.location.href = '/pages/test/soal-listening.html';
       } else if (section === 'structure') {
-        window.location.href = '/test/soal-structure';
+        window.location.href = '/pages/test/soal-structure.html';
       } else if (section === 'reading') {
-        window.location.href = '/test/soal-reading';
+        window.location.href = '/pages/test/soal-reading.html';
       } else if (section === 'full') {
-        window.location.href = '/test/soal';
+        window.location.href = '/pages/test/soal-full.html';
       }
     }
   </script>
+  <script>
+async function updateSectionInfo() {
+  // Fetch data JSON
+  const [listening, structure, reading] = await Promise.all([
+    fetch('/data/listening.json').then(r => r.json()),
+    fetch('/data/structure.json').then(r => r.json()),
+    fetch('/data/reading.json').then(r => r.json())
+  ]);
+  // Atur waktu default jika tidak ada di JSON (detik)
+  const listeningTime = listening.timeLimit || 2400;   // 40 menit
+  const structureTime = structure.timeLimit || 1500;   // 25 menit
+  const readingTime = reading.timeLimit || 3300;       // 55 menit
+
+  // Update info pada HTML
+  document.getElementById('info-listening').textContent =
+    `${listening.questions.length} Soal | ${Math.round(listeningTime/60)} Menit`;
+  document.getElementById('info-structure').textContent =
+    `${structure.questions.length} Soal | ${Math.round(structureTime/60)} Menit`;
+  document.getElementById('info-reading').textContent =
+    `${reading.questions.length} Soal | ${Math.round(readingTime/60)} Menit`;
+  document.getElementById('info-full').textContent =
+    `${listening.questions.length + structure.questions.length + reading.questions.length} Soal | ${Math.round((listeningTime+structureTime+readingTime)/60)} Menit`;
+}
+updateSectionInfo();
+</script>
 </body>
 </html>

@@ -11,11 +11,12 @@
       "question": "What does the man mean?",
       "options": [
         "The coffee is much better this morning.",
-        "He\u2019s feeling bitter this morning.",
-        "The coffee isn\u2019t very good.",
+        "He’s feeling bitter this morning.",
+        "The coffee isn’t very good.",
         "He cannot taste the butter."
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah 'The coffee isn’t very good.' karena dari percakapan, pria tersebut mengeluhkan rasa kopi yang tidak enak."
     },
     {
       "id": 2,
@@ -29,7 +30,8 @@
         "Each half of the class is an hour long.",
         "Two times a week the class meets for an hour"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'The class meets three hours per week.' karena pria tersebut menjelaskan total pertemuan kelas dalam seminggu."
     },
     {
       "id": 3,
@@ -43,7 +45,8 @@
         "They are frightened about the departure.",
         "The plane is going to take off soon."
       ],
-      "correct": 3
+      "correct": 3,
+      "explanation": "Jawaban yang benar adalah 'The plane is going to take off soon.' karena wanita tersebut mengatakan pesawat akan segera lepas landas."
     },
     {
       "id": 4,
@@ -52,12 +55,13 @@
       "audioUrl": "longman-listening-diagnostic-pre-test-4-1.mp3",
       "question": "What does the man mean?",
       "options": [
-        "He hasn\u2019t yet begun his project.",
-        "He\u2019s supposed to do his science project next week.",
+        "He hasn’t yet begun his project.",
+        "He’s supposed to do his science project next week.",
         "He needs to start working on changing the due date.",
-        "He\u2019s been working steadily on his science project."
+        "He’s been working steadily on his science project."
       ],
-      "correct": 0
+      "correct": 0,
+      "explanation": "Jawaban yang benar adalah 'He hasn’t yet begun his project.' karena pria tersebut mengatakan bahwa dia belum memulai proyeknya."
     },
     {
       "id": 5,
@@ -71,7 +75,8 @@
         "In a restaurant.",
         "In a hospital delivery room."
       ],
-      "correct": 3
+      "correct": 3,
+      "explanation": "Jawaban yang benar adalah 'In a hospital delivery room.' karena percakapan mengarah pada situasi persalinan di rumah sakit."
     },
     {
       "id": 6,
@@ -85,7 +90,8 @@
         "The professor divided the lecture into parts.",
         "The biologist tried to sell the results of the experiment."
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'The topic was presented in a boring way.' karena pria tersebut mengeluhkan cara penyampaian materi yang membosankan."
     },
     {
       "id": 7,
@@ -94,12 +100,13 @@
       "audioUrl": "longman-listening-diagnostic-pre-test-7-1.mp3",
       "question": "What does the woman mean?",
       "options": [
-        "She needs to get a driver\u2019s license.",
+        "She needs to get a driver’s license.",
         "It is impossible to cash a check without two pieces of identification.",
         "The man should check to see if he needs credit.",
-        "A credit card can be used to get a driver\u2019s license."
+        "A credit card can be used to get a driver’s license."
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'It is impossible to cash a check without two pieces of identification.' karena wanita menjelaskan syarat pencairan cek."
     },
     {
       "id": 8,
@@ -109,11 +116,12 @@
       "question": "What does the man mean?",
       "options": [
         "Housing within his budget is hard to locate.",
-        "It\u2019s hard to find his house in New York.",
-        "He can\u2019t afford to move his house to New York.",
+        "It’s hard to find his house in New York.",
+        "He can’t afford to move his house to New York.",
         "Housing in New York is unavailable."
       ],
-      "correct": 0
+      "correct": 0,
+      "explanation": "Jawaban yang benar adalah 'Housing within his budget is hard to locate.' karena pria tersebut kesulitan mencari tempat tinggal yang sesuai anggaran."
     },
     {
       "id": 9,
@@ -127,7 +135,8 @@
         "He was directed to stay late and finish some work.",
         "He could finish the reports at home."
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah 'He was directed to stay late and finish some work.' karena pria tersebut diminta lembur untuk menyelesaikan laporan."
     },
     {
       "id": 10,
@@ -141,7 +150,8 @@
         "The students were angry that the teacher was around.",
         "The angered students complained to the teacher."
       ],
-      "correct": 0
+      "correct": 0,
+      "explanation": "Jawaban yang benar adalah 'The boisterous students made the teacher mad.' karena murid-murid yang ribut membuat guru marah."
     },
     {
       "id": 11,
@@ -155,7 +165,8 @@
         "He would like the woman to repeat what she said.",
         "He agrees with the woman."
       ],
-      "correct": 3
+      "correct": 3,
+      "explanation": "Jawaban yang benar adalah 'He agrees with the woman.' karena pria tersebut setuju dengan pendapat wanita."
     },
     {
       "id": 12,
@@ -169,7 +180,8 @@
         "It is barely raining this year.",
         "It seldom rains so little."
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'It hardly rained this year.' karena pria tersebut mengatakan tahun ini hampir tidak hujan."
     },
     {
       "id": 13,
@@ -183,7 +195,8 @@
         "Without the questions, he cannot write the answers.",
         "He needs to understand the written questions better."
       ],
-      "correct": 3
+      "correct": 3,
+      "explanation": "Jawaban yang benar adalah 'He needs to understand the written questions better.' karena profesor menekankan pentingnya memahami soal tertulis."
     },
     {
       "id": 14,
@@ -197,7 +210,8 @@
         "The woman must wait her turn to get her passport checked.",
         "He can check her passport instead of the agent."
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah 'The woman must wait her turn to get her passport checked.' karena pria tersebut menyarankan wanita untuk menunggu giliran."
     },
     {
       "id": 15,
@@ -206,12 +220,13 @@
       "audioUrl": "longman-listening-diagnostic-pre-test-15-1.mp3",
       "question": "What does the woman say about Paul?",
       "options": [
-        "He couldn\u2019t finish closing the library book.",
-        "He hadn\u2019t finished the library assignment, but he was close.",
+        "He couldn’t finish closing the library book.",
+        "He hadn’t finished the library assignment, but he was close.",
         "He was working on the assignment when the library closed.",
-        "His homework was incomplete because the library wasn\u2019t open."
+        "His homework was incomplete because the library wasn’t open."
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah 'He was working on the assignment when the library closed.' karena wanita mengatakan Paul masih mengerjakan tugas saat perpustakaan tutup."
     },
     {
       "id": 16,
@@ -225,21 +240,23 @@
         "He has never sold as many magazines as he sold today.",
         "He sold five magazines at one house."
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah 'He has never sold as many magazines as he sold today.' karena pria tersebut menyatakan hari ini penjualan terbanyak."
     },
     {
       "id": 17,
       "type": "conversation",
       "audioDescription": "Short conversation audio 17.",
       "audioUrl": "longman-listening-diagnostic-pre-test-17-1.mp3",
-      "question": "What does the woman say about the repairs to Frank\u2019s house?",
+      "question": "What does the woman say about the repairs to Frank’s house?",
       "options": [
         "Frank told the contractor to do the work in spite of the cost.",
         "Frank told the contractor that the price was too high.",
         "Frank cannot afford the work on his house.",
         "Frank repaired his own house."
       ],
-      "correct": 0
+      "correct": 0,
+      "explanation": "Jawaban yang benar adalah 'Frank told the contractor to do the work in spite of the cost.' karena Frank tetap meminta kontraktor mengerjakan meski biayanya mahal."
     },
     {
       "id": 18,
@@ -250,10 +267,11 @@
       "options": [
         "He studied last night because he had to.",
         "He tired to study last night, but the material was too hard.",
-        "He couldn\u2019t study last night because he was very tired.",
+        "He couldn’t study last night because he was very tired.",
         "He studied last night because he was bored."
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah 'He couldn’t study last night because he was very tired.' karena pria tersebut terlalu lelah untuk belajar."
     },
     {
       "id": 19,
@@ -263,11 +281,12 @@
       "question": "What does the woman say about Gloria?",
       "options": [
         "She goes to a movie every year.",
-        "She hasn\u2019t gone to a movie yet this year, but last year she did.",
-        "She doesn\u2019t go to a movie unless she has the time.",
-        "She hasn\u2019t seen a movie for a long time."
+        "She hasn’t gone to a movie yet this year, but last year she did.",
+        "She doesn’t go to a movie unless she has the time.",
+        "She hasn’t seen a movie for a long time."
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'She hasn’t gone to a movie yet this year, but last year she did.' karena wanita menyebut tahun ini belum nonton film, tapi tahun lalu sudah."
     },
     {
       "id": 20,
@@ -276,12 +295,13 @@
       "audioUrl": "longman-listening-diagnostic-pre-test-20-1.mp3",
       "question": "What does the woman say about Harvey?",
       "options": [
-        "He turned around to answer the teacher\u2019s questions.",
+        "He turned around to answer the teacher’s questions.",
         "He is an intelligent student.",
         "He must have been embarrassed.",
         "He looked in the red book for the answer to the questions."
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah 'He must have been embarrassed.' karena wanita mengatakan Harvey pasti malu."
     }
   ]
 }

@@ -13,7 +13,8 @@
         "Increased greenhouse gas emissions from human activities",
         "Volcanic activity"
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah 'Increased greenhouse gas emissions from human activities' karena pada kalimat kedua disebutkan bahwa penyebab utama kenaikan suhu global adalah emisi gas rumah kaca dari aktivitas manusia."
     },
     {
       "id": 2,
@@ -25,7 +26,8 @@
         "Mass production reducing costs and increasing accessibility",
         "Faster individual copying speed"
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah 'Mass production reducing costs and increasing accessibility' karena teks menjelaskan bahwa mesin cetak memungkinkan produksi massal buku sehingga biaya turun dan akses meningkat."
     },
     {
       "id": 3,
@@ -37,7 +39,8 @@
         "A programming language for AI",
         "A method of data storage"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'A subset of AI that enables computers to learn from experience' karena dijelaskan bahwa machine learning memungkinkan komputer belajar dari pengalaman tanpa diprogram secara eksplisit."
     },
     {
       "id": 4,
@@ -49,7 +52,8 @@
         "High consumption of red meat",
         "Whole grains and legumes"
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah 'High consumption of red meat' karena diet Mediterania justru membatasi konsumsi daging merah, bukan menekankan konsumsi tinggi."
     },
     {
       "id": 5,
@@ -61,7 +65,8 @@
         "Creation of new satellites",
         "Training of astronauts"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'Development of reusable rocket technology' karena kontribusi utama perusahaan swasta adalah pengembangan roket yang dapat digunakan kembali."
     },
     {
       "id": 6,
@@ -73,7 +78,8 @@
         "100 to 1,000 times faster",
         "1,000 to 10,000 times faster"
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah '100 to 1,000 times faster' karena disebutkan laju kepunahan saat ini 100 hingga 1.000 kali lebih cepat dari laju alami."
     },
     {
       "id": 7,
@@ -85,7 +91,8 @@
         "Higher office expenses",
         "Reduced salary potential"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'Difficulty in separating work and personal life' karena tantangan yang disebutkan adalah sulitnya memisahkan kehidupan kerja dan pribadi."
     },
     {
       "id": 8,
@@ -97,7 +104,8 @@
         "Advanced battery storage technology",
         "Better transmission lines"
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah 'Advanced battery storage technology' karena kemajuan teknologi baterai membantu mengatasi masalah intermitensi energi terbarukan."
     },
     {
       "id": 9,
@@ -109,7 +117,8 @@
         "Large parking facilities",
         "Green spaces and compact design"
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah 'Large parking facilities' karena prinsip ini tidak disebutkan dalam perencanaan kota berkelanjutan di teks."
     },
     {
       "id": 10,
@@ -121,7 +130,8 @@
         "The brain's capacity to store memories",
         "The brain's resistance to injury"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'The brain's ability to reorganize and form new neural connections' karena neuroplastisitas adalah kemampuan otak membentuk koneksi baru sepanjang hidup."
     },
     {
       "id": 11,
@@ -133,7 +143,8 @@
         "Five",
         "Six"
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah 'Five' karena disebutkan ada lima komponen utama kecerdasan emosional: self-awareness, self-regulation, motivation, empathy, dan social skills."
     },
     {
       "id": 12,
@@ -145,7 +156,8 @@
         "Less than 5 millimeters",
         "Less than 10 millimeters"
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah 'Less than 5 millimeters' karena mikroplastik didefinisikan sebagai partikel plastik berukuran kurang dari 5 mm."
     },
     {
       "id": 13,
@@ -157,7 +169,8 @@
         "Government-sponsored jobs",
         "Corporate executive positions"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'Short-term contracts and freelance work' karena ciri utama gig economy adalah kontrak jangka pendek dan pekerjaan lepas."
     },
     {
       "id": 14,
@@ -169,7 +182,8 @@
         "To study genetic mutations",
         "To clone human cells"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'To introduce genetic material to treat or prevent disease' karena terapi gen bertujuan memasukkan materi genetik untuk mengobati atau mencegah penyakit."
     },
     {
       "id": 15,
@@ -181,7 +195,8 @@
         "By reducing production costs",
         "By eliminating competition"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'By maximizing the utilization of underused assets' karena sharing economy memaksimalkan penggunaan aset yang kurang dimanfaatkan."
     },
     {
       "id": 16,
@@ -193,7 +208,8 @@
         "Larger memory capacity",
         "Better programming languages"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'Quantum bits that can exist in multiple states simultaneously' karena komputer kuantum menggunakan qubit yang dapat berada di beberapa keadaan sekaligus."
     },
     {
       "id": 17,
@@ -205,7 +221,8 @@
         "Insufficient lighting technology",
         "Poor crop quality"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'High energy costs' karena tantangan utama vertical farming saat ini adalah biaya energi yang tinggi."
     },
     {
       "id": 18,
@@ -217,7 +234,8 @@
         "Four",
         "Five"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'Three' karena disebutkan ada tiga prinsip dasar circular economy."
     },
     {
       "id": 19,
@@ -229,7 +247,8 @@
         "Learning new digital skills",
         "Increasing social media usage"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'Temporarily abstaining from digital devices and online activities' karena digital detox berarti menjauh sementara dari perangkat digital."
     },
     {
       "id": 20,
@@ -241,7 +260,8 @@
         "Using eco-friendly materials and ensuring fair labor conditions",
         "Increasing consumption of trendy items"
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah 'Using eco-friendly materials and ensuring fair labor conditions' karena sustainable fashion menekankan bahan ramah lingkungan dan kondisi kerja yang adil."
     },
     {
       "id": 21,
@@ -253,7 +273,8 @@
         "Need for reliable internet connectivity",
         "Lower quality medical equipment"
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah 'Need for reliable internet connectivity' karena tantangan telemedicine adalah kebutuhan koneksi internet yang andal."
     },
     {
       "id": 22,
@@ -265,7 +286,8 @@
         "Only mental health conditions",
         "Infectious diseases"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'Depression, chronic pain, and post-traumatic stress disorder' karena intervensi mindfulness digunakan untuk kondisi-kondisi tersebut."
     },
     {
       "id": 23,
@@ -277,7 +299,8 @@
         "Internet of Things",
         "Integration of Technology"
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah 'Internet of Things' karena IoT adalah singkatan dari Internet of Things."
     },
     {
       "id": 24,
@@ -289,7 +312,8 @@
         "They don't need to be financially viable",
         "They only operate in developed countries"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'They prioritize their social mission alongside financial sustainability' karena social enterprise mengutamakan misi sosial dan keberlanjutan finansial."
     },
     {
       "id": 25,
@@ -301,7 +325,8 @@
         "Genetic makeup, lifestyle, and environment",
         "Only environmental factors"
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah 'Genetic makeup, lifestyle, and environment' karena personalized medicine mempertimbangkan ketiga faktor tersebut."
     },
     {
       "id": 26,
@@ -313,7 +338,8 @@
         "One-half",
         "Two-thirds"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'One-third' karena disebutkan sepertiga makanan untuk konsumsi manusia terbuang setiap tahun."
     },
     {
       "id": 27,
@@ -325,7 +351,8 @@
         "94%",
         "98%"
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah '94%' karena 94% kecelakaan lalu lintas serius disebabkan oleh kesalahan manusia."
     },
     {
       "id": 28,
@@ -337,7 +364,8 @@
         "Only social media campaigns",
         "Government regulations alone"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'Celebrity advocacy, social media campaigns, and scientific research' karena ketiganya disebutkan sebagai faktor peningkatan kesadaran kesehatan mental."
     },
     {
       "id": 29,
@@ -349,7 +377,8 @@
         "Additive manufacturing",
         "Custom manufacturing"
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah 'Additive manufacturing' karena 3D printing juga dikenal sebagai additive manufacturing."
     },
     {
       "id": 30,
@@ -361,7 +390,8 @@
         "2009",
         "2010"
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah '2009' karena Bitcoin dibuat pada tahun 2009."
     },
     {
       "id": 31,
@@ -373,7 +403,8 @@
         "It only affects CO2-producing organisms",
         "It is less important than climate change"
       ],
-      "correct": 0
+      "correct": 0,
+      "explanation": "Jawaban yang benar adalah 'It occurs in addition to climate change as another consequence of increased atmospheric CO2' karena ocean acidification adalah masalah CO2 lain selain perubahan iklim."
     },
     {
       "id": 32,
@@ -385,7 +416,8 @@
         "Increase building size",
         "Improve building security"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'Connect building occupants with nature' karena biophilic design bertujuan menghubungkan penghuni bangunan dengan alam."
     },
     {
       "id": 33,
@@ -397,7 +429,8 @@
         "They are regular and unconditional for all citizens",
         "They are only for low-income families"
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah 'They are regular and unconditional for all citizens' karena UBI diberikan secara rutin dan tanpa syarat kepada semua warga."
     },
     {
       "id": 34,
@@ -409,7 +442,8 @@
         "Genetic mutations",
         "Chromosome structure"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'Changes in gene expression without altering DNA sequence' karena epigenetika mempelajari perubahan ekspresi gen tanpa mengubah urutan DNA."
     },
     {
       "id": 35,
@@ -421,7 +455,8 @@
         "Manual monitoring systems",
         "Increased human resources"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'Sensors, data analytics, and connected devices' karena smart city menggunakan teknologi tersebut untuk mengoptimalkan layanan kota."
     },
     {
       "id": 36,
@@ -433,7 +468,8 @@
         "Using more chemical fertilizers",
         "Reducing crop variety"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'Rebuilding soil health and increasing biodiversity' karena fokus utama pertanian regeneratif adalah memperbaiki kesehatan tanah dan keanekaragaman hayati."
     },
     {
       "id": 37,
@@ -445,7 +481,8 @@
         "By reducing the need for medical textbooks",
         "By eliminating the need for clinical experience"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'By allowing students to practice procedures in risk-free virtual environments' karena VR memungkinkan praktik medis tanpa risiko nyata."
     },
     {
       "id": 38,
@@ -457,7 +494,8 @@
         "All coastal construction projects",
         "Marine pollution cleanup only"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'Economic activities that depend on healthy oceans while promoting sustainable use' karena blue economy mencakup aktivitas ekonomi yang bergantung pada laut sehat dan penggunaan berkelanjutan."
     },
     {
       "id": 39,
@@ -469,7 +507,8 @@
         "Only weather monitoring equipment",
         "Manual field inspection methods"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'GPS guidance, drones, sensors, and data analytics' karena precision agriculture menggunakan teknologi tersebut."
     },
     {
       "id": 40,
@@ -481,7 +520,8 @@
         "The preservation of natural habitats",
         "The genetic modification of organisms"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'Learning from and mimicking nature to solve human problems' karena biomimicry adalah meniru alam untuk solusi manusia."
     },
     {
       "id": 41,
@@ -493,7 +533,8 @@
         "Computer backup systems",
         "Digital photographs of objects"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'Virtual replicas updated in real-time with data from physical counterparts' karena digital twins adalah replika virtual yang diperbarui secara real-time."
     },
     {
       "id": 42,
@@ -505,7 +546,8 @@
         "It eliminates personal time entirely",
         "It only applies to remote workers"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'It focuses on blending work and personal life rather than maintaining strict boundaries' karena work-life integration menekankan pencampuran kerja dan kehidupan pribadi."
     },
     {
       "id": 43,
@@ -517,7 +559,8 @@
         "Only computer science and engineering",
         "Traditional farming and modern technology"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'Biology, chemistry, computer science, and engineering' karena synthetic biology menggabungkan keempat bidang tersebut."
     },
     {
       "id": 44,
@@ -529,7 +572,8 @@
         "Traditional classroom lectures",
         "Complex theoretical frameworks"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'Content delivered in small, focused segments' karena microlearning menyajikan materi dalam segmen kecil dan terfokus."
     },
     {
       "id": 45,
@@ -541,7 +585,8 @@
         "Only better air quality",
         "Elimination of all traditional farming"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'Reduced food miles, increased food security, and improved community engagement' karena manfaat urban farming yang disebutkan adalah mengurangi jarak tempuh makanan, meningkatkan ketahanan pangan, dan keterlibatan komunitas."
     },
     {
       "id": 46,
@@ -553,7 +598,8 @@
         "People make random decisions",
         "People are primarily motivated by social factors"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'People are rational actors who always make optimal choices' karena teori ekonomi tradisional mengasumsikan manusia selalu rasional."
     },
     {
       "id": 47,
@@ -565,7 +611,8 @@
         "Requires less technical expertise",
         "Uses less electricity"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'Reduces latency and improves response times' karena keunggulan utama edge computing adalah mengurangi latensi dan meningkatkan respons."
     },
     {
       "id": 48,
@@ -577,7 +624,8 @@
         "Through traditional market investments",
         "Only if programs fail to meet goals"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'Based on the achievement of predetermined social outcomes' karena dalam SIB, investor menerima pengembalian jika tujuan sosial yang telah ditentukan sebelumnya tercapai."
     },
     {
       "id": 49,
@@ -589,7 +637,8 @@
         "It only works with simple calculations",
         "It requires larger computer systems"
       ],
-      "correct": 1
+      "correct": 1,
+      "explanation": "Jawaban yang benar adalah 'It processes information in parallel, mimicking the human brain' karena neuromorphic computing meniru cara kerja otak manusia yang memproses informasi secara paralel."
     },
     {
       "id": 50,
@@ -601,7 +650,8 @@
         "Nine",
         "Ten"
       ],
-      "correct": 2
+      "correct": 2,
+      "explanation": "Jawaban yang benar adalah 'Nine' karena disebutkan bahwa terdapat sembilan proses sistem Bumi yang diidentifikasi sebagai batas planet."
     }
   ]
 }
