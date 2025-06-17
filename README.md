@@ -1,6 +1,6 @@
-# 📝 TOEFL Online Test (**TOEL.id**)
+# 📝 Online Test TOEFL (**TOEL.id**)
 
-TOEFL Online Test adalah aplikasi web untuk latihan dan simulasi tes TOEFL (Test of English as a Foreign Language).  
+Online Test TOEFL (TOEL.id) adalah aplikasi web untuk latihan dan simulasi tes TOEFL (Test of English as a Foreign Language).  
 Aplikasi ini dikembangkan sebagai **Project Akhir Mata Kuliah Dasar Pemrograman Web (DPW)**.
 
 ---
