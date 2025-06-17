@@ -1,82 +1,291 @@
-<script src="score-util.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Ambil skor per section
-  const benarL = Number(localStorage.getItem('fullListeningScore') || 0);
-  const totalL = Number(localStorage.getItem('fullListeningTotal') || 50);
-  const benarS = Number(localStorage.getItem('fullStructureScore') || 0);
-  const totalS = Number(localStorage.getItem('fullStructureTotal') || 40);
-  const benarR = Number(localStorage.getItem('fullReadingScore') || 0);
-  const totalR = Number(localStorage.getItem('fullReadingTotal') || 50);
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Hasil TOEFL Lengkap</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/pages/test/hasil.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="score-util.js"></script>
+  <style>
+    .score-box {
+      background: #fafdff;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px #e3eafc;
+      padding: 2.5rem 1.5rem 2rem 1.5rem;
+      text-align: center;
+      margin: 2rem auto 0 auto;
+      max-width: 500px;
+    }
+    .score-main {
+      font-size: 3.5rem;
+      font-weight: bold;
+      color: #2471f3;
+      margin: 1.2rem 0 0.7rem 0;
+    }
+    .score-detail {
+      font-size: 1.2rem;
+      margin-bottom: 0.7rem;
+    }
+    .score-range {
+      color: #888;
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+    }
+    .btn-cetak {
+      background: #219150;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 0.7em 2em;
+      font-size: 1.1em;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-cetak:hover {
+      background: #146c43;
+    }
+    .status-badge {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 500;
+      display: inline-block;
+      margin: 10px 0;
+    }
+    .status-lulus {
+      background: #e3fcef;
+      color: #0d9448;
+    }
+    .status-tidak {
+      background: #ffe9e9;
+      color: #d63031;
+    }
 
-  const skorL = hitungSkorTOEFL('listening', benarL, totalL);
-  const skorS = hitungSkorTOEFL('structure', benarS, totalS);
-  const skorR = hitungSkorTOEFL('reading', benarR, totalR);
-  const skorTotal = skorL + skorS + skorR;
-  const skorITP = hitungSkorTOEFLFull(skorL, skorS, skorR);
+    /* Certificate Styles */
+    .certificate {
+      display: none;
+      width: 595px; /* A4 width in portrait */
+      height: 842px; /* A4 height in portrait */
+      padding: 48px;
+      border: 3px solid #2471f3;
+      position: relative;
+      margin: 20px auto;
+      background: #fff;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+    
+    .certificate::before {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      right: 8px;
+      bottom: 8px;
+      border: 1px solid #2471f3;
+      pointer-events: none;
+    }
+    
+    .certificate-header {
+      text-align: center;
+      margin-bottom: 40px;
+      border-bottom: 2px solid #2471f3;
+      padding-bottom: 20px;
+    }
+    
+    .certificate-title {
+      font-size: 42px;
+      color: #2471f3;
+      font-weight: bold;
+      margin: 20px 0;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    
+    .certificate-subtitle {
+      font-size: 24px;
+      color: #333;
+      margin: 10px 0;
+    }
+    
+    .certificate-content {
+      text-align: center;
+      margin: 40px 0;
+    }
+    
+    .certificate-score {
+      font-size: 52px;
+      color: #2471f3;
+      font-weight: bold;
+      margin: 20px 0;
+      border: 3px solid #2471f3;
+      display: inline-block;
+      padding: 10px 40px;
+      border-radius: 10px;
+    }
+    
+    .certificate-details {
+      margin: 30px 0;
+      font-size: 20px;
+      line-height: 1.8;
+      color: #333;
+    }
 
-  // Simpan riwayat
-  simpanRiwayatTOEFL({
-    type: 'Full',
-    date: new Date().toISOString(),
-    benarL, totalL, skorL,
-    benarS, totalS, skorS,
-    benarR, totalR, skorR,
-    skorTotal, skorITP
-  });
+    .certificate-status {
+      margin: 20px 0;
+      font-size: 18px;
+    }
+    
+    .certificate-footer {
+      position: absolute;
+      bottom: 48px;
+      left: 48px;
+      right: 48px;
+      text-align: center;
+      border-top: 2px solid #2471f3;
+      padding-top: 20px;
+    }
+    
+    .certificate-validation {
+      font-size: 16px;
+      color: #666;
+      margin-top: 15px;
+      font-style: italic;
+    }
 
-  document.getElementById('score-summary').innerHTML = `
-    <div class="score-box">
-      <h2>Hasil Simulasi TOEFL Lengkap</h2>
-      <div class="score-main">${skorITP}</div>
-      <div class="score-detail">
-        <b>Listening:</b> ${skorL} (${benarL}/${totalL})<br>
-        <b>Structure:</b> ${skorS} (${benarS}/${totalS})<br>
-        <b>Reading:</b> ${skorR} (${benarR}/${totalR})<br>
-        <b>Total Skor:</b> ${skorITP} <span class="score-range">(310–677)</span>
-      </div>
-      <button class="btn-cetak" onclick="window.print()">Cetak Sertifikat</button>
+    /* Print Styles */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      .certificate, .certificate * {
+        visibility: visible;
+      }
+      .certificate {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 48px;
+      }
+      .btn-back, .btn-primary, .btn-cetak {
+        display: none;
+      }
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="/dashboard" class="btn btn-back" style="margin:1.5rem 2rem 0 2rem;">
+      <i class="fas fa-arrow-left"></i> Kembali ke Dashboard
+  </a>
+  <div class="result-container">
+    <h1>Hasil Simulasi TOEFL Lengkap</h1>
+    <div id="score-summary"></div>
+    <button onclick="window.location.href='soal-full.html'" class="btn btn-primary" style="margin-top:2rem;">
+      Ulangi Tes Lengkap
+    </button>
+  </div>
+
+  <!-- Certificate Template -->
+  <div class="certificate">
+    <div class="certificate-header">
+      <h1 class="certificate-title">Sertifikat TOEFL ITP</h1>
+      <div class="certificate-subtitle">TOEL.ID - Platform Simulasi TOEFL Terpercaya</div>
     </div>
-  `;
-});
-</script>
-<style>
-.score-box {
-  background: #fafdff;
-  border-radius: 18px;
-  box-shadow: 0 4px 24px #e3eafc;
-  padding: 2.5rem 1.5rem 2rem 1.5rem;
-  text-align: center;
-  margin: 2rem auto 0 auto;
-  max-width: 500px;
-}
-.score-main {
-  font-size: 3.5rem;
-  font-weight: bold;
-  color: #2471f3;
-  margin: 1.2rem 0 0.7rem 0;
-}
-.score-detail {
-  font-size: 1.2rem;
-  margin-bottom: 0.7rem;
-}
-.score-range {
-  color: #888;
-  font-size: 1rem;
-  margin-bottom: 1.2rem;
-}
-.btn-cetak {
-  background: #219150;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 0.7em 2em;
-  font-size: 1.1em;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.btn-cetak:hover {
-  background: #146c43;
-}
-</style>
+    <div class="certificate-content">
+      <div id="certificate-date" style="margin-bottom: 30px; font-size: 20px;"></div>
+      <div class="certificate-score" id="certificate-total-score"></div>
+      <div class="certificate-details" id="certificate-details"></div>
+      <div class="certificate-status" id="certificate-status"></div>
+    </div>
+    <div class="certificate-footer">
+      <p style="font-size: 18px; color: #2471f3; font-weight: bold;">TOEL.ID</p>
+      <p style="font-size: 16px; margin: 5px 0;">Platform Pembelajaran dan Simulasi TOEFL Terbaik di Indonesia</p>
+      <div class="certificate-validation">
+        Sertifikat ini diterbitkan sebagai hasil simulasi TOEFL di platform TOEL.ID.<br>
+        Skor ini mencerminkan kemampuan bahasa Inggris berdasarkan standar penilaian TOEFL ITP.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Ambil skor benar dan total dari localStorage (pastikan sudah diset saat submit)
+      const benarL = Number(localStorage.getItem('fullListeningScore') || 0);
+      const totalL = Number(localStorage.getItem('fullListeningTotal') || 50);
+      const benarS = Number(localStorage.getItem('fullStructureScore') || 0);
+      const totalS = Number(localStorage.getItem('fullStructureTotal') || 40);
+      const benarR = Number(localStorage.getItem('fullReadingScore') || 0);
+      const totalR = Number(localStorage.getItem('fullReadingTotal') || 50);
+
+      // Rumus TOEFL asli
+      const skorL = hitungSkorTOEFL('listening', benarL, totalL);
+      const skorS = hitungSkorTOEFL('structure', benarS, totalS);
+      const skorR = hitungSkorTOEFL('reading', benarR, totalR);
+      const skorITP = hitungSkorTOEFLFull(skorL, skorS, skorR);
+
+      // Get status
+      const status = getStatusKeterangan(skorITP);
+      const statusClass = status.includes('Lulus') ? 'status-lulus' : 'status-tidak';
+
+      // Format tanggal
+      const today = new Date();
+      const formattedDate = today.toLocaleDateString('id-ID', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+      });
+
+      // Simpan riwayat
+      simpanRiwayatTOEFL({
+        type: 'Full',
+        date: today.toISOString(),
+        benarL, totalL, skorL,
+        benarS, totalS, skorS,
+        benarR, totalR, skorR,
+        skorITP
+      });
+
+      // Update score summary
+      document.getElementById('score-summary').innerHTML = `
+        <div class="score-box">
+          <h2>Hasil Simulasi TOEFL Lengkap</h2>
+          <div class="score-main">${skorITP}</div>
+          <div class="score-detail">
+            <b>Listening:</b> ${skorL} (${benarL}/${totalL})<br>
+            <b>Structure:</b> ${skorS} (${benarS}/${totalS})<br>
+            <b>Reading:</b> ${skorR} (${benarR}/${totalR})<br>
+            <b>Total Skor ITP:</b> ${skorITP} <span class="score-range">(310–677)</span>
+          </div>
+          <div class="status-badge ${statusClass}">
+            ${status}
+          </div>
+          <button class="btn-cetak" onclick="window.print()">Cetak Sertifikat</button>
+        </div>
+      `;
+
+      // Update certificate content
+      document.getElementById('certificate-date').innerText = `Tanggal Tes: ${formattedDate}`;
+      document.getElementById('certificate-total-score').innerText = `Skor Total: ${skorITP}`;
+      document.getElementById('certificate-details').innerHTML = `
+        Perincian Skor:<br>
+        Listening Comprehension: ${skorL}<br>
+        Structure and Written Expression: ${skorS}<br>
+        Reading Comprehension: ${skorR}
+      `;
+      document.getElementById('certificate-status').innerHTML = `
+        Status: <span class="${statusClass}" style="padding: 5px 15px;">${status}</span>
+      `;
+    });
+  </script>
+</body>
+</html>

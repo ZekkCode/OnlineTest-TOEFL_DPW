@@ -1,150 +1,224 @@
-// Contoh: panggil showCertificateModal(data) saat klik tombol cetak di tabel
-document.querySelectorAll('.btn-certificate').forEach(btn => {
-    btn.addEventListener('click', function() {
-        // Ambil data tes dari atribut/data-* atau dari JS
-        const testData = {
-            name: localStorage.getItem('username') || 'Nama Pengguna',
-            email: localStorage.getItem('userEmail') || '-',
-            photo: localStorage.getItem('userPhoto') || '/assets/images/guest-profile.png',
-            listening: btn.dataset.listening || 0,
-            structure: btn.dataset.structure || 0,
-            reading: btn.dataset.reading || 0,
-            total: btn.dataset.total || 0,
-            date: btn.dataset.date || new Date().toLocaleDateString('id-ID')
-        };
-        showCertificateModal(testData);
-    });
+// Check authentication
+document.addEventListener('DOMContentLoaded', function() {
+    if (!localStorage.getItem('isLoggedIn')) {
+        window.location.href = '/auth/login';
+        return;
+    }
+    
+    displayHistory();
+    
+    // Setup event listeners
+    const modeFilter = document.getElementById('modeFilter');
+    const typeFilter = document.getElementById('typeFilter');
+    const resetAllBtn = document.getElementById('resetAllBtn');
+    
+    if (modeFilter) modeFilter.addEventListener('change', displayHistory);
+    if (typeFilter) typeFilter.addEventListener('change', displayHistory);
+    if (resetAllBtn) resetAllBtn.addEventListener('click', resetAllTestHistories);
 });
 
-// Fungsi untuk generate sertifikat
-function showCertificateModal(data) {
+function displayHistory() {
+    const historyTableBody = document.getElementById('historyTableBody');
+    const histories = JSON.parse(localStorage.getItem('toeflHistory') || '[]');
+    const modeFilter = document.getElementById('modeFilter').value;
+    const typeFilter = document.getElementById('typeFilter').value;
+    
+    // Filter data
+    let filteredHistories = histories.filter(history => {
+        const modeMatch = modeFilter === 'all' || history.mode === modeFilter;
+        const typeMatch = typeFilter === 'all' || history.type === typeFilter;
+        return modeMatch && typeMatch;
+    });
+
+    // Update statistics
+    updateStats(histories);
+    
+    // Clear table
+    historyTableBody.innerHTML = '';
+    
+    // Show message if no data
+    if (filteredHistories.length === 0) {
+        historyTableBody.innerHTML = `
+            <tr>
+                <td colspan="9" class="text-center">Tidak ada data riwayat tes.</td>
+            </tr>`;
+        return;
+    }
+    
+    // Display filtered data
+    filteredHistories.forEach((history, index) => {
+        const row = document.createElement('tr');
+        
+        // Format date
+        const date = new Date(history.date).toLocaleDateString('id-ID', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        });
+        
+        // Create badges
+        const modeBadge = `<span class="badge badge-${history.mode === 'ujian' ? 'primary' : 'warning'}">${history.mode || 'Latihan'}</span>`;
+        const typeBadge = `<span class="badge badge-${history.type === 'Full' ? 'success' : 'info'}">${history.type}</span>`;
+        const statusBadge = history.status ? 
+            `<span class="badge badge-${history.status.includes('Lulus') ? 'success' : 'danger'}">${history.status}</span>` : 
+            '-';
+        
+        row.innerHTML = `
+            <td>${date}</td>
+            <td>${modeBadge}</td>
+            <td>${typeBadge}</td>
+            <td>${history.skorL || '-'}</td>
+            <td>${history.skorS || '-'}</td>
+            <td>${history.skorR || '-'}</td>
+            <td>${history.skorITP || '-'}</td>
+            <td>${statusBadge}</td>
+            <td>
+                <button class="btn-action btn-view" onclick="viewCertificate('${index}')" title="Lihat Sertifikat">
+                    <i class="fas fa-certificate"></i>
+                </button>
+                <button class="btn-action btn-delete" onclick="deleteTestHistory('${index}')" title="Hapus">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
+        `;
+        
+        historyTableBody.appendChild(row);
+    });
+}
+
+function updateStats(histories) {
+    // Update total tests
+    const totalTests = histories.length;
+    document.getElementById('totalTests').textContent = totalTests;
+    
+    // Get full test scores only
+    const fullTests = histories.filter(h => h.type === 'Full');
+    
+    // Calculate highest score
+    const highestScore = fullTests.length > 0 
+        ? Math.max(...fullTests.map(h => h.skorITP || 0))
+        : 0;
+    document.getElementById('highestScore').textContent = highestScore;
+    
+    // Calculate average score
+    const avgScore = fullTests.length > 0
+        ? Math.round(fullTests.reduce((sum, h) => sum + (h.skorITP || 0), 0) / fullTests.length)
+        : 0;
+    document.getElementById('averageScore').textContent = avgScore;
+}
+
+function deleteTestHistory(index) {
+    if (!confirm('Anda yakin ingin menghapus riwayat tes ini?')) {
+        return;
+    }
+    
+    let histories = JSON.parse(localStorage.getItem('toeflHistory') || '[]');
+    histories.splice(index, 1);
+    localStorage.setItem('toeflHistory', JSON.stringify(histories));
+    
+    displayHistory();
+}
+
+function resetAllTestHistories() {
+    if (!confirm('PERHATIAN: Semua data riwayat tes akan dihapus. Lanjutkan?')) {
+        return;
+    }
+    
+    if (!confirm('Anda yakin? Tindakan ini tidak dapat dibatalkan.')) {
+        return;
+    }
+    
+    localStorage.removeItem('toeflHistory');
+    displayHistory();
+}
+
+function viewCertificate(index) {
+    const histories = JSON.parse(localStorage.getItem('toeflHistory') || '[]');
+    const history = histories[index];
+    
+    if (!history) {
+        alert('Data tidak ditemukan');
+        return;
+    }
+    
     const modal = document.getElementById('certificateModal');
-    const preview = document.getElementById('certificatePreview');
-    preview.innerHTML = `
-        <div class="certificate-frame"></div>
-        <svg class="certificate-corner top-left" viewBox="0 0 60 60"><circle cx="30" cy="30" r="28" stroke="#b5b5b5"/><circle cx="30" cy="30" r="20" stroke="#4a55a2"/></svg>
-        <svg class="certificate-corner top-right" viewBox="0 0 60 60"><circle cx="30" cy="30" r="28" stroke="#b5b5b5"/><circle cx="30" cy="30" r="20" stroke="#4a55a2"/></svg>
-        <svg class="certificate-corner bottom-left" viewBox="0 0 60 60"><circle cx="30" cy="30" r="28" stroke="#b5b5b5"/><circle cx="30" cy="30" r="20" stroke="#4a55a2"/></svg>
-        <svg class="certificate-corner bottom-right" viewBox="0 0 60 60"><circle cx="30" cy="30" r="28" stroke="#b5b5b5"/><circle cx="30" cy="30" r="20" stroke="#4a55a2"/></svg>
-        <div class="certificate-content">
-            <img src="/assets/images/toefl-logo.png" style="position:absolute;opacity:0.07;z-index:0;left:50%;top:50%;transform:translate(-50%,-50%);width:400px;">
-            <div class="certificate-title">SERTIFIKAT PENCAPAIAN</div>
-            <div class="certificate-desc">
-                Dengan ini menyatakan bahwa<br>
-                <span class="certificate-name">${data.name}</span>
-                <div class="certificate-photo" style="margin: 18px auto;">
-                    <img src="${data.photo}" alt="Foto Profil">
+    const content = document.getElementById('certificateContent');
+    
+    // Format date
+    const testDate = new Date(history.date).toLocaleDateString('id-ID', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+    });
+
+    // Get status
+    let status = '';
+    if (history.type === 'Full') {
+        const skorITP = history.skorITP || 0;
+        if (skorITP >= 500) {
+            status = 'Lulus';
+        } else if (skorITP >= 450) {
+            status = 'Lulus (Minimal)';
+        } else {
+            status = 'Belum Lulus';
+        }
+    }
+    const statusClass = status.includes('Lulus') ? 'status-lulus' : 'status-tidak';
+    
+    content.innerHTML = `
+        <div class="certificate">
+            <div class="certificate-header">
+                <h1 class="certificate-title">Sertifikat TOEFL ${history.type}</h1>
+                <div class="certificate-subtitle">TOEL.ID - Platform Simulasi TOEFL Terpercaya</div>
+            </div>
+            <div class="certificate-content">
+                <div style="margin-bottom: 30px; font-size: 20px;">
+                    Tanggal Tes: ${testDate}
                 </div>
-                <span class="certificate-email">${data.email}</span>
-                <br>telah menyelesaikan simulasi TOEFL ITP dengan skor berikut:
+                <div class="certificate-score">
+                    ${history.skorITP || history.skor || '-'}
+                </div>
+                ${history.type === 'Full' ? `
+                    <div class="certificate-details">
+                        Perincian Skor:<br>
+                        Listening Comprehension: ${history.skorL}<br>
+                        Structure and Written Expression: ${history.skorS}<br>
+                        Reading Comprehension: ${history.skorR}
+                    </div>
+                    <div class="certificate-status">
+                        Status: <span class="${statusClass}">${status}</span>
+                    </div>
+                ` : ''}
             </div>
-            <table class="certificate-table">
-                <tr>
-                    <th>Listening Comprehension</th>
-                    <td>${data.listening}</td>
-                </tr>
-                <tr>
-                    <th>Structure & Written Expression</th>
-                    <td>${data.structure}</td>
-                </tr>
-                <tr>
-                    <th>Reading Comprehension</th>
-                    <td>${data.reading}</td>
-                </tr>
-            </table>
-            <div class="certificate-total">Total Skor: ${data.total}</div>
-            <div style="margin-top:40px; color:#888; font-size:1rem;">
-                Tanggal Tes: ${data.date}
-            </div>
-            <div class="certificate-sign">
-                <div class="sign-label">Disahkan oleh:</div>
-                <div class="sign-name" style="margin-top:40px;">TOEL.id</div>
+            <div class="certificate-footer">
+                <p style="font-size: 18px; color: #2471f3; font-weight: bold;">TOEL.ID</p>
+                <p style="font-size: 16px; margin: 5px 0;">
+                    Platform Pembelajaran dan Simulasi TOEFL Terbaik di Indonesia
+                </p>
+                <div class="certificate-validation">
+                    Sertifikat ini diterbitkan sebagai hasil simulasi TOEFL di platform TOEL.ID.<br>
+                    Skor ini mencerminkan kemampuan bahasa Inggris berdasarkan standar penilaian TOEFL ITP.
+                </div>
             </div>
         </div>
     `;
+    
     modal.style.display = 'block';
 }
 
-// Modal close
-document.querySelectorAll('.modal .close').forEach(btn => {
-    btn.onclick = function() {
-        btn.closest('.modal').style.display = 'none';
-    };
-});
-
-// Cetak Sertifikat
-document.getElementById('btnPrintCert').onclick = function() {
-    const cert = document.getElementById('certificatePreview').innerHTML;
-    const win = window.open('', '', 'width=900,height=1300');
-    win.document.write(`
-        <html>
-        <head>
-            <title>Cetak Sertifikat</title>
-            <link rel="stylesheet" href="/css/pages/dashboard/riwayat-tes.css">
-            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-        </head>
-        <body style="margin:0;">
-            <div class="certificate-preview" style="box-shadow:none;">${cert}</div>
-        </body>
-        </html>
-    `);
-    win.document.close();
-    setTimeout(() => win.print(), 500);
-};
-
-// Download PDF (opsional, butuh html2pdf.js)
-document.getElementById('btnDownloadPDF').onclick = function() {
-    import('https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js').then(() => {
-        const element = document.getElementById('certificatePreview');
-        html2pdf().from(element).set({
-            margin: 0,
-            filename: 'sertifikat-toefl.pdf',
-            html2canvas: { scale: 2 },
-            jsPDF: { format: 'a4', orientation: 'portrait' }
-        }).save();
-    });
-};
-
-function scaleCertificatePreview() {
-    const wrapper = document.querySelector('.certificate-preview-wrapper');
-    const cert = document.querySelector('.certificate-preview');
-    if (!wrapper || !cert) return;
-
-    // Ukuran asli sertifikat (A4: 794x1123px)
-    const certW = 794, certH = 1123;
-    // Ukuran wrapper (modal)
-    const wrapW = wrapper.clientWidth, wrapH = wrapper.clientHeight;
-
-    // Hitung skala agar fit (tanpa overflow, tidak lebih kecil dari 0.5)
-    let scale = Math.min(wrapW / certW, wrapH / certH, 1);
-    scale = Math.max(scale, 0.5); // minimal 50% agar tetap terbaca
-
-    cert.style.transform = `scale(${scale})`;
-    cert.style.transformOrigin = 'top center';
-
-    // Agar wrapper tetap scrollable jika modal lebih kecil dari sertifikat
-    wrapper.scrollTop = 0;
-    wrapper.scrollLeft = 0;
+function closeModal() {
+    const modal = document.getElementById('certificateModal');
+    modal.style.display = 'none';
 }
 
-// Panggil saat modal dibuka & saat window resize
-window.addEventListener('resize', scaleCertificatePreview);
-document.addEventListener('DOMContentLoaded', scaleCertificatePreview);
-// Panggil juga setelah isi sertifikat di-render
-setTimeout(scaleCertificatePreview, 200);
+function printCertificate() {
+    window.print();
+}
 
-// Media print
-const style = document.createElement('style');
-style.innerHTML = `
-@media print {
-    .modal, .modal-content, .modal-actions { display: none !important; }
-    .certificate-preview {
-        box-shadow: none !important;
-        border: none !important;
-        margin: 0 !important;
-        width: 210mm !important;
-        height: 297mm !important;
+// Close modal when clicking outside
+window.onclick = function(event) {
+    const modal = document.getElementById('certificateModal');
+    if (event.target === modal) {
+        modal.style.display = 'none';
     }
-}
-`;
-document.head.appendChild(style);
+};

@@ -45,11 +45,11 @@ function handleRegister(event) {
 }
 
 function logout() {
+    // Bersihkan info user dari localStorage (kecuali riwayat)
     localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('username');
-    localStorage.removeItem('userEmail');
-    localStorage.removeItem('userPhoto');
-    window.location.href = '/auth/login';
+    localStorage.removeItem('lastLogin');
+    // Redirect ke halaman login
+    window.location.href = '/pages/auth/login.html';
 }
 
 function redirectIfNotLoggedIn() {

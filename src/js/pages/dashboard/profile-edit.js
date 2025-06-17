@@ -6,8 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     const profileForm = document.getElementById('profileForm');
-    const photoInput = document.getElementById('photoInput');
-    const profilePreview = document.getElementById('profilePreview');
     const uploadBtn = document.querySelector('.btn-upload');
 
     // Load existing data
@@ -19,40 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
             photoInput.click();
         });
     }
-
-    // Handle photo file selection
-    photoInput.addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (file) {
-            if (!file.type.startsWith('image/')) {
-                alert('File harus berupa gambar!');
-                return;
-            }
-            if (file.size > 5000000) {
-                alert('File terlalu besar. Maksimal 5MB.');
-                return;
-            }
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                // Update preview di form
-                profilePreview.src = e.target.result;
-                // Simpan ke localStorage
-                localStorage.setItem('userPhoto', e.target.result);
-
-                // Update semua elemen foto profil di halaman (sidebar/dsb)
-                document.querySelectorAll('.user-photo').forEach(img => {
-                    img.src = e.target.result;
-                });
-
-                // Dispatch event untuk halaman lain jika perlu
-                const event = new CustomEvent('profilePhotoUpdated', {
-                    detail: { photo: e.target.result }
-                });
-                window.dispatchEvent(event);
-            };
-            reader.readAsDataURL(file);
-        }
-    });
 
     // Handle form submission
     profileForm.addEventListener('submit', function(e) {
@@ -87,6 +51,66 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.replace('/dashboard');
     });
 });
+
+// Profile Photo Handling
+function initProfilePhoto() {
+    const photoInput = document.getElementById('photoInput');
+    const profilePhoto = document.querySelector('.profile-photo img.user-photo');
+    const defaultPhoto = document.querySelector('.profile-photo .default-photo');
+
+    // Load existing photo from localStorage
+    const savedPhoto = localStorage.getItem('userPhoto');
+    if (savedPhoto) {
+        profilePhoto.src = savedPhoto;
+        profilePhoto.style.display = 'block';
+        if (defaultPhoto) defaultPhoto.style.display = 'none';
+    }
+
+    // Handle photo upload
+    photoInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            // Validate file type
+            if (!file.type.startsWith('image/')) {
+                alert('Please upload an image file.');
+                return;
+            }
+
+            // Validate file size (max 2MB)
+            if (file.size > 2 * 1024 * 1024) {
+                alert('Image size should be less than 2MB.');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                profilePhoto.src = event.target.result;
+                profilePhoto.style.display = 'block';
+                if (defaultPhoto) defaultPhoto.style.display = 'none';
+                
+                // Save to localStorage
+                try {
+                    localStorage.setItem('userPhoto', event.target.result);
+                } catch (e) {
+                    console.error('Error saving photo:', e);
+                    alert('Failed to save photo. The image might be too large.');
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+}
+
+// Delete Profile Photo
+function deleteProfilePhoto() {
+    const profilePhoto = document.querySelector('.profile-photo img.user-photo');
+    const defaultPhoto = document.querySelector('.profile-photo .default-photo');
+    
+    localStorage.removeItem('userPhoto');
+    profilePhoto.src = '';
+    profilePhoto.style.display = 'none';
+    if (defaultPhoto) defaultPhoto.style.display = 'flex';
+}
 
 function loadUserData() {
     const userData = {
@@ -125,3 +149,19 @@ function isValidEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
 }
+
+// Initialize when document is ready
+document.addEventListener('DOMContentLoaded', function() {
+    initProfilePhoto();
+    
+    // Add event listener for delete photo button if exists
+    const deletePhotoBtn = document.getElementById('deletePhotoBtn');
+    if (deletePhotoBtn) {
+        deletePhotoBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (confirm('Are you sure you want to remove your profile photo?')) {
+                deleteProfilePhoto();
+            }
+        });
+    }
+});

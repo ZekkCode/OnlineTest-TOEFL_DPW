@@ -205,7 +205,7 @@
             const end = start + sections[sectionIdxNow].data.questions.length;
             const sectionTitle = sectionNames[sectionIdxNow];
 
-            document.body.innerHTML = `
+            document.querySelector('.test-container').innerHTML = `
                 <div class="pembahasan-container">
                     <h2 class="pembahasan-title">Pembahasan ${sectionTitle}</h2>
                     <div class="table-responsive">
@@ -240,7 +240,9 @@
                             </tbody>
                         </table>
                     </div>
-                    <button id="lanjut-bab" class="btn-dashboard">Lanjut ke Bab Berikutnya</button>
+                    <button id="lanjut-bab" class="btn-dashboard">
+                        ${sectionIdxNow < sections.length - 1 ? 'Lanjut ke Bab Berikutnya' : 'Lihat Hasil'}
+                    </button>
                 </div>
                 <style>
                 .pembahasan-container {
@@ -333,23 +335,65 @@
                 </style>
             `;
 
-            document.getElementById('lanjut-bab').onclick = () => {
+            document.getElementById('lanjut-bab').onclick = function() {
                 if (sectionIdxNow < sections.length - 1) {
-                    sectionIdx = sectionIdxNow + 1;
-                    current = sectionStartIdx[sectionIdx];
-                    timer = sectionTimers[sectionIdx];
-                    document.body.innerHTML = document.querySelector('.test-container').outerHTML;
-                    startTimer();
-                    renderQuestion(current);
-                    renderNavigator();
+                    showBab(sectionIdxNow + 1);
                 } else {
-                    finishTest();
+                    // Hitung dan simpan skor dulu, lalu redirect
+                    finishTest(); // panggil fungsi yang sama seperti mode ujian
                 }
             };
         }
 
+        // Fungsi untuk render bab berikutnya
+        function showBab(idx) {
+            sectionIdx = idx;
+            current = sectionStartIdx[sectionIdx];
+            timer = sectionTimers[sectionIdx];
+            // Render ulang test-container
+            document.querySelector('.test-container').innerHTML = `
+                <aside class="question-navigator">
+                    <div class="navigator-grid"></div>
+                    <button class="submit-btn">Submit Test</button>
+                </aside>
+                <section class="question-section">
+                    <div class="question-header">
+                        <span class="question-number"></span>
+                        <span class="timer"></span>
+                    </div>
+                    <div class="audio-player"></div>
+                    <h2 class="question-title"></h2>
+                    <div class="options"></div>
+                    <div class="navigation-buttons">
+                        <button class="prev-btn">Previous</button>
+                        <button class="next-btn">Next</button>
+                    </div>
+                    <div id="feedback"></div>
+                </section>
+            `;
+            // Re-attach event listeners
+            startTimer();
+            renderQuestion(current);
+            renderNavigator();
+            document.querySelector('.prev-btn').onclick = () => {
+                if (current > sectionStartIdx[sectionIdx]) {
+                    current--;
+                    renderQuestion(current);
+                    renderNavigator();
+                }
+            };
+            document.querySelector('.next-btn').onclick = () => {
+                if (current < sectionStartIdx[sectionIdx] + sections[sectionIdx].data.questions.length - 1) {
+                    current++;
+                    renderQuestion(current);
+                    renderNavigator();
+                }
+            };
+            document.querySelector('.submit-btn').onclick = nextSectionOrFinish;
+        }
+
+        // Modal sederhana
         function showSectionAlert(nextSection) {
-            // Modal sederhana
             const modal = document.createElement('div');
             modal.style.position = 'fixed';
             modal.style.top = 0;

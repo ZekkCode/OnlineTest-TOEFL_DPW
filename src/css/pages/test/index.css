@@ -12,7 +12,7 @@ body {
 }
 
 .test-header {
-    background: linear-gradient(90deg, #6a82fb 0%, #5f2c82 100%);
+    background: linear-gradient(90deg, #6a82fb 20%, var(--primary-color) 100%);
     color: #fff;
     padding: 48px 0 32px 0;
     text-align: center;
@@ -89,9 +89,9 @@ body {
     position: relative;
 }
 
-.section-card.listening { border-top-color: #4a55a2; }
-.section-card.structure { border-top-color: #a259c6; }
-.section-card.reading { border-top-color: #2ecc71; }
+.section-card.listening { border-top-color: var(--primary-color); }
+.section-card.structure { border-top-color: var(--primary-color); }
+.section-card.reading { border-top-color: var(--primary-color); }
 
 .section-card:hover {
     transform: translateY(-6px) scale(1.03);
@@ -104,9 +104,9 @@ body {
     display: block;
 }
 
-.section-card.listening .icon { color: #4a55a2; }
-.section-card.structure .icon { color: #a259c6; }
-.section-card.reading .icon { color: #2ecc71; }
+.section-card.listening .icon { color: var(--primary-color); }
+.section-card.structure .icon { color: var(--primary-color); }
+.section-card.reading .icon { color: var(--primary-color); }
 
 .section-card h2 {
     font-size: 1.15rem;
@@ -127,7 +127,7 @@ body {
 }
 
 .section-card .start-btn {
-    background: #4a55a2;
+    background: var(--primary-color);
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -139,8 +139,8 @@ body {
     transition: background 0.2s;
 }
 
-.section-card.structure .start-btn { background: #a259c6; }
-.section-card.reading .start-btn { background: #2ecc71; }
+.section-card.structure .start-btn { background: var(--primary-color); }
+.section-card.reading .start-btn { background: var(--primary-color); }
 
 .section-card .start-btn:hover {
     filter: brightness(1.08);
@@ -148,7 +148,7 @@ body {
 
 /* Full Test Card */
 .fulltest-card {
-    background: #232946;
+    background: var(--primary-color);
     color: #fff;
     border-radius: 18px;
     box-shadow: 0 2px 16px rgba(0,0,0,0.10);
@@ -172,7 +172,7 @@ body {
 
 .fulltest-card .start-btn {
     background: #fff;
-    color: #232946;
+    color: var(--primary-color);
     border: none;
     border-radius: 8px;
     padding: 12px 0;
@@ -186,5 +186,34 @@ body {
 
 .fulltest-card .start-btn:hover {
     background: #e5e5e5;
-    color: #232946;
+    color: #002aff;
+}
+
+/* Back Button */
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--primary-color, #4a55a2);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(74, 85, 162, 0.08);
+    margin: 1.5rem 0 1rem 1.5rem;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+    cursor: pointer;
+}
+
+.btn-back i {
+    font-size: 1.1rem;
+}
+
+.btn-back:hover {
+    background: #35408f;
+    box-shadow: 0 4px 16px rgba(74, 85, 162, 0.15);
+    transform: translateY(-2px) scale(1.03);
 }

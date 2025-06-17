@@ -31,7 +31,7 @@
     height: 150px;
     border-radius: 50%;
     overflow: hidden;
-    border: 3px solid var(--primary-color);
+    border: 4px solid #4ac7ff; /* Ganti warna border sesuai gambar */
     margin: 0 auto 1.5rem auto;
     display: flex;
     align-items: center;
@@ -45,7 +45,7 @@
     object-fit: cover;
     border-radius: 50%;
     display: block;
-    background: #f8f9fa;
+    background: #c2c2c2;
     z-index: 1;
 }
 
@@ -56,10 +56,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 3.5rem;
-    color: var(--primary-color);
-    background: #f8f9fa;
-    z-index: 2;
+    font-size: 1.3rem;
+    color: #222; /* Warna teks */
+    background: transparent; /* Hilangkan background abu-abu */
+    z-index: 1;
+    font-weight: 500;
+    text-align: center;
 }
 
 /* Ubah Foto Button Styling */

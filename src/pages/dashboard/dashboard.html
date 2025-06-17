@@ -49,7 +49,7 @@
             <!-- Profile Header -->
             <div class="profile-header">
                 <div class="profile-photo">
-                    <img class="user-photo" id="userPhoto" src="/assets/images/guest-profile.png" alt="Profile">
+                    <img class="user-photo" id="userPhoto" src="/assets/images/guest-profile.png">
                     <div class="default-photo" style="display:none;">
                         <i class="fas fa-user"></i>
                     </div>
@@ -75,8 +75,8 @@
                 <div class="stat-card">
                     <h3>Peringkat</h3>
                     <div class="rank">
-                        <span id="userRank">-</span>
-                        <small>dari <span id="totalUsers">0</span> peserta</small>
+                        <span id="userRank">1</span>
+                        <small>dari <span id="totalUsers">100</span> peserta</small>
                     </div>
                     <a href="/dashboard/leaderboard" class="view-more">
                         Lihat Leaderboard <i class="fas fa-arrow-right"></i>
@@ -99,7 +99,7 @@
                     </a>
                     <a href="/dashboard/riwayat-tes" class="action-btn secondary">
                         <i class="fas fa-certificate"></i>
-                        Cetak Sertifikat
+                        Riwayat & Sertifikat
                     </a>
                 </div>
             </div>
@@ -109,8 +109,31 @@
     <script src="/js/utils/auth.js"></script>
     <script src="/js/pages/dashboard/dashboard.js"></script>
     <script>
+        // Ambil riwayat tes dari localStorage
         const riwayat = JSON.parse(localStorage.getItem('toeflHistory') || '[]');
-        // Render ke tabel atau card sesuai kebutuhan
+
+        // Ambil skor terakhir (Full test jika ada, jika tidak, ambil section terakhir)
+        let lastScore = '-';
+        if (riwayat.length > 0) {
+            // Cari entry Full test terakhir, jika tidak ada ambil entry pertama
+            const fullTest = riwayat.find(r => r.type === 'Full');
+            if (fullTest) {
+                lastScore = fullTest.skorITP;
+            } else {
+                // Ambil skor section terakhir
+                lastScore = riwayat[0].skor || '-';
+            }
+        }
+        document.getElementById('lastScore').textContent = lastScore;
+
+        // Peringkat (contoh: jika ada leaderboard, bisa diambil dari server)
+        // Untuk demo, tampilkan "-" jika tidak ada data
+        document.getElementById('userRank').textContent = '1';
+        document.getElementById('totalUsers').textContent = '100';
+
+        // Nama user (ambil dari localStorage atau auth)
+        const userName = localStorage.getItem('userName') || 'User';
+        document.getElementById('userName').textContent = userName;
     </script>
 </body>
 
