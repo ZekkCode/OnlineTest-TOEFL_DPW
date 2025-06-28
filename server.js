@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const port = 5500;
+const port = process.env.PORT || 5500;
 
 // Serve static files from src
 app.use(express.static(path.join(__dirname, 'src')));
@@ -73,3 +73,6 @@ app.use((req, res) => {
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
+
+// Export the app for Vercel
+module.exports = app;
