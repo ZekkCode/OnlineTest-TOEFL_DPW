@@ -3,11 +3,18 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 5500;
 
+// Routes (jika ada)
+// const userRoute = require('./src/routes/userRoute');
+
 // Serve static files from src
 app.use(express.static(path.join(__dirname, 'src')));
 
 // Main routes
 app.get('/', (req, res) => {
+    res.send('Server Online Test TOEFL Berhasil Berjalan!');
+});
+
+app.get('/home', (req, res) => {
     res.sendFile(path.join(__dirname, 'src/index.html'));
 });
 
@@ -70,9 +77,12 @@ app.use((req, res) => {
     res.status(404).sendFile(path.join(__dirname, 'src/pages/404.html'));
 });
 
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-});
+// For local development only
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(port, () => {
+        console.log(`Server running at http://localhost:${port}`);
+    });
+}
 
 // Export the app for Vercel
 module.exports = app;
