@@ -2,46 +2,45 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pilih Mode Tes TOEFL</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
   <link rel="stylesheet" href="../../css/global.css">
   <link rel="stylesheet" href="../../css/pages/test/index.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-  <!-- Tambahkan di dalam <body> setelah <div class="test-container"> atau paling atas -->
-  <a href="/dashboard" class="btn btn-back">
-      <i class="fas fa-arrow-left"></i> Kembali ke Dashboard
-  </a>
-
-  <div class="test-header">
-    <h1>Simulasi Tes TOEFL</h1>
-    <div class="desc">Latihan dan Ujian TOEFL - Pengalaman Lengkap</div>
-    <div class="meta">
-      <span><i class="fas fa-list-ol"></i> 140 Soal Total</span>
-      <span><i class="fas fa-clock"></i> 120 Menit Total</span>
-    </div>
-  </div>
-
   <div class="test-mode-container">
+    <div class="test-header">
+      <h1>Simulasi Tes TOEFL</h1>
+      <div class="desc">Latihan dan Ujian TOEFL - Pengalaman Lengkap</div>
+      <div class="meta">
+        <span><i class="fas fa-list-ol"></i> 140 Soal Total</span>
+        <span><i class="fas fa-clock"></i> 120 Menit Total</span>
+      </div>
+    </div>
+
     <div class="instructions-card">
-      <div>
-        <h3>Sebelum Memulai:</h3>
-        <ul>
-          <li>Pastikan koneksi internet stabil</li>
-          <li>Cari tempat yang tenang untuk mengerjakan</li>
-          <li>Siapkan kertas dan alat tulis</li>
-          <li>Selesaikan setiap bagian dalam batas waktu</li>
-        </ul>
-      </div>
-      <div>
-        <h3>Format Tes:</h3>
-        <ul>
-          <li>Soal pilihan ganda</li>
-          <li>Timer berjalan otomatis saat dimulai</li>
-          <li>Bisa pindah soal bebas</li>
-          <li>Submit saat selesai atau waktu habis</li>
-        </ul>
-      </div>
+      <h2>Petunjuk Tes TOEFL</h2>
+      <h3>Sebelum Memulai:</h3>
+      <ul>
+        <li>Pastikan koneksi internet stabil</li>
+        <li>Cari tempat yang tenang untuk mengerjakan</li>
+        <li>Siapkan kertas dan alat tulis</li>
+        <li>Selesaikan setiap bagian dalam batas waktu</li>
+      </ul>
+      <h3>Format Tes:</h3>
+      <ul>
+        <li>Soal pilihan ganda</li>
+        <li>Timer berjalan otomatis saat dimulai</li>
+        <li>Bisa pindah soal bebas</li>
+        <li>Submit saat selesai atau waktu habis</li>
+      </ul>
     </div>
 
     <!-- Pilihan Mode -->
@@ -83,14 +82,19 @@
         <div class="meta" id="info-reading">50 Soal | 55 Menit</div>
         <a class="start-btn" href="/pages/test/soal-reading.html">Mulai Reading</a>
       </div>
-      <div class="section-card fulltest">
-        <span class="icon"><i class="fas fa-layer-group"></i></span>
-        <h2>TOEFL Lengkap</h2>
-        <p>Kerjakan semua bagian secara berurutan untuk simulasi penuh TOEFL.</p>
-        <div class="meta" id="info-full">140 Soal | 120 Menit</div>
-        <a class="start-btn" href="/pages/test/soal-full.html">Mulai Tes Lengkap</a>
-      </div>
     </div>
+
+    <!-- Full Test Card -->
+    <div class="fulltest-card">
+      <h2>TOEFL Lengkap | Pilih Mode Dulu</h2>
+      <div class="meta" id="info-full">140 Soal | 120 Menit - Simulasi Penuh TOEFL</div>
+      <p>setelah pencet mode baru Kerjakan semua bagian secara berurutan untuk simulasi penuh TOEFL seperti ujian sesungguhnya.</p>
+      <a class="start-btn" href="/pages/test/soal-full.html">Mulai Tes Lengkap</a>
+    </div>
+
+    <a href="/dashboard" class="btn-back">
+      <i class="fas fa-arrow-left"></i> Kembali ke Dashboard
+    </a>
   </div>
   <script src="js/index.js"></script>
   <script>

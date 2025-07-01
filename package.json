@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "build": "echo 'Build complete'"
+    "build": "echo 'Build complete'",
+    "add-favicon": "node add-favicon-to-all.js",
+    "check-favicon": "node check-favicon.js"
   },
   "repository": {
     "type": "git",

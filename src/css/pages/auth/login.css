@@ -174,25 +174,312 @@ footer > p {
 
 }
 
-@media (max-width: 600px) {
+/* ========================================
+   RESPONSIVE MEDIA QUERIES - AUTH PAGES
+======================================== */
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media (max-width: 1199.98px) {
+    .header {
+        padding: 1rem 2.5vw;
+    }
+    
     .container {
-        padding: 2em 1.5em;
-        max-width: 95vw;
-        margin-top: 40px;
+        max-width: 450px;
+        padding: 2.5rem 2rem;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 991.98px) {
+    .header {
+        padding: 1rem 2vw;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .brand {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+    
+    .container {
+        max-width: 90%;
+        padding: 2rem 1.5rem;
+        margin-top: 2rem;
     }
     
     h1 {
-        font-size: 1.5em;
+        font-size: 1.8rem;
     }
     
     input[type="text"], 
     input[type="password"] {
-        font-size: 1em;
-        padding: 0.8em 1em;
+        padding: 1rem;
+        font-size: 1rem;
     }
     
     button[type="submit"] {
-        font-size: 1.1em;
+        padding: 1rem;
+        font-size: 1.1rem;
+    }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 767.98px) {
+    .header {
+        padding: 0.8rem 1.5vw;
+    }
+    
+    .brand {
+        font-size: 1.1rem;
+    }
+    
+    .header nav a {
+        padding: 0.5rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .container {
+        max-width: 95%;
+        padding: 1.8rem 1.2rem;
+        margin-top: 1.5rem;
+        border-radius: 12px;
+    }
+    
+    h1 {
+        font-size: 1.6rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .log {
+        padding: 1.5rem 1rem;
+    }
+    
+    label {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    input[type="text"], 
+    input[type="password"] {
+        padding: 0.9rem;
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+    
+    button[type="submit"] {
+        padding: 0.9rem;
+        font-size: 1rem;
+    }
+    
+    .log p {
+        font-size: 0.9rem;
+        margin-top: 1rem;
+    }
+    
+    footer {
+        padding: 1.5rem 1rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+    .header {
+        padding: 0.8rem 1vw;
+        text-align: center;
+    }
+    
+    .brand {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .header nav {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .header nav a {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+        min-width: 80px;
+    }
+    
+    .container {
+        padding: 1.5rem 1rem;
+        margin-top: 1rem;
+        border-radius: 10px;
+        min-height: auto;
+    }
+    
+    h1 {
+        font-size: 1.4rem;
+        margin-bottom: 1.2rem;
+    }
+    
+    .log {
+        padding: 1.2rem 0.8rem;
+    }
+    
+    label {
+        font-size: 0.85rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    input[type="text"], 
+    input[type="password"] {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+        margin-bottom: 0.8rem;
+        border-radius: 6px;
+    }
+    
+    button[type="submit"] {
+        padding: 0.8rem;
+        font-size: 0.95rem;
+        border-radius: 6px;
+    }
+    
+    .log p {
+        font-size: 0.85rem;
+        margin-top: 0.8rem;
+    }
+    
+    .log a {
+        font-size: 0.85rem;
+    }
+    
+    footer {
+        padding: 1.2rem 0.75rem;
+        font-size: 0.8rem;
+    }
+    
+    footer p {
+        margin-bottom: 0.3rem;
+    }
+}
+
+/* iPad specific (768px x 1024px) */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .header {
+        padding: 1.2rem 3vw;
+    }
+    
+    .container {
+        max-width: 500px;
+        padding: 3rem 2.5rem;
+        margin-top: 3rem;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    input[type="text"], 
+    input[type="password"] {
+        padding: 1.2rem;
+        font-size: 1.1rem;
+        min-height: 44px; /* iOS touch target minimum */
+    }
+    
+    button[type="submit"] {
+        padding: 1.2rem;
+        font-size: 1.2rem;
+        min-height: 44px;
+    }
+    
+    .log {
+        padding: 2rem;
+    }
+}
+
+/* Landscape orientation adjustments */
+@media (orientation: landscape) and (max-height: 500px) {
+    .container {
+        margin-top: 1rem;
+        padding: 1.5rem;
+    }
+    
+    h1 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .log {
+        padding: 1rem;
+    }
+    
+    input[type="text"], 
+    input[type="password"] {
+        padding: 0.7rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    button[type="submit"] {
+        padding: 0.7rem;
+    }
+    
+    footer {
+        padding: 1rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Touch devices - better touch targets */
+@media (hover: none) and (pointer: coarse) {
+    input[type="text"], 
+    input[type="password"] {
+        min-height: 48px;
+        padding: 1rem;
+    }
+    
+    button[type="submit"] {
+        min-height: 48px;
+        padding: 1rem 2rem;
+    }
+    
+    .header nav a {
+        min-height: 44px;
+        min-width: 44px;
+        padding: 0.8rem 1.5rem;
+    }
+    
+    .log a {
+        min-height: 44px;
+        padding: 0.5rem;
+        display: inline-block;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    input[type="text"], 
+    input[type="password"] {
+        border: 2px solid #000;
+    }
+    
+    button[type="submit"] {
+        border: 2px solid #000;
+    }
+    
+    .container {
+        border: 2px solid #000;
+    }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .container {
+        animation: none;
+    }
+    
+    input[type="text"]:focus, 
+    input[type="password"]:focus,
+    button[type="submit"]:hover,
+    .header nav a:hover {
+        transition: none;
     }
 }
 

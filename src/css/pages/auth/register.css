@@ -184,3 +184,300 @@ footer > p {
         font-size: 1.1rem;
     }
 }
+
+/* =========================== */
+/* ENHANCED RESPONSIVE MEDIA QUERIES */
+/* =========================== */
+
+/* Mobile Phones (320px - 480px) */
+@media screen and (max-width: 480px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1rem;
+        text-align: center;
+    }
+
+    .brand {
+        font-size: 1.2rem;
+    }
+
+    .header nav a {
+        padding: 0.6em 1.2em;
+        font-size: 0.9rem;
+    }
+
+    .container {
+        padding: 2rem 1rem;
+        max-width: 95%;
+        margin: 20px auto 1rem auto;
+        border-radius: 16px;
+    }
+
+    h1 {
+        font-size: 1.3rem;
+        margin-bottom: 1.2rem;
+    }
+
+    input[type="text"], 
+    input[type="password"] {
+        padding: 0.8rem 1rem;
+        font-size: 1rem;
+        border-radius: 10px;
+    }
+
+    button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        border-radius: 10px;
+        width: 100%;
+    }
+
+    .register-link {
+        font-size: 0.9rem;
+        margin-top: 1rem;
+    }
+
+    .register-link a {
+        display: inline-block;
+        margin-top: 0.5rem;
+    }
+}
+
+/* Large Mobile / Small Tablet (481px - 768px) */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .header {
+        padding: 1.2rem 2rem;
+    }
+
+    .brand {
+        font-size: 1.3rem;
+    }
+
+    .container {
+        max-width: 90%;
+        padding: 2.5rem 2rem;
+        margin: 40px auto 2rem auto;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+    }
+
+    input[type="text"], 
+    input[type="password"] {
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+    }
+
+    button {
+        padding: 0.8rem 2rem;
+        font-size: 1.05rem;
+    }
+}
+
+/* iPad Portrait & Large Tablets (769px - 1024px) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .header {
+        padding: 1.2rem 3rem;
+    }
+
+    .brand {
+        font-size: 1.4rem;
+    }
+
+    .container {
+        max-width: 600px;
+        padding: 3rem 3rem;
+        margin: 60px auto 2rem auto;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    input[type="text"], 
+    input[type="password"] {
+        padding: 0.8rem 1.2rem;
+        font-size: 1rem;
+    }
+
+    button {
+        padding: 0.9rem 2.5rem;
+        font-size: 1.1rem;
+    }
+}
+
+/* iPad Landscape & Desktop (1025px+) */
+@media screen and (min-width: 1025px) {
+    .container {
+        max-width: 500px;
+    }
+
+    .header {
+        padding: 1.2rem 3vw;
+    }
+}
+
+/* iPad Specific Adjustments */
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .container {
+        padding: 3rem 3rem;
+        border-radius: 20px;
+    }
+
+    button {
+        min-height: 44px;
+        touch-action: manipulation;
+    }
+
+    input[type="text"], 
+    input[type="password"] {
+        min-height: 44px;
+        touch-action: manipulation;
+    }
+
+    .header nav a {
+        min-height: 44px;
+        touch-action: manipulation;
+    }
+}
+
+/* Landscape Orientation for Mobile */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .container {
+        margin: 10px auto 1rem auto;
+        padding: 1.5rem 2rem;
+    }
+
+    h1 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .log {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    input[type="text"], 
+    input[type="password"] {
+        padding: 0.6rem 0.8rem;
+    }
+
+    button {
+        padding: 0.6rem 1.5rem;
+    }
+
+    .header {
+        padding: 0.8rem 2rem;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    button,
+    input[type="text"],
+    input[type="password"],
+    .header nav a {
+        min-height: 44px;
+        min-width: 44px;
+        touch-action: manipulation;
+    }
+
+    button:active {
+        transform: scale(0.98);
+    }
+
+    .header nav a:active {
+        transform: scale(0.95);
+    }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .container {
+        border: 0.5px solid rgba(0,0,0,0.1);
+    }
+    
+    h1 {
+        text-rendering: optimizeLegibility;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    body, html {
+        background: #1a1a1a;
+    }
+
+    .header {
+        background: #2a2a2a;
+        color: #ffffff;
+    }
+
+    .container {
+        background: #2a2a2a;
+        color: #ffffff;
+    }
+
+    input[type="text"], 
+    input[type="password"] {
+        background: #333333;
+        border-color: #555555;
+        color: #ffffff;
+    }
+
+    input[type="text"]:focus, 
+    input[type="password"]:focus {
+        border-color: #257cff;
+        background: #404040;
+    }
+
+    label {
+        color: #ffffff;
+    }
+
+    .register-link {
+        color: #cccccc;
+    }
+
+    .register-link a {
+        color: #257cff;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    button,
+    .header nav a {
+        transition: none;
+    }
+
+    button:active,
+    .header nav a:active {
+        transform: none;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    button {
+        border: 2px solid #000000;
+    }
+
+    input[type="text"], 
+    input[type="password"] {
+        border: 2px solid #000000;
+    }
+
+    .container {
+        border: 2px solid #000000;
+    }
+
+    h1 {
+        font-weight: 700;
+    }
+}

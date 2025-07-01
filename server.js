@@ -9,9 +9,15 @@ const port = process.env.PORT || 5500;
 // Serve static files from src
 app.use(express.static(path.join(__dirname, 'src')));
 
+// Serve favicon files from root directory (for standard favicon access)
+app.use(express.static(path.join(__dirname)));
+
+// Serve favicon files from toelfavico directory (backup)
+app.use('/toelfavico', express.static(path.join(__dirname, 'toelfavico')));
+
 // Main routes
 app.get('/', (req, res) => {
-    res.send('Server Online Test TOEFL Berhasil Berjalan!');
+    res.sendFile(path.join(__dirname, 'src/index.html'));
 });
 
 app.get('/home', (req, res) => {
@@ -44,6 +50,11 @@ app.get('/dashboard/riwayat-tes', (req, res) => {
 app.get('/test', (req, res) => {
     res.sendFile(path.join(__dirname, 'src/pages/test/index.html'));
 });
+
+app.get('/test/mulai', (req, res) => {
+    res.sendFile(path.join(__dirname, 'src/pages/test/index.html'));
+});
+
 app.get('/test/soal', (req, res) => {
     res.sendFile(path.join(__dirname, 'src/pages/test/soal.html'));
 });
@@ -56,11 +67,23 @@ app.get('/test/soal-structure', (req, res) => {
 app.get('/test/soal-reading', (req, res) => {
     res.sendFile(path.join(__dirname, 'src/pages/test/soal-reading.html'));
 });
+app.get('/test/soal-full', (req, res) => {
+    res.sendFile(path.join(__dirname, 'src/pages/test/soal-full.html'));
+});
 app.get('/test/hasil', (req, res) => {
     res.sendFile(path.join(__dirname, 'src/pages/test/hasil.html'));
 });
 app.get('/test/hasil-listening', (req, res) => {
     res.sendFile(path.join(__dirname, 'src/pages/test/hasil-listening.html'));
+});
+app.get('/test/hasil-structure', (req, res) => {
+    res.sendFile(path.join(__dirname, 'src/pages/test/hasil-structure.html'));
+});
+app.get('/test/hasil-reading', (req, res) => {
+    res.sendFile(path.join(__dirname, 'src/pages/test/hasil-reading.html'));
+});
+app.get('/test/hasil-full', (req, res) => {
+    res.sendFile(path.join(__dirname, 'src/pages/test/hasil-full.html'));
 });
 
 // API endpoints

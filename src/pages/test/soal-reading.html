@@ -1,35 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <title>Listening Comprehension</title>
-    <link rel="stylesheet" href="../../css/global.css">
-    <link rel="stylesheet" href="../../css/pages/test/soal.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
-    <a href="/dashboard" class="btn btn-back" style="margin:1.5rem 2rem 0 2rem;">
-        <i class="fas fa-arrow-left"></i> Kembali ke Dashboard
-    </a>
-    <div class="test-container">
-        <aside class="question-navigator">
-            <div class="navigator-grid"></div>
-            <button class="submit-btn">Submit Test</button>
-        </aside>
-        <section class="question-section">
-            <div class="question-header">
-                <span class="question-number"></span>
-                <span class="timer">40:00</span>
-            </div>
-            <h2 class="question-title"></h2>
-            <div class="options"></div>
-            <div class="navigation-buttons">
-                <button class="prev-btn">Previous</button>
-                <button class="next-btn">Next</button>
-            </div>
-        </section>
-    </div>
-    <script>
+<script>
 document.addEventListener('DOMContentLoaded', async function() {
     // Ambil soal reading
     const res = await fetch('../../data/reading.json');
@@ -157,6 +126,8 @@ document.addEventListener('DOMContentLoaded', async function() {
         document.querySelector('.test-container').innerHTML = `
             <div class="pembahasan-container">
                 <h2 class="pembahasan-title">Pembahasan Reading</h2>
+                
+                <!-- Desktop Table View -->
                 <div class="table-responsive">
                     <table class="table-pembahasan">
                         <thead>
@@ -189,97 +160,44 @@ document.addEventListener('DOMContentLoaded', async function() {
                         </tbody>
                     </table>
                 </div>
+                
+                <!-- Mobile Card View -->
+                <div class="pembahasan-mobile">
+                    ${questions.map((q, i) => {
+                        const userAns = answers[i];
+                        const benar = userAns === q.correct;
+                        const statusClass = userAns === null ? 'belum' : benar ? 'benar' : 'salah';
+                        const statusText = userAns === null ? 'Belum dijawab' : benar ? 'Benar' : 'Salah';
+                        return `
+                            <div class="pembahasan-card">
+                                <div class="card-header">
+                                    <span class="question-number">${i + 1}</span>
+                                    <span class="status-badge ${statusClass}">${statusText}</span>
+                                </div>
+                                <div class="question-text">${q.question}</div>
+                                <div class="answer-section">
+                                    <span class="answer-label">Jawaban Anda:</span>
+                                    <div class="answer-value ${statusClass}">
+                                        ${userAns !== null ? q.options[userAns] : '<i>Belum dijawab</i>'}
+                                    </div>
+                                </div>
+                                <div class="answer-section">
+                                    <span class="answer-label">Kunci Jawaban:</span>
+                                    <div class="answer-value benar">${q.options[q.correct]}</div>
+                                </div>
+                                ${q.explanation && q.explanation !== '-' ? `
+                                    <div class="explanation">
+                                        <strong>Pembahasan:</strong><br>
+                                        ${q.explanation}
+                                    </div>
+                                ` : ''}
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+                
                 <a href="/dashboard" class="btn-dashboard">Kembali ke Dashboard</a>
             </div>
-            <style>
-            .pembahasan-container {
-                max-width: 980px;
-                margin: 2.5rem auto;
-                background: #fff;
-                border-radius: 18px;
-                padding: 2.5rem 1.5rem 2rem 1.5rem;
-                box-shadow: 0 4px 24px #e3eafc;
-                animation: fadeIn 0.7s;
-            }
-            .pembahasan-title {
-                margin-bottom: 2rem;
-                font-size: 2rem;
-                color: #2d3a4a;
-                letter-spacing: 0.5px;
-                text-align: center;
-            }
-            .table-responsive { overflow-x: auto; }
-            .table-pembahasan {
-                border-collapse: separate;
-                border-spacing: 0;
-                width: 100%;
-                font-size: 1.07em;
-                background: #fafdff;
-                box-shadow: 0 1px 8px #f0f4fa;
-            }
-            .table-pembahasan th, .table-pembahasan td {
-                border: 1px solid #e0e0e0;
-                padding: 13px 10px;
-                vertical-align: top;
-            }
-            .table-pembahasan th {
-                background: #e3eafc;
-                position: sticky;
-                top: 0;
-                z-index: 2;
-                font-weight: 600;
-                color: #223;
-                text-align: center;
-            }
-            .table-pembahasan tr:nth-child(even) { background: #f6faff; }
-            .table-pembahasan tr:hover { background: #eaf2fb; transition: background 0.2s; }
-            .benar {
-                color: #219150;
-                font-weight: 600;
-                background: #e7fbe9;
-                border-radius: 6px;
-                padding: 2px 8px;
-            }
-            .salah {
-                color: #d32f2f;
-                font-weight: 600;
-                background: #ffeaea;
-                border-radius: 6px;
-                padding: 2px 8px;
-            }
-            .belum {
-                color: #888;
-                font-style: italic;
-            }
-            .btn-dashboard {
-                margin-top: 2.2rem;
-                display: inline-block;
-                background: #2471f3;
-                color: #fff;
-                padding: 0.8em 2.2em;
-                border: none;
-                border-radius: 8px;
-                font-size: 1.1em;
-                font-weight: 500;
-                box-shadow: 0 2px 8px #e3eafc;
-                transition: background 0.2s, box-shadow 0.2s;
-                text-decoration: none;
-                cursor: pointer;
-            }
-            .btn-dashboard:hover {
-                background: #1746a2;
-                box-shadow: 0 4px 16px #dbeafe;
-            }
-            @media (max-width: 700px) {
-                .pembahasan-container { padding: 1rem 0.2rem; }
-                .table-pembahasan th, .table-pembahasan td { font-size: 0.97em; padding: 7px 4px; }
-                .pembahasan-title { font-size: 1.2rem; }
-            }
-            @keyframes fadeIn {
-                from { opacity: 0; transform: translateY(30px);}
-                to { opacity: 1; transform: none;}
-            }
-            </style>
         `;
         // Reset jawaban setelah pembahasan
         localStorage.removeItem('readingAnswers');
@@ -303,5 +221,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     renderNavigator();
 });
 </script>
+
 </body>
 </html>

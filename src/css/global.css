@@ -6,22 +6,25 @@
 }
 
 :root {
-    --primary-color: #4fc3f7;      /* biru muda */
-    --secondary-color: #ffe082;    /* kuning muda */
-    --accent-color: #fffde7;       /* kuning muda sangat terang */
+    --primary-color: #2471f3;      /* biru primary seperti toel.my.id */
+    --secondary-color: #4fc3f7;    /* biru muda secondary */
+    --accent-color: #f8fbff;       /* putih kebiruan sangat terang */
     --text-color: #222;            /* tetap gelap untuk kontras */
-    --light-gray: #f5faff;         /* putih kebiruan */
-    --border-color: #b3e5fc;       /* biru muda soft */
-    --success-color: #09ff00;      /* biru muda */
-    --error-color: #ff0000;        /* kuning muda */
+    --light-gray: #f8f9fa;         /* abu-abu terang */
+    --border-color: #e3f2fd;       /* biru muda soft */
+    --success-color: #28a745;      /* hijau success */
+    --error-color: #dc3545;        /* merah error */
     --white: #ffffff;
+    --sidebar-bg: linear-gradient(135deg, #2471f3 0%, #4fc3f7 100%); /* gradient biru */
+    --card-shadow: 0 4px 20px rgba(36, 113, 243, 0.08);
 }
 
 body {
-    background-color: #f8f9fa;
+    background: var(--light-gray);
     color: var(--text-color);
     line-height: 1.6;
     min-height: 100vh;
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
 }
 
 .container {
@@ -45,11 +48,125 @@ body {
 .btn-primary {
     background: var(--primary-color);
     color: var(--white);
-    box-shadow: 0 4px 6px rgba(74, 85, 162, 0.2);
+    box-shadow: var(--card-shadow);
 }
 
 .btn-primary:hover {
-    background: var(--secondary-color);
+    background: #1a5cc8;
     transform: translateY(-2px);
-    box-shadow: 0 6px 8px rgba(74, 85, 162, 0.3);
+    box-shadow: 0 6px 24px rgba(36, 113, 243, 0.15);
+}
+
+/* ========================================
+   RESPONSIVE MEDIA QUERIES
+======================================== */
+
+/* Extra Large devices (large laptops and desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1400px;
+        padding: 0 3rem;
+    }
+    
+    .btn {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media (max-width: 1199.98px) {
+    .container {
+        max-width: 960px;
+        padding: 0 2rem;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 991.98px) {
+    .container {
+        max-width: 720px;
+        padding: 0 1.5rem;
+    }
+    
+    .btn {
+        padding: 0.7rem 1.3rem;
+        font-size: 0.95rem;
+    }
+    
+    body {
+        font-size: 0.95rem;
+    }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 767.98px) {
+    .container {
+        max-width: 540px;
+        padding: 0 1rem;
+    }
+    
+    .btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+        width: 100%;
+        text-align: center;
+    }
+    
+    body {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+    .container {
+        padding: 0 0.75rem;
+    }
+    
+    .btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85rem;
+        border-radius: 6px;
+    }
+    
+    body {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+}
+
+/* iPad specific (768px x 1024px) */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .container {
+        max-width: 90%;
+        padding: 0 2rem;
+    }
+    
+    .btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        min-height: 44px; /* iOS touch target minimum */
+    }
+}
+
+/* iPad Pro (1024px x 1366px) */
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) {
+    .container {
+        max-width: 95%;
+        padding: 0 2.5rem;
+    }
+}
+
+/* Touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .btn {
+        min-height: 48px; /* Better touch targets */
+        min-width: 48px;
+    }
+    
+    .btn:hover {
+        transform: none; /* Disable hover effects on touch devices */
+    }
 }
