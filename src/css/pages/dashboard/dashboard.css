@@ -128,10 +128,10 @@ body {
 
 .logout-btn {
     margin-top: 1rem;
-    background: #ff4757;
+    background: #dc3545;
     color: #fff;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(255,71,87,0.15);
+    box-shadow: 0 2px 10px rgba(220,53,69,0.25);
     font-weight: 600;
     padding: 0.8rem;
     border: none;
@@ -144,7 +144,9 @@ body {
 }
 
 .logout-btn:hover {
-    background: #ff6b81;
+    background: #c82333;
+    box-shadow: 0 4px 15px rgba(220,53,69,0.35);
+    transform: translateY(-2px);
 }
 
 /* Main Content */

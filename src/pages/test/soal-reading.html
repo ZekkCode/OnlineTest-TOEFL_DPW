@@ -1,129 +1,198 @@
-<script>
-document.addEventListener('DOMContentLoaded', async function() {
-    // Ambil soal reading
-    const res = await fetch('/data/reading.json');
-    const data = await res.json();
-    const questions = data.questions;
-    const timeLimit = data.timeLimit || 3300; // detik
-    const mode = localStorage.getItem('testMode') || 'ujian'; // 'ujian' atau 'latihan'
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reading Comprehension</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="../../css/global.css" />
+    <link rel="stylesheet" href="../../css/pages/test/soal.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <a
+      href="/dashboard"
+      class="btn btn-back"
+      style="
+        margin: 1.5rem 2rem 0 2rem;
+        background: linear-gradient(135deg, #6c757d, #5a6268);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3);
+        transition: all 0.3s ease;
+      "
+      onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(108, 117, 125, 0.4)'"
+      onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(108, 117, 125, 0.3)'"
+    >
+      <i class="fas fa-arrow-left"></i> Kembali ke Dashboard
+    </a>
+    <div class="test-container">
+      <aside class="question-navigator">
+        <div class="navigator-grid"></div>
+        <button class="submit-btn">Submit Test</button>
+      </aside>
+      <section class="question-section">
+        <div class="question-header">
+          <span class="question-number"></span>
+          <span class="timer">55:00</span>
+        </div>
+        <h2 class="question-title"></h2>
+        <div class="options"></div>
+        <div class="navigation-buttons">
+          <button class="prev-btn">Previous</button>
+          <button class="next-btn">Next</button>
+        </div>
+      </section>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", async function () {
+        // Ambil soal reading
+        const res = await fetch("/data/reading.json");
+        const data = await res.json();
+        const questions = data.questions;
+        const timeLimit = data.timeLimit || 3300; // detik
+        const mode = localStorage.getItem("testMode") || "ujian"; // 'ujian' atau 'latihan'
 
-    let current = 0;
-    let answers = JSON.parse(localStorage.getItem('readingAnswers') || '[]');
-    if (answers.length !== questions.length) answers = Array(questions.length).fill(null);
+        let current = 0;
+        let answers = JSON.parse(
+          localStorage.getItem("readingAnswers") || "[]"
+        );
+        if (answers.length !== questions.length)
+          answers = Array(questions.length).fill(null);
 
-    // Timer
-    let timer = timeLimit;
-    const timerSpan = document.querySelector('.timer');
-    function updateTimer() {
-        const m = String(Math.floor(timer / 60)).padStart(2, '0');
-        const s = String(timer % 60).padStart(2, '0');
-        timerSpan.textContent = `${m}:${s}`;
-        if (timer <= 0) {
+        // Timer
+        let timer = timeLimit;
+        const timerSpan = document.querySelector(".timer");
+        function updateTimer() {
+          const m = String(Math.floor(timer / 60)).padStart(2, "0");
+          const s = String(timer % 60).padStart(2, "0");
+          timerSpan.textContent = `${m}:${s}`;
+          if (timer <= 0) {
             submitTest();
-        } else {
+          } else {
             timer--;
             setTimeout(updateTimer, 1000);
+          }
         }
-    }
-    updateTimer(); // Timer selalu aktif di semua mode
+        updateTimer(); // Timer selalu aktif di semua mode
 
-    function renderQuestion(idx) {
-        const q = questions[idx];
-        document.querySelector('.question-title').textContent = q.question;
-        // Render opsi
-        const opts = document.querySelector('.options');
-        opts.innerHTML = '';
-        q.options.forEach((opt, i) => {
-            const div = document.createElement('div');
-            div.className = 'option' + (answers[idx] === i ? ' selected' : '');
+        function renderQuestion(idx) {
+          const q = questions[idx];
+          document.querySelector(".question-title").textContent = q.question;
+          // Render opsi
+          const opts = document.querySelector(".options");
+          opts.innerHTML = "";
+          q.options.forEach((opt, i) => {
+            const div = document.createElement("div");
+            div.className = "option" + (answers[idx] === i ? " selected" : "");
             div.textContent = opt;
             div.onclick = () => {
-                answers[idx] = i;
-                localStorage.setItem('readingAnswers', JSON.stringify(answers));
-                renderQuestion(idx);
-                renderNavigator();
-                // Feedback langsung (mode latihan)
-                if (mode === 'latihan') {
-                    showFeedback(q, i);
-                }
+              answers[idx] = i;
+              localStorage.setItem("readingAnswers", JSON.stringify(answers));
+              renderQuestion(idx);
+              renderNavigator();
+              // Feedback langsung (mode latihan)
+              if (mode === "latihan") {
+                showFeedback(q, i);
+              }
             };
             opts.appendChild(div);
-        });
-        document.querySelector('.question-number').textContent = `Question ${idx + 1} of ${questions.length}`;
-        document.querySelector('.prev-btn').disabled = idx === 0;
-        document.querySelector('.next-btn').disabled = idx === questions.length - 1;
-        // Feedback area
-        let feedback = document.getElementById('feedback');
-        if (!feedback) {
-            feedback = document.createElement('div');
-            feedback.id = 'feedback';
-            feedback.style.marginTop = '1rem';
-            feedback.style.fontWeight = 'bold';
-            document.querySelector('.question-section').appendChild(feedback);
+          });
+          document.querySelector(".question-number").textContent = `Question ${
+            idx + 1
+          } of ${questions.length}`;
+          document.querySelector(".prev-btn").disabled = idx === 0;
+          document.querySelector(".next-btn").disabled =
+            idx === questions.length - 1;
+          // Feedback area
+          let feedback = document.getElementById("feedback");
+          if (!feedback) {
+            feedback = document.createElement("div");
+            feedback.id = "feedback";
+            feedback.style.marginTop = "1rem";
+            feedback.style.fontWeight = "bold";
+            document.querySelector(".question-section").appendChild(feedback);
+          }
+          feedback.innerHTML = "";
         }
-        feedback.innerHTML = '';
-    }
 
-    function showFeedback(q, chosenIdx) {
-        const feedback = document.getElementById('feedback');
-        if (chosenIdx === q.correct) {
+        function showFeedback(q, chosenIdx) {
+          const feedback = document.getElementById("feedback");
+          if (chosenIdx === q.correct) {
             feedback.innerHTML = '<span style="color:green">Benar!</span>';
-        } else {
-            feedback.innerHTML = `<span style="color:red">Salah.</span> Kunci: <b>${q.options[q.correct]}</b>`;
+          } else {
+            feedback.innerHTML = `<span style="color:red">Salah.</span> Kunci: <b>${
+              q.options[q.correct]
+            }</b>`;
+          }
         }
-    }
 
-    function renderNavigator() {
-        const nav = document.querySelector('.navigator-grid');
-        nav.innerHTML = '';
-        questions.forEach((_, i) => {
-            const btn = document.createElement('button');
+        function renderNavigator() {
+          const nav = document.querySelector(".navigator-grid");
+          nav.innerHTML = "";
+          questions.forEach((_, i) => {
+            const btn = document.createElement("button");
             btn.textContent = i + 1;
-            btn.className = (i === current ? 'current ' : '') +
-                (answers[i] !== null ? 'answered' : 'unanswered');
+            btn.className =
+              (i === current ? "current " : "") +
+              (answers[i] !== null ? "answered" : "unanswered");
             btn.onclick = () => {
-                current = i;
-                renderQuestion(current);
-                renderNavigator();
+              current = i;
+              renderQuestion(current);
+              renderNavigator();
             };
             nav.appendChild(btn);
-        });
-    }
+          });
+        }
 
-    document.querySelector('.prev-btn').onclick = () => {
-        if (current > 0) {
+        document.querySelector(".prev-btn").onclick = () => {
+          if (current > 0) {
             current--;
             renderQuestion(current);
             renderNavigator();
-        }
-    };
-    document.querySelector('.next-btn').onclick = () => {
-        if (current < questions.length - 1) {
+          }
+        };
+        document.querySelector(".next-btn").onclick = () => {
+          if (current < questions.length - 1) {
             current++;
             renderQuestion(current);
             renderNavigator();
-        }
-    };
-    document.querySelector('.submit-btn').onclick = submitTest;
+          }
+        };
+        document.querySelector(".submit-btn").onclick = submitTest;
 
-    function submitTest() {
-        if (mode === 'latihan') {
+        function submitTest() {
+          if (mode === "latihan") {
             showPembahasan();
             return;
-        }
-        // Hitung skor
-        let score = 0;
-        questions.forEach((q, i) => {
+          }
+          // Hitung skor
+          let score = 0;
+          questions.forEach((q, i) => {
             if (answers[i] === q.correct) score++;
-        });
-        localStorage.setItem('readingScore', score);
-        localStorage.setItem('readingTotal', questions.length);
-        localStorage.removeItem('readingAnswers');
-        window.location.href = '/test/hasil-reading';
-    }
+          });
+          localStorage.setItem("readingScore", score);
+          localStorage.setItem("readingTotal", questions.length);
+          localStorage.removeItem("readingAnswers");
+          window.location.href = "/test/hasil-reading";
+        }
 
-    function showPembahasan() {
-        document.querySelector('.test-container').innerHTML = `
+        function showPembahasan() {
+          document.querySelector(".test-container").innerHTML = `
             <div class="pembahasan-container">
                 <h2 class="pembahasan-title">Pembahasan Reading</h2>
                 
@@ -140,87 +209,149 @@ document.addEventListener('DOMContentLoaded', async function() {
                             </tr>
                         </thead>
                         <tbody>
-                            ${questions.map((q, i) => {
+                            ${questions
+                              .map((q, i) => {
                                 const userAns = answers[i];
                                 const benar = userAns === q.correct;
                                 return `
                                     <tr>
-                                        <td>${i+1}</td>
-                                        <td style="text-align:left">${q.question}</td>
+                                        <td>${i + 1}</td>
+                                        <td style="text-align:left">${
+                                          q.question
+                                        }</td>
                                         <td style="text-align:left">
-                                            <span class="${userAns === null ? 'belum' : benar ? 'benar' : 'salah'}">
-                                                ${userAns !== null ? q.options[userAns] : '<i>Belum dijawab</i>'}
+                                            <span class="${
+                                              userAns === null
+                                                ? "belum"
+                                                : benar
+                                                ? "benar"
+                                                : "salah"
+                                            }">
+                                                ${
+                                                  userAns !== null
+                                                    ? q.options[userAns]
+                                                    : "<i>Belum dijawab</i>"
+                                                }
                                             </span>
                                         </td>
-                                        <td style="text-align:left"><span class="benar">${q.options[q.correct]}</span></td>
-                                        <td style="text-align:left">${q.explanation || '-'}</td>
+                                        <td style="text-align:left"><span class="benar">${
+                                          q.options[q.correct]
+                                        }</span></td>
+                                        <td style="text-align:left">${
+                                          q.explanation || "-"
+                                        }</td>
                                     </tr>
                                 `;
-                            }).join('')}
+                              })
+                              .join("")}
                         </tbody>
                     </table>
                 </div>
                 
                 <!-- Mobile Card View -->
                 <div class="pembahasan-mobile">
-                    ${questions.map((q, i) => {
+                    ${questions
+                      .map((q, i) => {
                         const userAns = answers[i];
                         const benar = userAns === q.correct;
-                        const statusClass = userAns === null ? 'belum' : benar ? 'benar' : 'salah';
-                        const statusText = userAns === null ? 'Belum dijawab' : benar ? 'Benar' : 'Salah';
+                        const statusClass =
+                          userAns === null
+                            ? "belum"
+                            : benar
+                            ? "benar"
+                            : "salah";
+                        const statusText =
+                          userAns === null
+                            ? "Belum dijawab"
+                            : benar
+                            ? "Benar"
+                            : "Salah";
                         return `
                             <div class="pembahasan-card">
                                 <div class="card-header">
-                                    <span class="question-number">${i + 1}</span>
+                                    <span class="question-number">${
+                                      i + 1
+                                    }</span>
                                     <span class="status-badge ${statusClass}">${statusText}</span>
                                 </div>
                                 <div class="question-text">${q.question}</div>
                                 <div class="answer-section">
                                     <span class="answer-label">Jawaban Anda:</span>
                                     <div class="answer-value ${statusClass}">
-                                        ${userAns !== null ? q.options[userAns] : '<i>Belum dijawab</i>'}
+                                        ${
+                                          userAns !== null
+                                            ? q.options[userAns]
+                                            : "<i>Belum dijawab</i>"
+                                        }
                                     </div>
                                 </div>
                                 <div class="answer-section">
                                     <span class="answer-label">Kunci Jawaban:</span>
-                                    <div class="answer-value benar">${q.options[q.correct]}</div>
+                                    <div class="answer-value benar">${
+                                      q.options[q.correct]
+                                    }</div>
                                 </div>
-                                ${q.explanation && q.explanation !== '-' ? `
+                                ${
+                                  q.explanation && q.explanation !== "-"
+                                    ? `
                                     <div class="explanation">
                                         <strong>Pembahasan:</strong><br>
                                         ${q.explanation}
                                     </div>
-                                ` : ''}
+                                `
+                                    : ""
+                                }
                             </div>
                         `;
-                    }).join('')}
+                      })
+                      .join("")}
                 </div>
                 
-                <a href="/dashboard" class="btn-dashboard">Kembali ke Dashboard</a>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="/dashboard" class="btn btn-primary" style="
+                        background: linear-gradient(135deg, #2471f3, #1a5bc7);
+                        color: white;
+                        padding: 12px 30px;
+                        border-radius: 8px;
+                        text-decoration: none;
+                        font-weight: 600;
+                        font-size: 16px;
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        box-shadow: 0 4px 12px rgba(36, 113, 243, 0.3);
+                        transition: all 0.3s ease;
+                        border: none;
+                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(36, 113, 243, 0.4)'" 
+                       onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(36, 113, 243, 0.3)'">
+                        <i class="fas fa-arrow-left"></i>
+                        Kembali ke Dashboard
+                    </a>
+                </div>
             </div>
         `;
-        // Reset jawaban setelah pembahasan
-        localStorage.removeItem('readingAnswers');
-    }
+          // Reset jawaban setelah pembahasan
+          localStorage.removeItem("readingAnswers");
+        }
 
-    // Tampilkan mode aktif di pojok kanan atas
-    const header = document.querySelector('.question-header');
-    if (header) {
-        const modeLabel = document.createElement('span');
-        modeLabel.textContent = mode === 'ujian' ? 'Mode Ujian' : 'Mode Latihan';
-        modeLabel.style.background = mode === 'ujian' ? '#4a55a2' : '#2ecc71';
-        modeLabel.style.color = '#fff';
-        modeLabel.style.padding = '0.3rem 1rem';
-        modeLabel.style.borderRadius = '20px';
-        modeLabel.style.marginLeft = '1rem';
-        header.appendChild(modeLabel);
-    }
+        // Tampilkan mode aktif di pojok kanan atas
+        const header = document.querySelector(".question-header");
+        if (header) {
+          const modeLabel = document.createElement("span");
+          modeLabel.textContent =
+            mode === "ujian" ? "Mode Ujian" : "Mode Latihan";
+          modeLabel.style.background = mode === "ujian" ? "#4a55a2" : "#2ecc71";
+          modeLabel.style.color = "#fff";
+          modeLabel.style.padding = "0.3rem 1rem";
+          modeLabel.style.borderRadius = "20px";
+          modeLabel.style.marginLeft = "1rem";
+          header.appendChild(modeLabel);
+        }
 
-    // Render awal
-    renderQuestion(current);
-    renderNavigator();
-});
-</script>
-
-</body>
+        // Render awal
+        renderQuestion(current);
+        renderNavigator();
+      });
+    </script>
+  </body>
 </html>

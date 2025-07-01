@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Riwayat Tes TOEFL - TOEL.id</title>
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
@@ -10,143 +10,160 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="stylesheet" href="/css/global.css">
-    <link rel="stylesheet" href="/css/components/sidebar.css">
-    <link rel="stylesheet" href="/css/pages/dashboard/riwayat-tes.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/components/sidebar.css" />
+    <link rel="stylesheet" href="/css/pages/dashboard/riwayat-tes.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+  </head>
+  <body>
     <!-- Mobile Menu Button -->
     <button class="mobile-menu-btn" onclick="toggleSidebar()">
-        <i class="fas fa-bars"></i>
+      <i class="fas fa-bars"></i>
     </button>
 
     <!-- Sidebar Overlay for Mobile -->
     <div class="sidebar-overlay" onclick="closeSidebar()"></div>
 
     <div class="dashboard-container">
-        <!-- Sidebar -->
-        <aside class="sidebar" id="sidebar">
-            <div class="logo">TOEL.id</div>
-            <nav class="menu">
-                <a href="/dashboard" class=""><i class="fas fa-home"></i> Dashboard</a>
-                <a href="/dashboard/riwayat-tes" class="active"><i class="fas fa-history"></i> Riwayat Tes</a>
-                <a href="/dashboard/profile-edit"><i class="fas fa-user"></i> Edit Profil</a>
-                <a href="/test"><i class="fas fa-file-alt"></i> Mulai Tes</a>
-            </nav>
-            <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
-        </aside>
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar">
+        <div class="logo">TOEL.id</div>
+        <nav class="menu">
+          <a href="/dashboard" class=""
+            ><i class="fas fa-home"></i> Dashboard</a
+          >
+          <a href="/dashboard/riwayat-tes" class="active"
+            ><i class="fas fa-history"></i> Riwayat Tes</a
+          >
+          <a href="/dashboard/profile-edit"
+            ><i class="fas fa-user"></i> Edit Profil</a
+          >
+          <a href="/test"><i class="fas fa-file-alt"></i> Mulai Tes</a>
+        </nav>
+        <button class="logout-btn" onclick="logout()">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </aside>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <h1>Riwayat Tes TOEFL</h1>
-            
-            <div class="stats-container">
-                <div class="stat-card">
-                    <h3>Total Tes</h3>
-                    <div class="stat-value" id="totalTests">0</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Skor Tertinggi</h3>
-                    <div class="stat-value" id="highestScore">0</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Rata-rata Skor</h3>
-                    <div class="stat-value" id="averageScore">0</div>
-                </div>
-            </div>
-            
-            <div class="filter-container">
-                <select id="modeFilter" class="filter-select">
-                    <option value="all">Semua Mode</option>
-                    <option value="ujian">Ujian</option>
-                    <option value="latihan">Latihan</option>
-                </select>
-                <select id="typeFilter" class="filter-select">
-                    <option value="all">Semua Tipe</option>
-                    <option value="Full">TOEFL Lengkap</option>
-                    <option value="Listening">Listening</option>
-                    <option value="Structure">Structure</option>
-                    <option value="Reading">Reading</option>
-                </select>
-                <button id="resetAllBtn" class="btn-danger">
-                    <i class="fas fa-trash"></i> Reset Semua Data
-                </button>
-            </div>
-            
-            <div class="table-responsive">
-                <table class="history-table">
-                    <thead>
-                        <tr>
-                            <th>Tanggal</th>
-                            <th>Mode</th>
-                            <th>Tipe</th>
-                            <th>Listening</th>
-                            <th>Structure</th>
-                            <th>Reading</th>
-                            <th>Total Skor</th>
-                            <th>Status</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody id="historyTableBody">
-                        <tr>
-                            <td colspan="9" class="text-center">Memuat data...</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+      <!-- Main Content -->
+      <main class="main-content">
+        <h1>Riwayat Tes TOEFL</h1>
 
-            <!-- Modal Sertifikat -->
-            <div id="certificateModal" class="modal">
-                <div class="modal-content">
-                    <span class="close-btn" onclick="closeModal()">&times;</span>
-                    <div id="certificateContent"></div>
-                    <div class="modal-footer">
-                        <button onclick="printCertificate()" class="btn-cetak">
-                            <i class="fas fa-print"></i> Cetak Sertifikat
-                        </button>
-                    </div>
-                </div>
+        <div class="stats-container">
+          <div class="stat-card">
+            <h3>Total Tes</h3>
+            <div class="stat-value" id="totalTests">0</div>
+          </div>
+          <div class="stat-card">
+            <h3>Skor Tertinggi</h3>
+            <div class="stat-value" id="highestScore">0</div>
+          </div>
+          <div class="stat-card">
+            <h3>Rata-rata Skor</h3>
+            <div class="stat-value" id="averageScore">0</div>
+          </div>
+        </div>
+
+        <div class="filter-container">
+          <select id="modeFilter" class="filter-select">
+            <option value="all">Semua Mode</option>
+            <option value="ujian">Ujian</option>
+            <option value="latihan">Latihan</option>
+          </select>
+          <select id="typeFilter" class="filter-select">
+            <option value="all">Semua Tipe</option>
+            <option value="Full">TOEFL Lengkap</option>
+            <option value="Listening">Listening</option>
+            <option value="Structure">Structure</option>
+            <option value="Reading">Reading</option>
+          </select>
+          <button id="resetAllBtn" class="btn-danger">
+            <i class="fas fa-trash"></i> Reset Semua Data
+          </button>
+        </div>
+
+        <div class="table-responsive">
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>Tanggal</th>
+                <th>Mode</th>
+                <th>Tipe</th>
+                <th>Listening</th>
+                <th>Structure</th>
+                <th>Reading</th>
+                <th>Total Skor</th>
+                <th>Status</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="historyTableBody">
+              <tr>
+                <td colspan="9" class="text-center">Memuat data...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Modal Sertifikat -->
+        <div id="certificateModal" class="modal">
+          <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()" title="Tutup Modal">
+              <i class="fas fa-times"></i>
+            </span>
+            <div id="certificateContent"></div>
+            <div class="modal-footer">
+              <button onclick="printCertificate()" class="btn-cetak">
+                <i class="fas fa-print"></i>
+                <span>Cetak Sertifikat</span>
+              </button>
             </div>
-        </main>
+          </div>
+        </div>
+      </main>
     </div>
 
     <script src="/js/utils/auth.js"></script>
     <script src="/js/pages/dashboard/riwayat-tes.js"></script>
-    
+
     <script>
-        // Toggle sidebar for mobile
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.querySelector('.sidebar-overlay');
-            sidebar.classList.toggle('active');
-            overlay.classList.toggle('active');
-        }
+      // Toggle sidebar for mobile
+      function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.querySelector(".sidebar-overlay");
+        sidebar.classList.toggle("active");
+        overlay.classList.toggle("active");
+      }
 
-        function closeSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.querySelector('.sidebar-overlay');
-            sidebar.classList.remove('active');
-            overlay.classList.remove('active');
-        }
+      function closeSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.querySelector(".sidebar-overlay");
+        sidebar.classList.remove("active");
+        overlay.classList.remove("active");
+      }
 
-        // Close sidebar when clicking on menu items (mobile)
-        document.querySelectorAll('.menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth <= 768) {
-                    closeSidebar();
-                }
-            });
+      // Close sidebar when clicking on menu items (mobile)
+      document.querySelectorAll(".menu a").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (window.innerWidth <= 768) {
+            closeSidebar();
+          }
         });
+      });
 
-        // Close sidebar when window is resized to desktop
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 768) {
-                closeSidebar();
-            }
-        });
+      // Close sidebar when window is resized to desktop
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 768) {
+          closeSidebar();
+        }
+      });
     </script>
-</body>
+  </body>
 </html>

@@ -12,14 +12,33 @@
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="stylesheet" href="../../css/global.css" />
     <link rel="stylesheet" href="../../css/pages/test/soal.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
   </head>
   <body>
     <a
       href="/dashboard"
       class="btn btn-back"
-      style="margin: 1.5rem 2rem 0 2rem"
+      style="
+        margin: 1.5rem 2rem 0 2rem;
+        background: linear-gradient(135deg, #6c757d, #5a6268);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3);
+        transition: all 0.3s ease;
+      "
+      onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(108, 117, 125, 0.4)'"
+      onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(108, 117, 125, 0.3)'"
     >
-      &larr; Kembali ke Dashboard
+      <i class="fas fa-arrow-left"></i> Kembali ke Dashboard
     </a>
     <div class="test-container">
       <aside class="question-navigator">
@@ -264,7 +283,28 @@
                           })
                           .join("")}
                     </div>
-                    <a href="/dashboard" class="btn-dashboard">Kembali ke Dashboard</a>
+                    
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <a href="/dashboard" class="btn btn-primary" style="
+                            background: linear-gradient(135deg, #2471f3, #1a5bc7);
+                            color: white;
+                            padding: 12px 30px;
+                            border-radius: 8px;
+                            text-decoration: none;
+                            font-weight: 600;
+                            font-size: 16px;
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 8px;
+                            box-shadow: 0 4px 12px rgba(36, 113, 243, 0.3);
+                            transition: all 0.3s ease;
+                            border: none;
+                        " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(36, 113, 243, 0.4)'" 
+                           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(36, 113, 243, 0.3)'">
+                            <i class="fas fa-arrow-left"></i>
+                            Kembali ke Dashboard
+                        </a>
+                    </div>
                 </div>
             `;
           // Reset jawaban setelah pembahasan

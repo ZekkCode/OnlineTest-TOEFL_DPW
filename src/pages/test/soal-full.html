@@ -21,7 +21,22 @@
     <a
       href="/dashboard"
       class="btn btn-back"
-      style="margin: 1.5rem 2rem 0 2rem"
+      style="
+        margin: 1.5rem 2rem 0 2rem;
+        background: linear-gradient(135deg, #6c757d, #5a6268);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3);
+        transition: all 0.3s ease;
+      "
+      onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(108, 117, 125, 0.4)'"
+      onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(108, 117, 125, 0.3)'"
     >
       <i class="fas fa-arrow-left"></i> Kembali ke Dashboard
     </a>
@@ -365,13 +380,31 @@
                           .join("")}
                     </div>
                     
-                    <button id="lanjut-bab" class="btn-dashboard">
-                        ${
-                          sectionIdxNow < sections.length - 1
-                            ? "Lanjut ke Bab Berikutnya"
-                            : "Lihat Hasil"
-                        }
-                    </button>
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button id="lanjut-bab" style="
+                            background: linear-gradient(135deg, #2471f3, #1a5bc7);
+                            color: white;
+                            padding: 12px 30px;
+                            border-radius: 8px;
+                            font-weight: 600;
+                            font-size: 16px;
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 8px;
+                            box-shadow: 0 4px 12px rgba(36, 113, 243, 0.3);
+                            transition: all 0.3s ease;
+                            border: none;
+                            cursor: pointer;
+                        " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(36, 113, 243, 0.4)'" 
+                           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(36, 113, 243, 0.3)'">
+                            <i class="fas fa-arrow-right"></i>
+                            ${
+                              sectionIdxNow < sections.length - 1
+                                ? "Lanjut ke Bab Berikutnya"
+                                : "Lihat Hasil"
+                            }
+                        </button>
+                    </div>
                 </div>
             `;
 
@@ -455,7 +488,26 @@
                     <h2>Bab Selesai!</h2>
                     <p>Anda telah menyelesaikan <b>${sectionNames[sectionIdx]}</b>.<br>
                     Klik tombol di bawah untuk melanjutkan ke <b>${sectionNames[nextSection]}</b>.</p>
-                    <button id="next-section-btn" style="margin-top:1.2rem;padding:.7em 2em;font-size:1.1em;background:#2471f3;color:#fff;border:none;border-radius:8px;cursor:pointer;">Lanjut</button>
+                    <button id="next-section-btn" style="
+                        margin-top: 1.2rem;
+                        padding: 12px 30px;
+                        font-size: 16px;
+                        font-weight: 600;
+                        background: linear-gradient(135deg, #2471f3, #1a5bc7);
+                        color: #fff;
+                        border: none;
+                        border-radius: 8px;
+                        cursor: pointer;
+                        box-shadow: 0 4px 12px rgba(36, 113, 243, 0.3);
+                        transition: all 0.3s ease;
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(36, 113, 243, 0.4)'" 
+                       onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(36, 113, 243, 0.3)'">
+                        <i class="fas fa-arrow-right"></i>
+                        Lanjut
+                    </button>
                 </div>
             `;
           document.body.appendChild(modal);

@@ -73,12 +73,16 @@ function displayHistory() {
             <td>${history.skorITP || '-'}</td>
             <td>${statusBadge}</td>
             <td>
-                <button class="btn-action btn-view" onclick="viewCertificate('${index}')" title="Lihat Sertifikat">
-                    <i class="fas fa-certificate"></i>
-                </button>
-                <button class="btn-action btn-delete" onclick="deleteTestHistory('${index}')" title="Hapus">
-                    <i class="fas fa-trash"></i>
-                </button>
+                <div class="action-buttons">
+                    <button class="btn-action btn-view" onclick="viewCertificate('${index}')" title="Lihat & Cetak Sertifikat">
+                        <i class="fas fa-certificate"></i>
+                        <span class="btn-text">Sertifikat</span>
+                    </button>
+                    <button class="btn-action btn-delete" onclick="deleteTestHistory('${index}')" title="Hapus Riwayat">
+                        <i class="fas fa-trash"></i>
+                        <span class="btn-text">Hapus</span>
+                    </button>
+                </div>
             </td>
         `;
         
@@ -168,57 +172,190 @@ function viewCertificate(index) {
     content.innerHTML = `
         <div class="certificate">
             <div class="certificate-header">
-                <h1 class="certificate-title">Sertifikat TOEFL ${history.type}</h1>
-                <div class="certificate-subtitle">TOEL.ID - Platform Simulasi TOEFL Terpercaya</div>
+                <div class="cert-header-flex">
+                    <div class="cert-logo">T</div>
+                    <div class="cert-header-text">
+                        <h1 class="certificate-title">Sertifikat TOEFL ${history.type}</h1>
+                        <div class="certificate-subtitle">TOEL.ID - Platform Simulasi TOEFL Terpercaya</div>
+                    </div>
+                </div>
             </div>
             <div class="certificate-content">
-                <div style="margin-bottom: 30px; font-size: 20px;">
-                    Tanggal Tes: ${testDate}
+                <div class="cert-info-box">
+                    📅 <strong>Tanggal Tes:</strong> ${testDate}<br>
+                    👤 <strong>Platform:</strong> TOEL.ID Simulation<br>
+                    🆔 <strong>ID Sertifikat:</strong> TOEL-${Date.now().toString().slice(-8)}-${index}
                 </div>
+                
                 <div class="certificate-score">
-                    ${history.skorITP || history.skor || '-'}
+                    <div class="score-label">SKOR</div>
+                    <div class="score-value">${history.skorITP || history.skor || '-'}</div>
+                    <div class="score-type">${history.type === 'Full' ? 'TOEFL ITP' : history.type}</div>
                 </div>
+                
                 ${history.type === 'Full' ? `
                     <div class="certificate-details">
-                        Perincian Skor:<br>
-                        Listening Comprehension: ${history.skorL}<br>
-                        Structure and Written Expression: ${history.skorS}<br>
-                        Reading Comprehension: ${history.skorR}
+                        <strong>📊 BREAKDOWN SKOR DETAIL</strong><br><br>
+                        <div class="score-breakdown">
+                            <div class="score-item listening">
+                                <div class="item-score">${history.skorL || '-'}</div>
+                                <div class="item-label">🎧 Listening</div>
+                            </div>
+                            <div class="score-item structure">
+                                <div class="item-score">${history.skorS || '-'}</div>
+                                <div class="item-label">✏️ Structure</div>
+                            </div>
+                            <div class="score-item reading">
+                                <div class="item-score">${history.skorR || '-'}</div>
+                                <div class="item-label">📖 Reading</div>
+                            </div>
+                        </div>
+                        <div class="score-range">
+                            <strong>📏 Rentang Skor TOEFL ITP:</strong> 310 - 677 points
+                        </div>
                     </div>
                     <div class="certificate-status">
-                        Status: <span class="${statusClass}">${status}</span>
+                        <strong>🏆 STATUS KELULUSAN</strong><br><br>
+                        <span class="${statusClass}">${status}</span>
+                        ${status.includes('Lulus') ? '<br><div class="status-message success">✅ Selamat! Anda telah mencapai standar TOEFL yang diperlukan.</div>' : '<br><div class="status-message fail">📚 Tingkatkan kemampuan bahasa Inggris Anda untuk hasil yang lebih baik.</div>'}
                     </div>
-                ` : ''}
+                ` : `
+                    <div class="certificate-details">
+                        <strong>📊 DETAIL HASIL TES</strong><br><br>
+                        <div class="test-details">
+                            <div class="detail-item">
+                                <strong>📝 Tipe Tes:</strong><br>
+                                <span class="detail-value">${history.type}</span>
+                            </div>
+                            <div class="detail-item">
+                                <strong>🎯 Skor Anda:</strong><br>
+                                <span class="detail-score">${history.skor || '-'}</span>
+                            </div>
+                        </div>
+                        <div class="score-range">
+                            <strong>📏 Rentang Skor ${history.type}:</strong> 31 - 68 points
+                        </div>
+                    </div>
+                `}
             </div>
             <div class="certificate-footer">
-                <p style="font-size: 18px; color: #2471f3; font-weight: bold;">TOEL.ID</p>
-                <p style="font-size: 16px; margin: 5px 0;">
-                    Platform Pembelajaran dan Simulasi TOEFL Terbaik di Indonesia
-                </p>
+                <div class="cert-footer-flex">
+                    <div class="cert-footer-logo">T</div>
+                    <div class="cert-footer-text">
+                        <p class="footer-title">🏆 TOEL.ID</p>
+                        <p class="footer-subtitle">Platform Simulasi TOEFL Terpercaya</p>
+                    </div>
+                </div>
                 <div class="certificate-validation">
-                    Sertifikat ini diterbitkan sebagai hasil simulasi TOEFL di platform TOEL.ID.<br>
-                    Skor ini mencerminkan kemampuan bahasa Inggris berdasarkan standar penilaian TOEFL ITP.
+                    ✅ <strong>Sertifikat ini diterbitkan oleh platform TOEL.ID</strong><br>
+                    📈 Hasil simulasi berdasarkan standar penilaian TOEFL ITP internasional<br>
+                    🔒 Dokumen digital dengan ID unik untuk verifikasi<br>
+                    📅 Dikeluarkan pada: ${new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
                 </div>
             </div>
         </div>
     `;
     
+    // Add animation class
     modal.style.display = 'block';
+    setTimeout(() => {
+        modal.classList.add('show');
+    }, 10);
 }
 
 function closeModal() {
     const modal = document.getElementById('certificateModal');
-    modal.style.display = 'none';
+    modal.classList.remove('show');
+    setTimeout(() => {
+        modal.style.display = 'none';
+    }, 300);
 }
 
 function printCertificate() {
-    window.print();
+    console.log('=== PRINT CERTIFICATE DEBUG ===');
+    
+    // Show loading state
+    const btn = document.querySelector('.btn-cetak');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Menyiapkan...</span>';
+    btn.disabled = true;
+    
+    // Get modal and certificate elements
+    const modal = document.getElementById('certificateModal');
+    const certificate = modal ? modal.querySelector('.certificate') : null;
+    
+    console.log('Modal found:', !!modal);
+    console.log('Certificate found:', !!certificate);
+    
+    if (!modal || !certificate) {
+        console.error('Modal or Certificate element not found!');
+        alert('Error: Sertifikat tidak dapat ditemukan. Silakan coba lagi.');
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        return;
+    }
+    
+    // Ensure modal is visible
+    modal.style.display = 'block';
+    modal.classList.add('show');
+    
+    // Force certificate to be visible
+    certificate.style.display = 'block';
+    certificate.style.visibility = 'visible';
+    certificate.style.opacity = '1';
+    
+    console.log('Modal display:', modal.style.display);
+    console.log('Certificate display:', certificate.style.display);
+    console.log('Certificate content length:', certificate.innerHTML.length);
+    
+    // Add print-ready class to body
+    document.body.classList.add('print-mode');
+    
+    // Remove any problematic styles
+    certificate.style.animation = 'none';
+    certificate.style.transform = 'none';
+    certificate.style.transition = 'none';
+    
+    // Small delay to ensure DOM is ready
+    setTimeout(() => {
+        console.log('Triggering print...');
+        
+        // Focus window and trigger print
+        window.focus();
+        
+        try {
+            const printResult = window.print();
+            console.log('Print triggered successfully:', printResult);
+        } catch (error) {
+            console.error('Print error:', error);
+            alert('Error saat mencetak: ' + error.message);
+        }
+        
+        // Clean up after print
+        setTimeout(() => {
+            document.body.classList.remove('print-mode');
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+            console.log('Print cleanup completed');
+        }, 1000);
+        
+    }, 800);
 }
 
 // Close modal when clicking outside
 window.onclick = function(event) {
     const modal = document.getElementById('certificateModal');
     if (event.target === modal) {
-        modal.style.display = 'none';
+        closeModal();
     }
 };
+
+// Handle ESC key to close modal
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        const modal = document.getElementById('certificateModal');
+        if (modal.style.display === 'block') {
+            closeModal();
+        }
+    }
+});

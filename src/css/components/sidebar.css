@@ -77,7 +77,7 @@
 }
 
 .logout-btn {
-    background: #ff4757;
+    background: #dc3545;
     color: #fff;
     border: none;
     padding: 0.8rem;
@@ -89,14 +89,14 @@
     gap: 0.8rem;
     font-weight: 600;
     margin-top: 1rem;
-    box-shadow: 0 2px 10px rgba(255,71,87,0.15);
+    box-shadow: 0 2px 10px rgba(220,53,69,0.25);
     font-size: 0.9rem;
-    background: rgba(255,255,255,0.08);
 }
 
 .logout-btn:hover {
-    background: rgba(255,255,255,0.22);
+    background: #c82333;
     transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 4px 15px rgba(220,53,69,0.35);
 }
 
 /* Mobile & Tablet: sidebar lebih ramping, padding kecil, logo center, menu rapat, logout tetap di bawah, tidak terlalu panjang */
@@ -307,4 +307,19 @@
     .logo {
         padding-left: 0; /* Reset padding di desktop */
     }
+}
+
+/* Global Logout Button Styling - Override semua warna agar konsisten merah */
+.logout-btn {
+    background: #dc3545 !important;
+    color: #fff !important;
+}
+
+.logout-btn:hover {
+    background: #c82333 !important;
+    box-shadow: 0 4px 15px rgba(220,53,69,0.35) !important;
+}
+
+.logout-btn:active {
+    background: #bd2130 !important;
 }

@@ -12,20 +12,32 @@
     font-size: 2rem;
 }
 
-/* Back button */
+/* Back button - Red styling */
 .btn-back {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     text-decoration: none;
-    color: #555;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    transition: background 0.2s;
+    color: white;
+    background: #dc3545;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.2);
 }
 
 .btn-back:hover {
-    background: #f5f5f5;
+    background: #c82333;
+    color: white;
+    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+.btn-back:active {
+    background: #bd2130;
+    transform: translateY(0);
 }
 
 /* Primary button */
@@ -489,14 +501,41 @@
         .btn-primary {
             border: 2px solid #000000;
         }
-
-        .score-card {
-            border: 2px solid #000000;
-        }
-
-        .result-container h1 {
-            text-shadow: none;
-            font-weight: 700;
+        
+        .btn-back {
+            border: 2px solid #dc3545;
         }
     }
+}
+
+/* Global Back Button Red Styling - Override untuk konsistensi */
+.btn.btn-back,
+a.btn-back {
+    background: #dc3545 !important;
+    color: white !important;
+    border: none !important;
+    padding: 0.8rem 1.5rem !important;
+    border-radius: 8px !important;
+    font-weight: 500 !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.2) !important;
+}
+
+.btn.btn-back:hover,
+a.btn-back:hover {
+    background: #c82333 !important;
+    color: white !important;
+    text-decoration: none !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3) !important;
+}
+
+.btn.btn-back:active,
+a.btn-back:active {
+    background: #bd2130 !important;
+    transform: translateY(0) !important;
 }
