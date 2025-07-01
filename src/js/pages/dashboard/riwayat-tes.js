@@ -272,74 +272,18 @@ function closeModal() {
 }
 
 function printCertificate() {
-    console.log('=== PRINT CERTIFICATE DEBUG ===');
-    
-    // Show loading state
-    const btn = document.querySelector('.btn-cetak');
-    const originalText = btn.innerHTML;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Menyiapkan...</span>';
-    btn.disabled = true;
-    
-    // Get modal and certificate elements
-    const modal = document.getElementById('certificateModal');
-    const certificate = modal ? modal.querySelector('.certificate') : null;
-    
-    console.log('Modal found:', !!modal);
-    console.log('Certificate found:', !!certificate);
-    
-    if (!modal || !certificate) {
-        console.error('Modal or Certificate element not found!');
-        alert('Error: Sertifikat tidak dapat ditemukan. Silakan coba lagi.');
-        btn.innerHTML = originalText;
-        btn.disabled = false;
-        return;
-    }
-    
-    // Ensure modal is visible
-    modal.style.display = 'block';
-    modal.classList.add('show');
-    
-    // Force certificate to be visible
-    certificate.style.display = 'block';
-    certificate.style.visibility = 'visible';
-    certificate.style.opacity = '1';
-    
-    console.log('Modal display:', modal.style.display);
-    console.log('Certificate display:', certificate.style.display);
-    console.log('Certificate content length:', certificate.innerHTML.length);
-    
-    // Add print-ready class to body
+    // Persiapkan dokumen untuk cetak
     document.body.classList.add('print-mode');
     
-    // Remove any problematic styles
-    certificate.style.animation = 'none';
-    certificate.style.transform = 'none';
-    certificate.style.transition = 'none';
+    // Tambahkan event listener untuk mendeteksi selesainya proses cetak
+    window.addEventListener('afterprint', function() {
+        document.body.classList.remove('print-mode');
+    }, {once: true});
     
-    // Small delay to ensure DOM is ready
-    setTimeout(() => {
-        console.log('Triggering print...');
-        
-        // Focus window and trigger print
-        window.focus();
-        
-        try {
-            const printResult = window.print();
-            console.log('Print triggered successfully:', printResult);
-        } catch (error) {
-            console.error('Print error:', error);
-            alert('Error saat mencetak: ' + error.message);
-        }
-        
-        // Clean up after print
-        setTimeout(() => {
-            document.body.classList.remove('print-mode');
-            btn.innerHTML = originalText;
-            btn.disabled = false;
-            console.log('Print cleanup completed');
-        }, 1000);
-        
-    }, 800);
+    // Tunda proses cetak sedikit untuk memastikan style sudah diaplikasikan
+    setTimeout(function() {
+        window.print();
+    }, 300);
 }
 
 // Close modal when clicking outside

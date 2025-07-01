@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="id">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard - TOEL.id</title>
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
@@ -11,173 +10,182 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="stylesheet" href="/css/global.css">
-    <link rel="stylesheet" href="/css/components/sidebar.css">
-    <link rel="stylesheet" href="/css/pages/dashboard/dashboard.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/components/sidebar.css" />
+    <link rel="stylesheet" href="/css/pages/dashboard/dashboard.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
 
-<body>
+  <body>
     <!-- Mobile Menu Button -->
     <button class="mobile-menu-btn" onclick="toggleSidebar()">
-        <i class="fas fa-bars"></i>
+      <i class="fas fa-bars"></i>
     </button>
 
     <!-- Sidebar Overlay for Mobile -->
     <div class="sidebar-overlay" onclick="closeSidebar()"></div>
 
     <div class="dashboard-container">
-        <!-- Sidebar -->
-        <aside class="sidebar" id="sidebar">
-            <div class="logo">
-                <!-- Remove image, keep text only -->
-                <span>TOEL.id</span>
-            </div>
-            <nav class="menu">
-                <a href="/dashboard" class="active">
-                    <i class="fas fa-home"></i>
-                    <span>Dashboard</span>
-                </a>
-                <a href="/dashboard/riwayat-tes">
-                    <i class="fas fa-history"></i>
-                    <span>Riwayat Tes</span>
-                </a>
-                <a href="/dashboard/profile-edit">
-                    <i class="fas fa-user"></i>
-                    <span>Edit Profil</span>
-                </a>
-                <a href="/test">
-                    <i class="fas fa-edit"></i>
-                    <span>Mulai Tes</span>
-                </a>
-            </nav>
-            <button class="logout-btn" onclick="logout()">
-                <i class="fas fa-sign-out-alt"></i>
-                <span>Keluar</span>
-            </button>
-        </aside>
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar">
+        <div class="logo">
+          <!-- Remove image, keep text only -->
+          <span>TOEL.id</span>
+        </div>
+        <nav class="menu">
+          <a href="/dashboard" class="active">
+            <i class="fas fa-home"></i>
+            <span>Dashboard</span>
+          </a>
+          <a href="/dashboard/riwayat-tes">
+            <i class="fas fa-history"></i>
+            <span>Riwayat Tes</span>
+          </a>
+          <a href="/dashboard/profile-edit">
+            <i class="fas fa-user"></i>
+            <span>Edit Profil</span>
+          </a>
+          <a href="/test">
+            <i class="fas fa-edit"></i>
+            <span>Mulai Tes</span>
+          </a>
+        </nav>
+        <button class="logout-btn" onclick="logout()">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Keluar</span>
+        </button>
+      </aside>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Profile Header -->
-            <div class="profile-header">
-                <div class="profile-photo">
-                    <img class="user-photo" id="userPhoto" src="/assets/images/guest-profile.png">
-                    <div class="default-photo" style="display:none;">
-                        <i class="fas fa-user"></i>
-                    </div>
-                </div>
-                <h1>Halo, <span id="userName">User</span>!</h1>
-                <p>Selamat datang di TOEL.id</p>
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Profile Header -->
+        <div class="profile-header">
+          <div class="profile-photo">
+            <img
+              class="user-photo"
+              id="userPhoto"
+              src="/assets/images/guest-profile.png"
+            />
+            <div class="default-photo" style="display: none">
+              <i class="fas fa-user"></i>
             </div>
+          </div>
+          <h1>Halo, <span id="userName">User</span>!</h1>
+          <p>Selamat datang di TOEL.id</p>
+        </div>
 
-            <!-- Quick Stats -->
-            <div class="stats-container">
-                <div class="stat-card">
-                    <h3>Skor Terakhir</h3>
-                    <div class="score">
-                        <span id="lastScore">0</span>
-                        <small>poin</small>
-                    </div>
-                    <!-- Update Stats container links -->
-                    <a href="riwayat-tes.html" class="view-more">
-                        Lihat Riwayat <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-
-                <div class="stat-card">
-                    <h3>Peringkat</h3>
-                    <div class="rank">
-                        <span id="userRank">1</span>
-                        <small>dari <span id="totalUsers">100</span> peserta</small>
-                    </div>
-                    <a href="/dashboard/leaderboard" class="view-more">
-                        Lihat Leaderboard <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
+        <!-- Quick Stats -->
+        <div class="stats-container">
+          <div class="stat-card">
+            <h3>Skor Terakhir</h3>
+            <div class="score">
+              <span id="lastScore">0</span>
+              <small>poin</small>
             </div>
+            <!-- Update Stats container links -->
+            <a href="/dashboard/riwayat-tes" class="view-more">
+              Lihat Riwayat <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
 
-            <!-- Quick Actions -->
-            <div class="quick-actions">
-                <h2>Aksi Cepat</h2>
-                <div class="action-buttons">
-                    <!-- Update Quick Actions section hrefs -->
-                    <a href="/test/mulai" class="action-btn primary">
-                        <i class="fas fa-edit"></i>
-                        Mulai Tes TOEFL
-                    </a>
-                    <a href="/dashboard/profile-edit" class="action-btn secondary">
-                        <i class="fas fa-user-edit"></i>
-                        Edit Profil
-                    </a>
-                    <a href="/dashboard/riwayat-tes" class="action-btn secondary">
-                        <i class="fas fa-certificate"></i>
-                        Riwayat & Sertifikat
-                    </a>
-                </div>
+          <div class="stat-card">
+            <h3>Peringkat</h3>
+            <div class="rank">
+              <span id="userRank">1</span>
+              <small>dari <span id="totalUsers">100</span> peserta</small>
             </div>
-        </main>
+            <a href="/dashboard/leaderboard" class="view-more">
+              Lihat Leaderboard <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+          <h2>Aksi Cepat</h2>
+          <div class="action-buttons">
+            <!-- Update Quick Actions section hrefs -->
+            <a href="/test/mulai" class="action-btn primary">
+              <i class="fas fa-edit"></i>
+              Mulai Tes TOEFL
+            </a>
+            <a href="/dashboard/profile-edit" class="action-btn secondary">
+              <i class="fas fa-user-edit"></i>
+              Edit Profil
+            </a>
+            <a href="/dashboard/riwayat-tes" class="action-btn secondary">
+              <i class="fas fa-certificate"></i>
+              Riwayat & Sertifikat
+            </a>
+          </div>
+        </div>
+      </main>
     </div>
 
     <script src="/js/utils/auth.js"></script>
     <script src="/js/pages/dashboard/dashboard.js"></script>
     <script>
-        // Ambil riwayat tes dari localStorage
-        const riwayat = JSON.parse(localStorage.getItem('toeflHistory') || '[]');
+      // Ambil riwayat tes dari localStorage
+      const riwayat = JSON.parse(localStorage.getItem("toeflHistory") || "[]");
 
-        // Ambil skor terakhir (Full test jika ada, jika tidak, ambil section terakhir)
-        let lastScore = '-';
-        if (riwayat.length > 0) {
-            // Cari entry Full test terakhir, jika tidak ada ambil entry pertama
-            const fullTest = riwayat.find(r => r.type === 'Full');
-            if (fullTest) {
-                lastScore = fullTest.skorITP;
-            } else {
-                // Ambil skor section terakhir
-                lastScore = riwayat[0].skor || '-';
-            }
+      // Ambil skor terakhir (Full test jika ada, jika tidak, ambil section terakhir)
+      let lastScore = "-";
+      if (riwayat.length > 0) {
+        // Cari entry Full test terakhir, jika tidak ada ambil entry pertama
+        const fullTest = riwayat.find((r) => r.type === "Full");
+        if (fullTest) {
+          lastScore = fullTest.skorITP;
+        } else {
+          // Ambil skor section terakhir
+          lastScore = riwayat[0].skor || "-";
         }
-        document.getElementById('lastScore').textContent = lastScore;
+      }
+      document.getElementById("lastScore").textContent = lastScore;
 
-        // Peringkat (contoh: jika ada leaderboard, bisa diambil dari server)
-        // Untuk demo, tampilkan "-" jika tidak ada data
-        document.getElementById('userRank').textContent = '1';
-        document.getElementById('totalUsers').textContent = '100';
-        
-        // Mobile Sidebar Functions
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.querySelector('.sidebar-overlay');
-            
-            sidebar.classList.toggle('active');
-            overlay.classList.toggle('active');
-        }
+      // Peringkat (contoh: jika ada leaderboard, bisa diambil dari server)
+      // Untuk demo, tampilkan "-" jika tidak ada data
+      document.getElementById("userRank").textContent = "1";
+      document.getElementById("totalUsers").textContent = "100";
 
-        function closeSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.querySelector('.sidebar-overlay');
-            
-            sidebar.classList.remove('active');
-            overlay.classList.remove('active');
-        }
+      // Mobile Sidebar Functions
+      function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.querySelector(".sidebar-overlay");
 
-        // Close sidebar when clicking on menu items (mobile)
-        document.querySelectorAll('.menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth <= 768) {
-                    closeSidebar();
-                }
-            });
+        sidebar.classList.toggle("active");
+        overlay.classList.toggle("active");
+      }
+
+      function closeSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.querySelector(".sidebar-overlay");
+
+        sidebar.classList.remove("active");
+        overlay.classList.remove("active");
+      }
+
+      // Close sidebar when clicking on menu items (mobile)
+      document.querySelectorAll(".menu a").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (window.innerWidth <= 768) {
+            closeSidebar();
+          }
         });
+      });
 
-        // Close sidebar when window is resized to desktop
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 768) {
-                closeSidebar();
-            }
-        });
+      // Close sidebar when window is resized to desktop
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 768) {
+          closeSidebar();
+        }
+      });
     </script>
-</body>
-
+  </body>
 </html>
