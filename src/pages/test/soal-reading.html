@@ -1,7 +1,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', async function() {
     // Ambil soal reading
-    const res = await fetch('../../data/reading.json');
+    const res = await fetch('/data/reading.json');
     const data = await res.json();
     const questions = data.questions;
     const timeLimit = data.timeLimit || 3300; // detik
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         localStorage.setItem('readingScore', score);
         localStorage.setItem('readingTotal', questions.length);
         localStorage.removeItem('readingAnswers');
-        window.location.href = 'hasil-reading.html';
+        window.location.href = '/test/hasil-reading';
     }
 
     function showPembahasan() {

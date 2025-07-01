@@ -5,7 +5,7 @@ body, html {
     display: flex;
     flex-direction: column;
     font-family: 'Segoe UI', Arial, sans-serif;
-    background: #257cff;
+    background: #2471f3; /* Same blue as main page */
     color: #222;
 }
 

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TOEFL Lengkap</title>
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
@@ -10,209 +10,243 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="stylesheet" href="../../css/global.css">
-    <link rel="stylesheet" href="../../css/pages/test/soal.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
-    <a href="/dashboard" class="btn btn-back" style="margin:1.5rem 2rem 0 2rem;">
-        <i class="fas fa-arrow-left"></i> Kembali ke Dashboard
+    <link rel="stylesheet" href="../../css/global.css" />
+    <link rel="stylesheet" href="../../css/pages/test/soal.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <a
+      href="/dashboard"
+      class="btn btn-back"
+      style="margin: 1.5rem 2rem 0 2rem"
+    >
+      <i class="fas fa-arrow-left"></i> Kembali ke Dashboard
     </a>
     <div class="test-container">
-        <aside class="question-navigator">
-            <div class="navigator-grid"></div>
-            <button class="submit-btn">Submit Test</button>
-        </aside>
-        <section class="question-section">
-            <div class="question-header">
-                <span class="question-number"></span>
-                <span class="timer"></span>
-            </div>
-            <div class="audio-player"></div>
-            <h2 class="question-title"></h2>
-            <div class="options"></div>
-            <div class="navigation-buttons">
-                <button class="prev-btn">Previous</button>
-                <button class="next-btn">Next</button>
-            </div>
-            <div id="feedback"></div>
-        </section>
+      <aside class="question-navigator">
+        <div class="navigator-grid"></div>
+        <button class="submit-btn">Submit Test</button>
+      </aside>
+      <section class="question-section">
+        <div class="question-header">
+          <span class="question-number"></span>
+          <span class="timer"></span>
+        </div>
+        <div class="audio-player"></div>
+        <h2 class="question-title"></h2>
+        <div class="options"></div>
+        <div class="navigation-buttons">
+          <button class="prev-btn">Previous</button>
+          <button class="next-btn">Next</button>
+        </div>
+        <div id="feedback"></div>
+      </section>
     </div>
     <script>
-    document.addEventListener('DOMContentLoaded', async function() {
+      document.addEventListener("DOMContentLoaded", async function () {
         // Ambil semua soal
         const [listening, structure, reading] = await Promise.all([
-            fetch('../../data/listening.json').then(r=>r.json()),
-            fetch('../../data/structure.json').then(r=>r.json()),
-            fetch('../../data/reading.json').then(r=>r.json())
+          fetch("/data/listening.json").then((r) => r.json()),
+          fetch("/data/structure.json").then((r) => r.json()),
+          fetch("/data/reading.json").then((r) => r.json()),
         ]);
         // Gabungkan semua soal
         const sections = [
-            { name: "Listening Comprehension", data: listening, type: "listening" },
-            { name: "Structure & Written Expression", data: structure, type: "structure" },
-            { name: "Reading Comprehension", data: reading, type: "reading" }
+          {
+            name: "Listening Comprehension",
+            data: listening,
+            type: "listening",
+          },
+          {
+            name: "Structure & Written Expression",
+            data: structure,
+            type: "structure",
+          },
+          { name: "Reading Comprehension", data: reading, type: "reading" },
         ];
         // Hitung index awal setiap bab
         let sectionStartIdx = [0];
         for (let i = 1; i < sections.length; i++) {
-            sectionStartIdx[i] = sectionStartIdx[i-1] + sections[i-1].data.questions.length;
+          sectionStartIdx[i] =
+            sectionStartIdx[i - 1] + sections[i - 1].data.questions.length;
         }
         // Gabung semua soal
         const allQuestions = [
-            ...listening.questions.map(q => ({...q, section: 0})),
-            ...structure.questions.map(q => ({...q, section: 1})),
-            ...reading.questions.map(q => ({...q, section: 2}))
+          ...listening.questions.map((q) => ({ ...q, section: 0 })),
+          ...structure.questions.map((q) => ({ ...q, section: 1 })),
+          ...reading.questions.map((q) => ({ ...q, section: 2 })),
         ];
         // Timer per bab (detik)
         const sectionTimers = [
-            listening.timeLimit || 2400,
-            structure.timeLimit || 1500,
-            reading.timeLimit || 3300
+          listening.timeLimit || 2400,
+          structure.timeLimit || 1500,
+          reading.timeLimit || 3300,
         ];
-        const sectionNames = sections.map(s => s.name);
+        const sectionNames = sections.map((s) => s.name);
 
         // Mode
-        const mode = localStorage.getItem('testMode') || 'ujian'; // 'ujian' atau 'latihan'
+        const mode = localStorage.getItem("testMode") || "ujian"; // 'ujian' atau 'latihan'
         let current = 0;
         let answers = Array(allQuestions.length).fill(null);
         let sectionIdx = 0;
         let timer = sectionTimers[sectionIdx];
-        const timerSpan = document.querySelector('.timer');
+        const timerSpan = document.querySelector(".timer");
         let timerInterval = null;
 
         // Timer function
         function startTimer() {
-            if (timerInterval) clearInterval(timerInterval);
+          if (timerInterval) clearInterval(timerInterval);
+          timerSpan.textContent = formatTime(timer);
+          timerInterval = setInterval(() => {
+            timer--;
             timerSpan.textContent = formatTime(timer);
-            timerInterval = setInterval(() => {
-                timer--;
-                timerSpan.textContent = formatTime(timer);
-                if (timer <= 0) {
-                    clearInterval(timerInterval);
-                    nextSectionOrFinish();
-                }
-            }, 1000);
+            if (timer <= 0) {
+              clearInterval(timerInterval);
+              nextSectionOrFinish();
+            }
+          }, 1000);
         }
         function formatTime(sec) {
-            const m = String(Math.floor(sec / 60)).padStart(2, '0');
-            const s = String(sec % 60).padStart(2, '0');
-            return `${m}:${s}`;
+          const m = String(Math.floor(sec / 60)).padStart(2, "0");
+          const s = String(sec % 60).padStart(2, "0");
+          return `${m}:${s}`;
         }
 
         // Render soal
         function renderQuestion(idx) {
-            const q = allQuestions[idx];
-            sectionIdx = q.section;
-            // Judul bab
-            document.querySelector('.question-header').setAttribute('data-section', sectionNames[sectionIdx]);
-            // Audio (listening)
-            const audioDiv = document.querySelector('.audio-player');
-            audioDiv.innerHTML = '';
-            if (q.audioUrl) {
-                const audio = document.createElement('audio');
-                audio.controls = true;
-                audio.src = '../../data/audio/' + q.audioUrl;
-                audioDiv.appendChild(audio);
-            }
-            // Soal
-            document.querySelector('.question-title').textContent = q.question;
-            // Opsi
-            const opts = document.querySelector('.options');
-            opts.innerHTML = '';
-            q.options.forEach((opt, i) => {
-                const div = document.createElement('div');
-                div.className = 'option' + (answers[idx] === i ? ' selected' : '');
-                div.textContent = opt;
-                div.onclick = () => {
-                    answers[idx] = i;
-                    renderQuestion(idx);
-                    renderNavigator();
-                    // Feedback langsung (mode latihan)
-                    if (mode === 'latihan') showFeedback(q, i);
-                };
-                opts.appendChild(div);
-            });
-            // Nomor soal
-            document.querySelector('.question-number').textContent =
-                `Section: ${sectionNames[sectionIdx]} | Question ${idx - sectionStartIdx[sectionIdx] + 1} of ${sections[sectionIdx].data.questions.length}`;
-            // Navigasi
-            document.querySelector('.prev-btn').disabled = idx === 0 || idx === sectionStartIdx[sectionIdx];
-            document.querySelector('.next-btn').disabled = idx === allQuestions.length - 1 ||
-                idx === sectionStartIdx[sectionIdx] + sections[sectionIdx].data.questions.length - 1;
-            // Feedback area
-            document.getElementById('feedback').innerHTML = '';
+          const q = allQuestions[idx];
+          sectionIdx = q.section;
+          // Judul bab
+          document
+            .querySelector(".question-header")
+            .setAttribute("data-section", sectionNames[sectionIdx]);
+          // Audio (listening)
+          const audioDiv = document.querySelector(".audio-player");
+          audioDiv.innerHTML = "";
+          if (q.audioUrl) {
+            const audio = document.createElement("audio");
+            audio.controls = true;
+            audio.src = "../../data/audio/" + q.audioUrl;
+            audioDiv.appendChild(audio);
+          }
+          // Soal
+          document.querySelector(".question-title").textContent = q.question;
+          // Opsi
+          const opts = document.querySelector(".options");
+          opts.innerHTML = "";
+          q.options.forEach((opt, i) => {
+            const div = document.createElement("div");
+            div.className = "option" + (answers[idx] === i ? " selected" : "");
+            div.textContent = opt;
+            div.onclick = () => {
+              answers[idx] = i;
+              renderQuestion(idx);
+              renderNavigator();
+              // Feedback langsung (mode latihan)
+              if (mode === "latihan") showFeedback(q, i);
+            };
+            opts.appendChild(div);
+          });
+          // Nomor soal
+          document.querySelector(".question-number").textContent = `Section: ${
+            sectionNames[sectionIdx]
+          } | Question ${idx - sectionStartIdx[sectionIdx] + 1} of ${
+            sections[sectionIdx].data.questions.length
+          }`;
+          // Navigasi
+          document.querySelector(".prev-btn").disabled =
+            idx === 0 || idx === sectionStartIdx[sectionIdx];
+          document.querySelector(".next-btn").disabled =
+            idx === allQuestions.length - 1 ||
+            idx ===
+              sectionStartIdx[sectionIdx] +
+                sections[sectionIdx].data.questions.length -
+                1;
+          // Feedback area
+          document.getElementById("feedback").innerHTML = "";
         }
 
         function showFeedback(q, chosenIdx) {
-            const feedback = document.getElementById('feedback');
-            if (chosenIdx === q.correct) {
-                feedback.innerHTML = '<span style="color:green">Benar!</span>';
-            } else {
-                feedback.innerHTML = `<span style="color:red">Salah.</span> Kunci: <b>${q.options[q.correct]}</b>`;
-            }
+          const feedback = document.getElementById("feedback");
+          if (chosenIdx === q.correct) {
+            feedback.innerHTML = '<span style="color:green">Benar!</span>';
+          } else {
+            feedback.innerHTML = `<span style="color:red">Salah.</span> Kunci: <b>${
+              q.options[q.correct]
+            }</b>`;
+          }
         }
 
         // Navigator
         function renderNavigator() {
-            const nav = document.querySelector('.navigator-grid');
-            nav.innerHTML = '';
-            // Tampilkan hanya navigator untuk bab aktif
-            // Untuk navigasi per bab
-            const start = sectionStartIdx[sectionIdx];
-            const end = start + sections[sectionIdx].data.questions.length;
-            for (let i = start; i < end; i++) {
-                const btn = document.createElement('button');
-                btn.textContent = i - start + 1;
-                btn.className = (i === current ? 'current ' : '') +
-                    (answers[i] !== null ? 'answered' : 'unanswered');
-                btn.onclick = () => {
-                    current = i;
-                    renderQuestion(current);
-                    renderNavigator();
-                };
-                nav.appendChild(btn);
-            }
+          const nav = document.querySelector(".navigator-grid");
+          nav.innerHTML = "";
+          // Tampilkan hanya navigator untuk bab aktif
+          // Untuk navigasi per bab
+          const start = sectionStartIdx[sectionIdx];
+          const end = start + sections[sectionIdx].data.questions.length;
+          for (let i = start; i < end; i++) {
+            const btn = document.createElement("button");
+            btn.textContent = i - start + 1;
+            btn.className =
+              (i === current ? "current " : "") +
+              (answers[i] !== null ? "answered" : "unanswered");
+            btn.onclick = () => {
+              current = i;
+              renderQuestion(current);
+              renderNavigator();
+            };
+            nav.appendChild(btn);
+          }
         }
 
         // Navigasi tombol
-        document.querySelector('.prev-btn').onclick = () => {
-            if (current > sectionStartIdx[sectionIdx]) {
-                current--;
-                renderQuestion(current);
-                renderNavigator();
-            }
+        document.querySelector(".prev-btn").onclick = () => {
+          if (current > sectionStartIdx[sectionIdx]) {
+            current--;
+            renderQuestion(current);
+            renderNavigator();
+          }
         };
-        document.querySelector('.next-btn').onclick = () => {
-            if (current < sectionStartIdx[sectionIdx] + sections[sectionIdx].data.questions.length - 1) {
-                current++;
-                renderQuestion(current);
-                renderNavigator();
-            }
+        document.querySelector(".next-btn").onclick = () => {
+          if (
+            current <
+            sectionStartIdx[sectionIdx] +
+              sections[sectionIdx].data.questions.length -
+              1
+          ) {
+            current++;
+            renderQuestion(current);
+            renderNavigator();
+          }
         };
 
         // Submit per bab
-        document.querySelector('.submit-btn').onclick = nextSectionOrFinish;
+        document.querySelector(".submit-btn").onclick = nextSectionOrFinish;
 
         function nextSectionOrFinish() {
-            // Jika mode latihan, tampilkan pembahasan setelah submit bab
-            if (mode === 'latihan') {
-                showPembahasan(sectionIdx);
-                return;
-            }
-            // Jika masih ada bab berikutnya
-            if (sectionIdx < sections.length - 1) {
-                showSectionAlert(sectionIdx + 1);
-            } else {
-                finishTest();
-            }
+          // Jika mode latihan, tampilkan pembahasan setelah submit bab
+          if (mode === "latihan") {
+            showPembahasan(sectionIdx);
+            return;
+          }
+          // Jika masih ada bab berikutnya
+          if (sectionIdx < sections.length - 1) {
+            showSectionAlert(sectionIdx + 1);
+          } else {
+            finishTest();
+          }
         }
 
         function showPembahasan(sectionIdxNow) {
-            const start = sectionStartIdx[sectionIdxNow];
-            const end = start + sections[sectionIdxNow].data.questions.length;
-            const sectionTitle = sectionNames[sectionIdxNow];
+          const start = sectionStartIdx[sectionIdxNow];
+          const end = start + sections[sectionIdxNow].data.questions.length;
+          const sectionTitle = sectionNames[sectionIdxNow];
 
-            document.querySelector('.test-container').innerHTML = `
+          document.querySelector(".test-container").innerHTML = `
                 <div class="pembahasan-container">
                     <h2 class="pembahasan-title">Pembahasan ${sectionTitle}</h2>
                     
@@ -229,85 +263,135 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                ${allQuestions.slice(start, end).map((q, i) => {
+                                ${allQuestions
+                                  .slice(start, end)
+                                  .map((q, i) => {
                                     const userAns = answers[start + i];
                                     const benar = userAns === q.correct;
                                     return `
                                         <tr>
                                             <td>${i + 1}</td>
-                                            <td style="text-align:left">${q.question}</td>
+                                            <td style="text-align:left">${
+                                              q.question
+                                            }</td>
                                             <td style="text-align:left">
-                                                <span class="${userAns === null ? 'belum' : benar ? 'benar' : 'salah'}">
-                                                    ${userAns !== null ? q.options[userAns] : '<i>Belum dijawab</i>'}
+                                                <span class="${
+                                                  userAns === null
+                                                    ? "belum"
+                                                    : benar
+                                                    ? "benar"
+                                                    : "salah"
+                                                }">
+                                                    ${
+                                                      userAns !== null
+                                                        ? q.options[userAns]
+                                                        : "<i>Belum dijawab</i>"
+                                                    }
                                                 </span>
                                             </td>
-                                            <td style="text-align:left"><span class="benar">${q.options[q.correct]}</span></td>
-                                            <td style="text-align:left">${q.explanation || '-'}</td>
+                                            <td style="text-align:left"><span class="benar">${
+                                              q.options[q.correct]
+                                            }</span></td>
+                                            <td style="text-align:left">${
+                                              q.explanation || "-"
+                                            }</td>
                                         </tr>
                                     `;
-                                }).join('')}
+                                  })
+                                  .join("")}
                             </tbody>
                         </table>
                     </div>
                     
                     <!-- Mobile Card View -->
                     <div class="pembahasan-mobile">
-                        ${allQuestions.slice(start, end).map((q, i) => {
+                        ${allQuestions
+                          .slice(start, end)
+                          .map((q, i) => {
                             const userAns = answers[start + i];
                             const benar = userAns === q.correct;
-                            const statusClass = userAns === null ? 'belum' : benar ? 'benar' : 'salah';
-                            const statusText = userAns === null ? 'Belum dijawab' : benar ? 'Benar' : 'Salah';
+                            const statusClass =
+                              userAns === null
+                                ? "belum"
+                                : benar
+                                ? "benar"
+                                : "salah";
+                            const statusText =
+                              userAns === null
+                                ? "Belum dijawab"
+                                : benar
+                                ? "Benar"
+                                : "Salah";
                             return `
                                 <div class="pembahasan-card">
                                     <div class="card-header">
-                                        <span class="question-number">${i + 1}</span>
+                                        <span class="question-number">${
+                                          i + 1
+                                        }</span>
                                         <span class="status-badge ${statusClass}">${statusText}</span>
                                     </div>
-                                    <div class="question-text">${q.question}</div>
+                                    <div class="question-text">${
+                                      q.question
+                                    }</div>
                                     <div class="answer-section">
                                         <span class="answer-label">Jawaban Anda:</span>
                                         <div class="answer-value ${statusClass}">
-                                            ${userAns !== null ? q.options[userAns] : '<i>Belum dijawab</i>'}
+                                            ${
+                                              userAns !== null
+                                                ? q.options[userAns]
+                                                : "<i>Belum dijawab</i>"
+                                            }
                                         </div>
                                     </div>
                                     <div class="answer-section">
                                         <span class="answer-label">Kunci Jawaban:</span>
-                                        <div class="answer-value benar">${q.options[q.correct]}</div>
+                                        <div class="answer-value benar">${
+                                          q.options[q.correct]
+                                        }</div>
                                     </div>
-                                    ${q.explanation && q.explanation !== '-' ? `
+                                    ${
+                                      q.explanation && q.explanation !== "-"
+                                        ? `
                                         <div class="explanation">
                                             <strong>Pembahasan:</strong><br>
                                             ${q.explanation}
                                         </div>
-                                    ` : ''}
+                                    `
+                                        : ""
+                                    }
                                 </div>
                             `;
-                        }).join('')}
+                          })
+                          .join("")}
                     </div>
                     
                     <button id="lanjut-bab" class="btn-dashboard">
-                        ${sectionIdxNow < sections.length - 1 ? 'Lanjut ke Bab Berikutnya' : 'Lihat Hasil'}
+                        ${
+                          sectionIdxNow < sections.length - 1
+                            ? "Lanjut ke Bab Berikutnya"
+                            : "Lihat Hasil"
+                        }
                     </button>
                 </div>
             `;
 
-            document.getElementById('lanjut-bab').onclick = function() {
-                if (sectionIdxNow < sections.length - 1) {
-                    showBab(sectionIdxNow + 1);
-                } else {
-                    // Hitung dan simpan skor dulu, lalu redirect
-                    finishTest(); // panggil fungsi yang sama seperti mode ujian
-                }
-            };
+          document.getElementById("lanjut-bab").onclick = function () {
+            if (sectionIdxNow < sections.length - 1) {
+              showBab(sectionIdxNow + 1);
+            } else {
+              // Hitung dan simpan skor dulu, lalu redirect
+              finishTest(); // panggil fungsi yang sama seperti mode ujian
+            }
+          };
         }
 
         // Fungsi untuk render bab berikutnya
         function showBab(idx) {
-            sectionIdx = idx;
-            current = sectionStartIdx[sectionIdx];
-            timer = sectionTimers[sectionIdx];
-            // Render ulang test-container
-            document.querySelector('.test-container').innerHTML = `
+          sectionIdx = idx;
+          current = sectionStartIdx[sectionIdx];
+          timer = sectionTimers[sectionIdx];
+          // Render ulang test-container
+          document.querySelector(".test-container").innerHTML = `
                 <aside class="question-navigator">
                     <div class="navigator-grid"></div>
                     <button class="submit-btn">Submit Test</button>
@@ -327,41 +411,46 @@
                     <div id="feedback"></div>
                 </section>
             `;
-            // Re-attach event listeners
-            startTimer();
-            renderQuestion(current);
-            renderNavigator();
-            document.querySelector('.prev-btn').onclick = () => {
-                if (current > sectionStartIdx[sectionIdx]) {
-                    current--;
-                    renderQuestion(current);
-                    renderNavigator();
-                }
-            };
-            document.querySelector('.next-btn').onclick = () => {
-                if (current < sectionStartIdx[sectionIdx] + sections[sectionIdx].data.questions.length - 1) {
-                    current++;
-                    renderQuestion(current);
-                    renderNavigator();
-                }
-            };
-            document.querySelector('.submit-btn').onclick = nextSectionOrFinish;
+          // Re-attach event listeners
+          startTimer();
+          renderQuestion(current);
+          renderNavigator();
+          document.querySelector(".prev-btn").onclick = () => {
+            if (current > sectionStartIdx[sectionIdx]) {
+              current--;
+              renderQuestion(current);
+              renderNavigator();
+            }
+          };
+          document.querySelector(".next-btn").onclick = () => {
+            if (
+              current <
+              sectionStartIdx[sectionIdx] +
+                sections[sectionIdx].data.questions.length -
+                1
+            ) {
+              current++;
+              renderQuestion(current);
+              renderNavigator();
+            }
+          };
+          document.querySelector(".submit-btn").onclick = nextSectionOrFinish;
         }
 
         // Modal sederhana
         function showSectionAlert(nextSection) {
-            const modal = document.createElement('div');
-            modal.style.position = 'fixed';
-            modal.style.top = 0;
-            modal.style.left = 0;
-            modal.style.width = '100vw';
-            modal.style.height = '100vh';
-            modal.style.background = 'rgba(0,0,0,0.5)';
-            modal.style.display = 'flex';
-            modal.style.alignItems = 'center';
-            modal.style.justifyContent = 'center';
-            modal.style.zIndex = 9999;
-            modal.innerHTML = `
+          const modal = document.createElement("div");
+          modal.style.position = "fixed";
+          modal.style.top = 0;
+          modal.style.left = 0;
+          modal.style.width = "100vw";
+          modal.style.height = "100vh";
+          modal.style.background = "rgba(0,0,0,0.5)";
+          modal.style.display = "flex";
+          modal.style.alignItems = "center";
+          modal.style.justifyContent = "center";
+          modal.style.zIndex = 9999;
+          modal.innerHTML = `
                 <div style="background:#fff;padding:2rem 2.5rem;border-radius:16px;text-align:center;max-width:350px">
                     <h2>Bab Selesai!</h2>
                     <p>Anda telah menyelesaikan <b>${sectionNames[sectionIdx]}</b>.<br>
@@ -369,58 +458,59 @@
                     <button id="next-section-btn" style="margin-top:1.2rem;padding:.7em 2em;font-size:1.1em;background:#2471f3;color:#fff;border:none;border-radius:8px;cursor:pointer;">Lanjut</button>
                 </div>
             `;
-            document.body.appendChild(modal);
-            document.getElementById('next-section-btn').onclick = () => {
-                document.body.removeChild(modal);
-                // Pindah ke bab berikutnya
-                sectionIdx = nextSection;
-                current = sectionStartIdx[sectionIdx];
-                timer = sectionTimers[sectionIdx];
-                startTimer();
-                renderQuestion(current);
-                renderNavigator();
-            };
+          document.body.appendChild(modal);
+          document.getElementById("next-section-btn").onclick = () => {
+            document.body.removeChild(modal);
+            // Pindah ke bab berikutnya
+            sectionIdx = nextSection;
+            current = sectionStartIdx[sectionIdx];
+            timer = sectionTimers[sectionIdx];
+            startTimer();
+            renderQuestion(current);
+            renderNavigator();
+          };
         }
 
         function finishTest() {
-            // Hitung skor per bab
-            let scores = [0,0,0];
-            let totals = [0,0,0];
-            allQuestions.forEach((q, i) => {
-                if (answers[i] === q.correct) scores[q.section]++;
-                totals[q.section]++;
-            });
-            // Simpan skor ke localStorage
-            localStorage.setItem('fullListeningScore', scores[0]);
-            localStorage.setItem('fullListeningTotal', totals[0]);
-            localStorage.setItem('fullStructureScore', scores[1]);
-            localStorage.setItem('fullStructureTotal', totals[1]);
-            localStorage.setItem('fullReadingScore', scores[2]);
-            localStorage.setItem('fullReadingTotal', totals[2]);
-            // Hapus jawaban sementara
-            localStorage.removeItem('fullAnswers');
-            // Redirect ke hasil
-            window.location.href = 'hasil-full.html';
+          // Hitung skor per bab
+          let scores = [0, 0, 0];
+          let totals = [0, 0, 0];
+          allQuestions.forEach((q, i) => {
+            if (answers[i] === q.correct) scores[q.section]++;
+            totals[q.section]++;
+          });
+          // Simpan skor ke localStorage
+          localStorage.setItem("fullListeningScore", scores[0]);
+          localStorage.setItem("fullListeningTotal", totals[0]);
+          localStorage.setItem("fullStructureScore", scores[1]);
+          localStorage.setItem("fullStructureTotal", totals[1]);
+          localStorage.setItem("fullReadingScore", scores[2]);
+          localStorage.setItem("fullReadingTotal", totals[2]);
+          // Hapus jawaban sementara
+          localStorage.removeItem("fullAnswers");
+          // Redirect ke hasil
+          window.location.href = "/test/hasil-full";
         }
 
         // Tampilkan mode aktif di pojok kanan atas
-        const header = document.querySelector('.question-header');
+        const header = document.querySelector(".question-header");
         if (header) {
-            const modeLabel = document.createElement('span');
-            modeLabel.textContent = mode === 'ujian' ? 'Mode Ujian' : 'Mode Latihan';
-            modeLabel.style.background = mode === 'ujian' ? '#4a55a2' : '#2ecc71';
-            modeLabel.style.color = '#fff';
-            modeLabel.style.padding = '0.3rem 1rem';
-            modeLabel.style.borderRadius = '20px';
-            modeLabel.style.marginLeft = '1rem';
-            header.appendChild(modeLabel);
+          const modeLabel = document.createElement("span");
+          modeLabel.textContent =
+            mode === "ujian" ? "Mode Ujian" : "Mode Latihan";
+          modeLabel.style.background = mode === "ujian" ? "#4a55a2" : "#2ecc71";
+          modeLabel.style.color = "#fff";
+          modeLabel.style.padding = "0.3rem 1rem";
+          modeLabel.style.borderRadius = "20px";
+          modeLabel.style.marginLeft = "1rem";
+          header.appendChild(modeLabel);
         }
 
         // Render awal
         startTimer();
         renderQuestion(current);
         renderNavigator();
-    });
+      });
     </script>
-</body>
+  </body>
 </html>

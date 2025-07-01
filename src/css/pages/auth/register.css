@@ -3,7 +3,7 @@ body, html {
     padding: 0;
     min-height: 100vh;
     font-family: 'Segoe UI', Arial, sans-serif;
-    background: #257cff;
+    background: #2471f3; /* Same blue as main page */
     color: #222;
 }
 
@@ -407,41 +407,41 @@ footer > p {
     }
 }
 
-/* Dark Mode Support */
+/* Dark Mode Support - Disabled for consistent blue theme */
 @media (prefers-color-scheme: dark) {
     body, html {
-        background: #1a1a1a;
+        background: #2471f3; /* Keep blue background even in dark mode */
     }
 
     .header {
-        background: #2a2a2a;
-        color: #ffffff;
+        background: #ffffff; /* Keep white header */
+        color: #222;
     }
 
     .container {
-        background: #2a2a2a;
-        color: #ffffff;
+        background: #ffffff; /* Keep white container */
+        color: #222;
     }
 
     input[type="text"], 
     input[type="password"] {
-        background: #333333;
-        border-color: #555555;
-        color: #ffffff;
+        background: #f5f8ff; /* Light blue background */
+        border-color: #d0e7ff;
+        color: #222;
     }
 
     input[type="text"]:focus, 
     input[type="password"]:focus {
         border-color: #257cff;
-        background: #404040;
+        background: #eaf1ff;
     }
 
     label {
-        color: #ffffff;
+        color: #222; /* Dark text for labels */
     }
 
     .register-link {
-        color: #cccccc;
+        color: #222;
     }
 
     .register-link a {

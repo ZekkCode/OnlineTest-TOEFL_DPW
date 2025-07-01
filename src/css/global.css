@@ -16,6 +16,7 @@
     --error-color: #dc3545;        /* merah error */
     --white: #ffffff;
     --sidebar-bg: linear-gradient(135deg, #2471f3 0%, #4fc3f7 100%); /* gradient biru */
+    --primary-gradient: linear-gradient(135deg, #2471f3 0%, #4fc3f7 100%); /* gradient biru primary */
     --card-shadow: 0 4px 20px rgba(36, 113, 243, 0.08);
 }
 

@@ -1,146 +1,280 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pilih Mode Tes TOEFL</title>
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="manifest" href="/site.webmanifest" />
-  <link rel="stylesheet" href="../../css/global.css">
-  <link rel="stylesheet" href="../../css/pages/test/index.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-</head>
-<body>
-  <div class="test-mode-container">
-    <div class="test-header">
-      <h1>Simulasi Tes TOEFL</h1>
-      <div class="desc">Latihan dan Ujian TOEFL - Pengalaman Lengkap</div>
-      <div class="meta">
-        <span><i class="fas fa-list-ol"></i> 140 Soal Total</span>
-        <span><i class="fas fa-clock"></i> 120 Menit Total</span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pilih Mode Tes TOEFL</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="../../css/global.css" />
+    <link rel="stylesheet" href="../../css/pages/test/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="test-mode-container">
+      <div class="test-header">
+        <h1>Simulasi Tes TOEFL</h1>
+        <div class="desc">Latihan dan Ujian TOEFL - Pengalaman Lengkap</div>
+        <div class="meta">
+          <span><i class="fas fa-list-ol"></i> 140 Soal Total</span>
+          <span><i class="fas fa-clock"></i> 120 Menit Total</span>
+        </div>
       </div>
-    </div>
 
-    <div class="instructions-card">
-      <h2>Petunjuk Tes TOEFL</h2>
-      <h3>Sebelum Memulai:</h3>
-      <ul>
-        <li>Pastikan koneksi internet stabil</li>
-        <li>Cari tempat yang tenang untuk mengerjakan</li>
-        <li>Siapkan kertas dan alat tulis</li>
-        <li>Selesaikan setiap bagian dalam batas waktu</li>
-      </ul>
-      <h3>Format Tes:</h3>
-      <ul>
-        <li>Soal pilihan ganda</li>
-        <li>Timer berjalan otomatis saat dimulai</li>
-        <li>Bisa pindah soal bebas</li>
-        <li>Submit saat selesai atau waktu habis</li>
-      </ul>
-    </div>
+      <div class="instructions-card">
+        <h2>Petunjuk Tes TOEFL</h2>
+        <h3>Sebelum Memulai:</h3>
+        <ul>
+          <li>Pastikan koneksi internet stabil</li>
+          <li>Cari tempat yang tenang untuk mengerjakan</li>
+          <li>Siapkan kertas dan alat tulis</li>
+          <li>Selesaikan setiap bagian dalam batas waktu</li>
+        </ul>
+        <h3>Format Tes:</h3>
+        <ul>
+          <li>Soal pilihan ganda</li>
+          <li>Timer berjalan otomatis saat dimulai</li>
+          <li>Bisa pindah soal bebas</li>
+          <li>Submit saat selesai atau waktu habis</li>
+        </ul>
+      </div>
 
-    <!-- Pilihan Mode -->
-    <div class="sections-row" style="justify-content:center;">
-      <div class="section-card listening" onclick="startTest('ujian')">
-        <span class="icon"><i class="fas fa-graduation-cap"></i></span>
-        <h2>Mode Ujian</h2>
-        <p>Kerjakan tes TOEFL seperti ujian sungguhan. Tidak ada pembahasan sebelum selesai.</p>
-        <button class="start-btn">Pilih Mode Ujian</button>
+      <!-- Pilihan Mode -->
+      <div class="sections-row" style="justify-content: center">
+        <div class="section-card listening">
+          <span class="icon"><i class="fas fa-graduation-cap"></i></span>
+          <h2>Mode Ujian</h2>
+          <p>
+            Kerjakan tes TOEFL seperti ujian sungguhan. Tidak ada pembahasan
+            sebelum selesai.
+          </p>
+          <button class="start-btn" onclick="startTest('ujian'); return false;">
+            Pilih Mode Ujian
+          </button>
+        </div>
+        <div class="section-card reading">
+          <span class="icon"><i class="fas fa-lightbulb"></i></span>
+          <h2>Mode Latihan</h2>
+          <p>Latihan soal TOEFL dengan pembahasan langsung setelah menjawab.</p>
+          <button
+            class="start-btn"
+            onclick="startTest('latihan'); return false;"
+          >
+            Pilih Mode Latihan
+          </button>
+        </div>
       </div>
-      <div class="section-card reading" onclick="startTest('latihan')">
-        <span class="icon"><i class="fas fa-lightbulb"></i></span>
-        <h2>Mode Latihan</h2>
-        <p>Latihan soal TOEFL dengan pembahasan langsung setelah menjawab.</p>
-        <button class="start-btn">Pilih Mode Latihan</button>
-      </div>
-    </div>
 
-    <!-- Pilihan Section, tampil setelah mode dipilih -->
-    <div class="sections-row" id="sectionChoice" style="display:none; margin-top:24px;">
-      <div class="section-card listening">
-        <span class="icon"><i class="fas fa-headphones"></i></span>
-        <h2>Listening Comprehension</h2>
-        <p>Uji kemampuan memahami percakapan dan ceramah berbahasa Inggris.</p>
-        <div class="meta" id="info-listening">50 Soal | 40 Menit</div>
-        <a class="start-btn" href="/pages/test/soal-listening.html">Mulai Listening</a>
-      </div>
-      <div class="section-card structure">
-        <span class="icon"><i class="fas fa-file-alt"></i></span>
-        <h2>Structure & Written Expression</h2>
-        <p>Uji pemahaman tata bahasa dan struktur kalimat bahasa Inggris.</p>
-        <div class="meta" id="info-structure">40 Soal | 25 Menit</div>
-        <a class="start-btn" href="/pages/test/soal-structure.html">Mulai Structure</a>
-      </div>
-      <div class="section-card reading">
-        <span class="icon"><i class="fas fa-book-open"></i></span>
-        <h2>Reading Comprehension</h2>
-        <p>Uji pemahaman bacaan bahasa Inggris melalui berbagai teks.</p>
-        <div class="meta" id="info-reading">50 Soal | 55 Menit</div>
-        <a class="start-btn" href="/pages/test/soal-reading.html">Mulai Reading</a>
-      </div>
-    </div>
+      <!-- Pilihan Section, tampil setelah mode dipilih -->
+      <div class="sections-row" id="sectionChoice">
+        <!-- Pesan peringatan jika belum pilih mode -->
+        <div id="warningMessage" class="warning-card" style="display: none">
+          <div class="warning-content">
+            <i class="fas fa-exclamation-triangle warning-icon"></i>
+            <h3>Pilih Mode Terlebih Dahulu</h3>
+            <p>
+              Silakan pilih mode ujian atau latihan di atas sebelum memilih
+              jenis soal.
+            </p>
+            <button class="warning-btn" onclick="closeWarning()">
+              Mengerti
+            </button>
+          </div>
+        </div>
 
-    <!-- Full Test Card -->
-    <div class="fulltest-card">
-      <h2>TOEFL Lengkap | Pilih Mode Dulu</h2>
-      <div class="meta" id="info-full">140 Soal | 120 Menit - Simulasi Penuh TOEFL</div>
-      <p>setelah pencet mode baru Kerjakan semua bagian secara berurutan untuk simulasi penuh TOEFL seperti ujian sesungguhnya.</p>
-      <a class="start-btn" href="/pages/test/soal-full.html">Mulai Tes Lengkap</a>
-    </div>
+        <div class="section-card listening">
+          <span class="icon"><i class="fas fa-headphones"></i></span>
+          <h2>Listening Comprehension</h2>
+          <p>
+            Uji kemampuan memahami percakapan dan ceramah berbahasa Inggris.
+          </p>
+          <div class="meta" id="info-listening">50 Soal | 40 Menit</div>
+          <a
+            class="start-btn"
+            href="#"
+            onclick="checkModeBeforeStart('listening')"
+            >Mulai Listening</a
+          >
+        </div>
+        <div class="section-card structure">
+          <span class="icon"><i class="fas fa-file-alt"></i></span>
+          <h2>Structure & Written Expression</h2>
+          <p>Uji pemahaman tata bahasa dan struktur kalimat bahasa Inggris.</p>
+          <div class="meta" id="info-structure">40 Soal | 25 Menit</div>
+          <a
+            class="start-btn"
+            href="#"
+            onclick="checkModeBeforeStart('structure')"
+            >Mulai Structure</a
+          >
+        </div>
+        <div class="section-card reading">
+          <span class="icon"><i class="fas fa-book-open"></i></span>
+          <h2>Reading Comprehension</h2>
+          <p>Uji pemahaman bacaan bahasa Inggris melalui berbagai teks.</p>
+          <div class="meta" id="info-reading">50 Soal | 55 Menit</div>
+          <a
+            class="start-btn"
+            href="#"
+            onclick="checkModeBeforeStart('reading')"
+            >Mulai Reading</a
+          >
+        </div>
 
-    <a href="/dashboard" class="btn-back">
-      <i class="fas fa-arrow-left"></i> Kembali ke Dashboard
-    </a>
-  </div>
-  <script src="js/index.js"></script>
-  <script>
-    // Simpan mode di localStorage
-    function startTest(mode) {
-      localStorage.setItem('testMode', mode); // 'exam' atau 'practice'
-      document.getElementById('sectionChoice').style.display = 'flex';
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-    }
-    function chooseSection(section) {
-      localStorage.setItem('testSection', section);
-      if (section === 'listening') {
-        window.location.href = '/pages/test/soal-listening.html';
-      } else if (section === 'structure') {
-        window.location.href = '/pages/test/soal-structure.html';
-      } else if (section === 'reading') {
-        window.location.href = '/pages/test/soal-reading.html';
-      } else if (section === 'full') {
-        window.location.href = '/pages/test/soal-full.html';
+        <!-- Full Test Card - moved inside sectionChoice -->
+        <div class="section-card fulltest">
+          <span class="icon"><i class="fas fa-graduation-cap"></i></span>
+          <h2>TOEFL Lengkap</h2>
+          <p>
+            Kerjakan semua bagian secara berurutan untuk simulasi penuh TOEFL
+            seperti ujian sesungguhnya.
+          </p>
+          <div class="meta" id="info-full">140 Soal | 120 Menit</div>
+          <a class="start-btn" href="#" onclick="checkModeBeforeStart('full')"
+            >Mulai Tes Lengkap</a
+          >
+        </div>
+      </div>
+
+      <a href="/dashboard" class="btn-back">
+        <i class="fas fa-arrow-left"></i> Kembali ke Dashboard
+      </a>
+    </div>
+    <script>
+      // Define functions immediately to prevent ReferenceError
+      function startTest(mode) {
+        // Store selected mode in localStorage
+        localStorage.setItem("testMode", mode);
+
+        // Get section choice element
+        const sectionChoice = document.getElementById("sectionChoice");
+
+        if (sectionChoice) {
+          // Hide any existing warning
+          const warningMessage = document.getElementById("warningMessage");
+          if (warningMessage) {
+            warningMessage.style.display = "none";
+          }
+
+          // Show section choices with smooth animation
+          sectionChoice.classList.add("show");
+
+          // Scroll to section choices after animation
+          setTimeout(() => {
+            sectionChoice.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }, 300);
+        }
+
+        return false;
       }
-    }
-  </script>
-  <script>
-async function updateSectionInfo() {
-  // Fetch data JSON
-  const [listening, structure, reading] = await Promise.all([
-    fetch('/data/listening.json').then(r => r.json()),
-    fetch('/data/structure.json').then(r => r.json()),
-    fetch('/data/reading.json').then(r => r.json())
-  ]);
-  // Atur waktu default jika tidak ada di JSON (detik)
-  const listeningTime = listening.timeLimit || 2400;   // 40 menit
-  const structureTime = structure.timeLimit || 1500;   // 25 menit
-  const readingTime = reading.timeLimit || 3300;       // 55 menit
 
-  // Update info pada HTML
-  document.getElementById('info-listening').textContent =
-    `${listening.questions.length} Soal | ${Math.round(listeningTime/60)} Menit`;
-  document.getElementById('info-structure').textContent =
-    `${structure.questions.length} Soal | ${Math.round(structureTime/60)} Menit`;
-  document.getElementById('info-reading').textContent =
-    `${reading.questions.length} Soal | ${Math.round(readingTime/60)} Menit`;
-  document.getElementById('info-full').textContent =
-    `${listening.questions.length + structure.questions.length + reading.questions.length} Soal | ${Math.round((listeningTime+structureTime+readingTime)/60)} Menit`;
-}
-updateSectionInfo();
-</script>
-</body>
+      function closeWarning() {
+        const warningMessage = document.getElementById("warningMessage");
+        if (warningMessage) {
+          warningMessage.style.display = "none";
+        }
+      }
+
+      function checkModeBeforeStart(section) {
+        const selectedMode = localStorage.getItem("testMode");
+
+        if (!selectedMode) {
+          // Show warning message
+          const warningMessage = document.getElementById("warningMessage");
+          if (warningMessage) {
+            warningMessage.style.display = "block";
+
+            // Scroll to warning message
+            setTimeout(() => {
+              warningMessage.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+              });
+            }, 100);
+          }
+
+          return false;
+        }
+
+        // If mode is selected, proceed to the test
+        localStorage.setItem("testSection", section);
+
+        // Redirect to appropriate test page
+        const testPages = {
+          listening: "/test/soal-listening",
+          structure: "/test/soal-structure",
+          reading: "/test/soal-reading",
+          full: "/test/soal-full",
+        };
+
+        if (testPages[section]) {
+          window.location.href = testPages[section];
+        }
+
+        return true;
+      }
+    </script>
+    <script>
+      // Wait for DOM and index.js to load
+      document.addEventListener("DOMContentLoaded", async function () {
+        try {
+          // Fetch data JSON
+          const [listening, structure, reading] = await Promise.all([
+            fetch("/data/listening.json").then((r) => r.json()),
+            fetch("/data/structure.json").then((r) => r.json()),
+            fetch("/data/reading.json").then((r) => r.json()),
+          ]);
+
+          // Atur waktu default jika tidak ada di JSON (detik)
+          const listeningTime = listening.timeLimit || 2400; // 40 menit
+          const structureTime = structure.timeLimit || 1500; // 25 menit
+          const readingTime = reading.timeLimit || 3300; // 55 menit
+
+          // Update info pada HTML
+          const infoListening = document.getElementById("info-listening");
+          const infoStructure = document.getElementById("info-structure");
+          const infoReading = document.getElementById("info-reading");
+          const infoFull = document.getElementById("info-full");
+
+          if (infoListening) {
+            infoListening.textContent = `${
+              listening.questions.length
+            } Soal | ${Math.round(listeningTime / 60)} Menit`;
+          }
+          if (infoStructure) {
+            infoStructure.textContent = `${
+              structure.questions.length
+            } Soal | ${Math.round(structureTime / 60)} Menit`;
+          }
+          if (infoReading) {
+            infoReading.textContent = `${
+              reading.questions.length
+            } Soal | ${Math.round(readingTime / 60)} Menit`;
+          }
+          if (infoFull) {
+            infoFull.textContent = `${
+              listening.questions.length +
+              structure.questions.length +
+              reading.questions.length
+            } Soal | ${Math.round(
+              (listeningTime + structureTime + readingTime) / 60
+            )} Menit`;
+          }
+        } catch (error) {
+          console.log("Could not load JSON data:", error);
+          // Use default values if JSON fails
+        }
+      });
+    </script>
+  </body>
 </html>

@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', async function() {
     // Contoh load soal dari file JSON (ganti sesuai kebutuhan)
     const section = localStorage.getItem('testSection') || 'listening';
-    const res = await fetch(`../../data/${section}.json`);
+    const res = await fetch(`/data/${section}.json`);
     const questions = await res.json();
 
     let current = 0;
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         localStorage.setItem('testScore', score);
         localStorage.setItem('testTotal', questions.length);
         localStorage.removeItem('testAnswers');
-        window.location.href = 'hasil.html';
+        window.location.href = '/test/hasil';
     };
 
     // Render awal

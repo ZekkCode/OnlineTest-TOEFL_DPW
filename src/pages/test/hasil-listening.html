@@ -1,231 +1,258 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hasil Listening</title>
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="manifest" href="/site.webmanifest" />
-  <link rel="stylesheet" href="../../css/global.css">
-  <link rel="stylesheet" href="../../css/pages/test/hasil.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <script src="score-util.js"></script>
-  <style>
-    .score-box {
-      background: #fafdff;
-      border-radius: 18px;
-      box-shadow: 0 4px 24px #e3eafc;
-      padding: 2.5rem 1.5rem 2rem 1.5rem;
-      text-align: center;
-      margin: 2rem auto 0 auto;
-      max-width: 400px;
-    }
-    .score-main {
-      font-size: 3.5rem;
-      font-weight: bold;
-      color: #2471f3;
-      margin: 1.2rem 0 0.7rem 0;
-    }
-    .score-detail {
-      font-size: 1.2rem;
-      margin-bottom: 0.7rem;
-    }
-    .score-range {
-      color: #888;
-      font-size: 1rem;
-      margin-bottom: 1.2rem;
-    }
-    .btn-cetak {
-      background: #219150;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: 0.7em 2em;
-      font-size: 1.1em;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .btn-cetak:hover {
-      background: #146c43;
-    }
-
-    /* Certificate Styles */
-    .certificate {
-      display: none;
-      width: 595px; /* A4 width in portrait */
-      height: 842px; /* A4 height in portrait */
-      padding: 48px;
-      border: 3px solid #2471f3;
-      position: relative;
-      margin: 20px auto;
-      background: #fff;
-      box-sizing: border-box;
-      font-family: 'Arial', sans-serif;
-    }
-    
-    .certificate::before {
-      content: '';
-      position: absolute;
-      top: 8px;
-      left: 8px;
-      right: 8px;
-      bottom: 8px;
-      border: 1px solid #2471f3;
-      pointer-events: none;
-    }
-    
-    .certificate-header {
-      text-align: center;
-      margin-bottom: 40px;
-      border-bottom: 2px solid #2471f3;
-      padding-bottom: 20px;
-    }
-    
-    .certificate-title {
-      font-size: 42px;
-      color: #2471f3;
-      font-weight: bold;
-      margin: 20px 0;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
-    
-    .certificate-subtitle {
-      font-size: 24px;
-      color: #333;
-      margin: 10px 0;
-    }
-    
-    .certificate-content {
-      text-align: center;
-      margin: 40px 0;
-    }
-    
-    .certificate-score {
-      font-size: 52px;
-      color: #2471f3;
-      font-weight: bold;
-      margin: 20px 0;
-      border: 3px solid #2471f3;
-      display: inline-block;
-      padding: 10px 40px;
-      border-radius: 10px;
-    }
-    
-    .certificate-details {
-      margin: 30px 0;
-      font-size: 20px;
-      line-height: 1.8;
-      color: #333;
-    }
-    
-    .certificate-footer {
-      position: absolute;
-      bottom: 48px;
-      left: 48px;
-      right: 48px;
-      text-align: center;
-      border-top: 2px solid #2471f3;
-      padding-top: 20px;
-    }
-    
-    .certificate-validation {
-      font-size: 16px;
-      color: #666;
-      margin-top: 15px;
-      font-style: italic;
-    }
-
-    /* Print Styles */
-    @media print {
-      body * {
-        visibility: hidden;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hasil Listening</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="../../css/global.css" />
+    <link rel="stylesheet" href="../../css/pages/test/hasil.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script src="score-util.js"></script>
+    <style>
+      .score-box {
+        background: #fafdff;
+        border-radius: 18px;
+        box-shadow: 0 4px 24px #e3eafc;
+        padding: 2.5rem 1.5rem 2rem 1.5rem;
+        text-align: center;
+        margin: 2rem auto 0 auto;
+        max-width: 400px;
       }
-      .certificate, .certificate * {
-        visibility: visible;
+      .score-main {
+        font-size: 3.5rem;
+        font-weight: bold;
+        color: #2471f3;
+        margin: 1.2rem 0 0.7rem 0;
       }
+      .score-detail {
+        font-size: 1.2rem;
+        margin-bottom: 0.7rem;
+      }
+      .score-range {
+        color: #888;
+        font-size: 1rem;
+        margin-bottom: 1.2rem;
+      }
+      .btn-cetak {
+        background: #219150;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 0.7em 2em;
+        font-size: 1.1em;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .btn-cetak:hover {
+        background: #146c43;
+      }
+
+      /* Certificate Styles */
       .certificate {
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 48px;
-      }
-      .btn-back, .btn-primary, .btn-cetak {
         display: none;
+        width: 595px; /* A4 width in portrait */
+        height: 842px; /* A4 height in portrait */
+        padding: 48px;
+        border: 3px solid #2471f3;
+        position: relative;
+        margin: 20px auto;
+        background: #fff;
+        box-sizing: border-box;
+        font-family: "Arial", sans-serif;
       }
-      @page {
-        size: A4 portrait;
-        margin: 0;
-      }
-    }
-  </style>
-</head>
-<body>
-  <a href="/dashboard" class="btn btn-back" style="margin:1.5rem 2rem 0 2rem;">
-      <i class="fas fa-arrow-left"></i> Kembali ke Dashboard
-  </a>
-  <div class="result-container">
-    <h1>Hasil Listening</h1>
-    <div id="score-summary">
-      <!-- Nilai akan diisi oleh JS -->
-    </div>
-    <button onclick="window.location.href='soal-listening.html'" class="btn btn-primary" style="margin-top:2rem;">
-      Ulangi Listening
-    </button>
-  </div>
 
-  <!-- Certificate Template -->
-  <div class="certificate">
-    <div class="certificate-header">
-      <h1 class="certificate-title">Sertifikat TOEFL Listening</h1>
-      <div class="certificate-subtitle">TOEL.ID - Platform Simulasi TOEFL Terpercaya</div>
+      .certificate::before {
+        content: "";
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        right: 8px;
+        bottom: 8px;
+        border: 1px solid #2471f3;
+        pointer-events: none;
+      }
+
+      .certificate-header {
+        text-align: center;
+        margin-bottom: 40px;
+        border-bottom: 2px solid #2471f3;
+        padding-bottom: 20px;
+      }
+
+      .certificate-title {
+        font-size: 42px;
+        color: #2471f3;
+        font-weight: bold;
+        margin: 20px 0;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .certificate-subtitle {
+        font-size: 24px;
+        color: #333;
+        margin: 10px 0;
+      }
+
+      .certificate-content {
+        text-align: center;
+        margin: 40px 0;
+      }
+
+      .certificate-score {
+        font-size: 52px;
+        color: #2471f3;
+        font-weight: bold;
+        margin: 20px 0;
+        border: 3px solid #2471f3;
+        display: inline-block;
+        padding: 10px 40px;
+        border-radius: 10px;
+      }
+
+      .certificate-details {
+        margin: 30px 0;
+        font-size: 20px;
+        line-height: 1.8;
+        color: #333;
+      }
+
+      .certificate-footer {
+        position: absolute;
+        bottom: 48px;
+        left: 48px;
+        right: 48px;
+        text-align: center;
+        border-top: 2px solid #2471f3;
+        padding-top: 20px;
+      }
+
+      .certificate-validation {
+        font-size: 16px;
+        color: #666;
+        margin-top: 15px;
+        font-style: italic;
+      }
+
+      /* Print Styles */
+      @media print {
+        body * {
+          visibility: hidden;
+        }
+        .certificate,
+        .certificate * {
+          visibility: visible;
+        }
+        .certificate {
+          display: block;
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          padding: 48px;
+        }
+        .btn-back,
+        .btn-primary,
+        .btn-cetak {
+          display: none;
+        }
+        @page {
+          size: A4 portrait;
+          margin: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a
+      href="/dashboard"
+      class="btn btn-back"
+      style="margin: 1.5rem 2rem 0 2rem"
+    >
+      <i class="fas fa-arrow-left"></i> Kembali ke Dashboard
+    </a>
+    <div class="result-container">
+      <h1>Hasil Listening</h1>
+      <div id="score-summary">
+        <!-- Nilai akan diisi oleh JS -->
+      </div>
+      <button
+        onclick="window.location.href='/test/soal-listening'"
+        class="btn btn-primary"
+        style="margin-top: 2rem"
+      >
+        Ulangi Listening
+      </button>
     </div>
-    <div class="certificate-content">
-      <div id="certificate-date" style="margin-bottom: 30px; font-size: 20px;"></div>
-      <div class="certificate-score" id="certificate-total-score"></div>
-      <div class="certificate-details" id="certificate-details"></div>
-    </div>
-    <div class="certificate-footer">
-      <p style="font-size: 18px; color: #2471f3; font-weight: bold;">TOEL.ID</p>
-      <p style="font-size: 16px; margin: 5px 0;">Platform Pembelajaran dan Simulasi TOEFL Terbaik di Indonesia</p>
-      <div class="certificate-validation">
-        Sertifikat ini diterbitkan sebagai hasil simulasi TOEFL di platform TOEL.ID.<br>
-        Skor ini mencerminkan kemampuan bahasa Inggris berdasarkan standar penilaian TOEFL ITP.
+
+    <!-- Certificate Template -->
+    <div class="certificate">
+      <div class="certificate-header">
+        <h1 class="certificate-title">Sertifikat TOEFL Listening</h1>
+        <div class="certificate-subtitle">
+          TOEL.ID - Platform Simulasi TOEFL Terpercaya
+        </div>
+      </div>
+      <div class="certificate-content">
+        <div
+          id="certificate-date"
+          style="margin-bottom: 30px; font-size: 20px"
+        ></div>
+        <div class="certificate-score" id="certificate-total-score"></div>
+        <div class="certificate-details" id="certificate-details"></div>
+      </div>
+      <div class="certificate-footer">
+        <p style="font-size: 18px; color: #2471f3; font-weight: bold">
+          TOEL.ID
+        </p>
+        <p style="font-size: 16px; margin: 5px 0">
+          Platform Pembelajaran dan Simulasi TOEFL Terbaik di Indonesia
+        </p>
+        <div class="certificate-validation">
+          Sertifikat ini diterbitkan sebagai hasil simulasi TOEFL di platform
+          TOEL.ID.<br />
+          Skor ini mencerminkan kemampuan bahasa Inggris berdasarkan standar
+          penilaian TOEFL ITP.
+        </div>
       </div>
     </div>
-  </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const benar = Number(localStorage.getItem('listeningScore') || 0);
-      const total = Number(localStorage.getItem('listeningTotal') || 50);
-      const skor = hitungSkorTOEFL('listening', benar, total);
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const benar = Number(localStorage.getItem("listeningScore") || 0);
+        const total = Number(localStorage.getItem("listeningTotal") || 50);
+        const skor = hitungSkorTOEFL("listening", benar, total);
 
-      // Format tanggal
-      const today = new Date();
-      const formattedDate = today.toLocaleDateString('id-ID', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric'
-      });
+        // Format tanggal
+        const today = new Date();
+        const formattedDate = today.toLocaleDateString("id-ID", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        });
 
-      // Simpan riwayat
-      simpanRiwayatTOEFL({
-        type: 'Listening',
-        date: new Date().toISOString(),
-        benar, total, skor
-      });
+        // Simpan riwayat
+        simpanRiwayatTOEFL({
+          type: "Listening",
+          date: new Date().toISOString(),
+          benar,
+          total,
+          skor,
+        });
 
-      document.getElementById('score-summary').innerHTML = `
+        document.getElementById("score-summary").innerHTML = `
         <div class="score-box">
           <h2>Skor Listening Anda</h2>
           <div class="score-main">${skor}</div>
@@ -235,16 +262,20 @@
         </div>
       `;
 
-      // Update certificate content
-      document.getElementById('certificate-date').innerText = `Tanggal Tes: ${formattedDate}`;
-      document.getElementById('certificate-total-score').innerText = `Skor: ${skor}`;
-      document.getElementById('certificate-details').innerHTML = `
+        // Update certificate content
+        document.getElementById(
+          "certificate-date"
+        ).innerText = `Tanggal Tes: ${formattedDate}`;
+        document.getElementById(
+          "certificate-total-score"
+        ).innerText = `Skor: ${skor}`;
+        document.getElementById("certificate-details").innerHTML = `
         Perincian:<br>
         Jumlah Soal: ${total}<br>
         Jawaban Benar: ${benar}<br>
         Rentang Skor: 31-68
       `;
-    });
-  </script>
-</body>
+      });
+    </script>
+  </body>
 </html>
