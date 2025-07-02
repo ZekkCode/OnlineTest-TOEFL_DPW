@@ -3,16 +3,10 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 5500;
 
-// Routes (jika ada)
-// const userRoute = require('./src/routes/userRoute');
-
-// Serve static files from src
+// Serve static files from root directory (for images, favicon, etc)
+app.use(express.static(__dirname));
+// Serve static files from src (for CSS, JS, etc)
 app.use(express.static(path.join(__dirname, 'src')));
-app.use(express.static('.'));
-
-// Serve favicon files from root directory (for standard favicon access)
-app.use(express.static(path.join(__dirname)));
-
 // Serve favicon files from toelfavico directory (backup)
 app.use('/toelfavico', express.static(path.join(__dirname, 'toelfavico')));
 
