@@ -3,8 +3,8 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 5500;
 
-// Serve static files from root directory (for images, favicon, etc)
-app.use(express.static(__dirname));
+// Serve static files from public directory (for images, favicon, etc)
+app.use(express.static(path.join(__dirname, 'public')));
 // Serve static files from src (for CSS, JS, etc)
 app.use(express.static(path.join(__dirname, 'src')));
 // Serve favicon files from toelfavico directory (backup)
