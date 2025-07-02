@@ -8,6 +8,7 @@ const port = process.env.PORT || 5500;
 
 // Serve static files from src
 app.use(express.static(path.join(__dirname, 'src')));
+app.use(express.static('.'));
 
 // Serve favicon files from root directory (for standard favicon access)
 app.use(express.static(path.join(__dirname)));
