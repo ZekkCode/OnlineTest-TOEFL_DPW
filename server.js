@@ -1,7 +1,49 @@
 const express = require('express');
 const path = require('path');
+const { generateSitemap } = require('./generate-sitemap');
 const app = express();
 const port = process.env.PORT || 5500;
+
+// Dynamic endpoints (must be before static middleware)
+// Sitemap endpoint
+app.get('/sitemap.xml', async (req, res) => {
+    try {
+        const sitemap = await generateSitemap();
+        res.set('Content-Type', 'application/xml');
+        res.send(sitemap);
+    } catch (error) {
+        console.error('Error generating sitemap:', error);
+        res.status(500).send('Error generating sitemap');
+    }
+});
+
+// Robots.txt endpoint
+app.get('/robots.txt', (req, res) => {
+    const domain = req.protocol + '://' + req.get('host');
+    const robotsTxt = `User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: ${domain}/sitemap.xml
+
+# Disallow test result pages for better SEO
+Disallow: /test/hasil*
+Disallow: /dashboard/profile-edit
+Disallow: /api/
+
+# Allow important pages
+Allow: /
+Allow: /home
+Allow: /auth/
+Allow: /dashboard
+Allow: /test/
+
+# Crawl-delay
+Crawl-delay: 1`;
+    
+    res.set('Content-Type', 'text/plain');
+    res.send(robotsTxt);
+});
 
 // Serve static files from public directory (for images, favicon, etc)
 app.use(express.static(path.join(__dirname, 'public')));

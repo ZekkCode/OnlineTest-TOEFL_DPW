@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://onlinetest-toefl-dpw.vercel.app/sitemap.xml
+
+# Disallow test result pages for better SEO
+Disallow: /test/hasil*
+Disallow: /dashboard/profile-edit
+Disallow: /api/
+
+# Allow important pages
+Allow: /
+Allow: /home
+Allow: /auth/
+Allow: /dashboard
+Allow: /test/
+
+# Crawl-delay
+Crawl-delay: 1

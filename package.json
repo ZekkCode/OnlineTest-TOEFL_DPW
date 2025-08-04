@@ -8,7 +8,9 @@
     "dev": "nodemon server.js",
     "build": "echo 'Build complete'",
     "add-favicon": "node add-favicon-to-all.js",
-    "check-favicon": "node check-favicon.js"
+    "check-favicon": "node check-favicon.js",
+    "generate-sitemap": "node generate-sitemap.js",
+    "build:sitemap": "npm run generate-sitemap"
   },
   "repository": {
     "type": "git",
@@ -23,10 +25,11 @@
   },
   "homepage": "https://github.com/ZekkCode/OnlineTest-TOEFL_DPW#readme",
   "dependencies": {
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "sitemap": "^8.0.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "nodemon": "^3.1.10"
   },
   "engines": {
     "node": ">=14.x"
