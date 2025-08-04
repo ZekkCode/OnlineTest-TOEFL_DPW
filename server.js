@@ -1,19 +1,66 @@
 const express = require('express');
 const path = require('path');
-const { generateSitemap } = require('./generate-sitemap');
+const { generateSitemap, pages } = require('./generate-sitemap');
+const { generateFallbackSitemap, generateMinimalSitemap } = require('./sitemap-fallback');
 const app = express();
 const port = process.env.PORT || 5500;
 
 // Dynamic endpoints (must be before static middleware)
-// Sitemap endpoint
+// Sitemap endpoint dengan multiple fallback
 app.get('/sitemap.xml', async (req, res) => {
+    const hostname = req.protocol + '://' + req.get('host');
+    
     try {
-        const sitemap = await generateSitemap();
+        // Try method 1: Using sitemap package
+        const sitemap = await generateSitemap(hostname);
         res.set('Content-Type', 'application/xml');
         res.send(sitemap);
+        console.log('✅ Sitemap generated successfully using sitemap package');
+    } catch (error1) {
+        console.warn('⚠️ Sitemap package failed, trying fallback method:', error1.message);
+        
+        try {
+            // Try method 2: Manual XML generation with pages
+            const fallbackSitemap = generateFallbackSitemap(hostname, pages);
+            res.set('Content-Type', 'application/xml');
+            res.send(fallbackSitemap);
+            console.log('✅ Sitemap generated successfully using fallback method');
+        } catch (error2) {
+            console.warn('⚠️ Fallback method failed, using minimal sitemap:', error2.message);
+            
+            try {
+                // Try method 3: Minimal hardcoded sitemap
+                const minimalSitemap = generateMinimalSitemap(hostname);
+                res.set('Content-Type', 'application/xml');
+                res.send(minimalSitemap);
+                console.log('✅ Minimal sitemap generated successfully');
+            } catch (error3) {
+                console.error('❌ All sitemap methods failed:', error3.message);
+                res.status(500).set('Content-Type', 'text/plain')
+                   .send('Error generating sitemap. All methods failed.');
+            }
+        }
+    }
+});
+
+// Debug endpoint untuk sitemap
+app.get('/sitemap-debug', async (req, res) => {
+    try {
+        const hostname = req.protocol + '://' + req.get('host');
+        const { pages } = require('./generate-sitemap');
+        res.json({
+            status: 'OK',
+            hostname: hostname,
+            totalPages: pages.length,
+            pages: pages,
+            timestamp: new Date().toISOString()
+        });
     } catch (error) {
-        console.error('Error generating sitemap:', error);
-        res.status(500).send('Error generating sitemap');
+        res.status(500).json({
+            status: 'ERROR',
+            error: error.message,
+            stack: error.stack
+        });
     }
 });
 

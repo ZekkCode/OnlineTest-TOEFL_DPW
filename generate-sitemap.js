@@ -35,10 +35,10 @@ const pages = [
   { url: '/test/hasil-full', changefreq: 'monthly', priority: 0.6 }
 ];
 
-async function generateSitemap() {
+async function generateSitemap(hostname = DOMAIN) {
   try {
     const sitemap = new SitemapStream({ 
-      hostname: DOMAIN,
+      hostname: hostname,
       cacheTime: 600000, // 600 sec - cache purge period
     });
 
@@ -57,26 +57,63 @@ async function generateSitemap() {
     // Konversi stream ke string
     const sitemapXML = await streamToPromise(sitemap);
     
-    // Simpan sitemap ke file
-    const sitemapPath = path.join(__dirname, 'public', 'sitemap.xml');
-    
-    // Pastikan folder public ada
-    const publicDir = path.join(__dirname, 'public');
-    if (!fs.existsSync(publicDir)) {
-      fs.mkdirSync(publicDir, { recursive: true });
+    // Hanya simpan file jika bukan di production atau jika folder bisa diakses
+    if (process.env.NODE_ENV !== 'production') {
+      try {
+        // Simpan sitemap ke file (hanya untuk development)
+        const sitemapPath = path.join(__dirname, 'public', 'sitemap.xml');
+        
+        // Pastikan folder public ada
+        const publicDir = path.join(__dirname, 'public');
+        if (!fs.existsSync(publicDir)) {
+          fs.mkdirSync(publicDir, { recursive: true });
+        }
+        
+        fs.writeFileSync(sitemapPath, sitemapXML.toString());
+        
+        console.log('✅ Sitemap berhasil dibuat di:', sitemapPath);
+        console.log('📊 Total halaman:', pages.length);
+        console.log('🌐 Domain:', hostname);
+        console.log('📝 Anda dapat mengakses sitemap di: ' + hostname + '/sitemap.xml');
+      } catch (fileError) {
+        console.warn('⚠️ Could not save sitemap file (continuing with memory version):', fileError.message);
+      }
     }
-    
-    fs.writeFileSync(sitemapPath, sitemapXML.toString());
-    
-    console.log('✅ Sitemap berhasil dibuat di:', sitemapPath);
-    console.log('📊 Total halaman:', pages.length);
-    console.log('🌐 Domain:', DOMAIN);
-    console.log('📝 Anda dapat mengakses sitemap di: ' + DOMAIN + '/sitemap.xml');
     
     return sitemapXML.toString();
   } catch (error) {
     console.error('❌ Error generating sitemap:', error);
-    throw error;
+    console.error('Error details:', {
+      message: error.message,
+      stack: error.stack,
+      pages: pages.length,
+      hostname: hostname
+    });
+    
+    // Return a basic sitemap as fallback
+    const fallbackSitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>${hostname}/</loc>
+    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>${hostname}/dashboard</loc>
+    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>${hostname}/test</loc>
+    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+</urlset>`;
+    
+    return fallbackSitemap;
   }
 }
 
